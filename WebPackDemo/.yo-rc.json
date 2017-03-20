@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "web-pack-demo",
+    "framework": "none",
+    "version": "1.0.0",
+    "libraryId": "7bf84578-2af5-4c57-bcf5-0e4185d5f9d2"
+  }
+}

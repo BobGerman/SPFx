@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "web-pack-demo-client-side-solution",
+    "id": "7bf84578-2af5-4c57-bcf5-0e4185d5f9d2",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/web-pack-demo.sppkg"
+  }
+}
