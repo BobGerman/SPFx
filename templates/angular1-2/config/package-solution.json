@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "ng-template-sample-client-side-solution",
+    "id": "e7efb443-ebb1-409f-80f1-4efb8c12178c",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/ng-template-sample.spapp"
+  }
+}

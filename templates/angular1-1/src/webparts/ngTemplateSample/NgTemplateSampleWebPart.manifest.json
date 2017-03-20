@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "03568ab3-482e-44f7-8182-ddde33c9cdf9",
+  "alias": "NgTemplateSampleWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "03568ab3-482e-44f7-8182-ddde33c9cdf9",
+    "group": { "default": "Under Development" },
+    "title": { "default": "ngTemplateSample" },
+    "description": { "default": "Angular 1.x sample using templates and viewmodel with CSS" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "ngTemplateSample"
+    }
+  }]
+}

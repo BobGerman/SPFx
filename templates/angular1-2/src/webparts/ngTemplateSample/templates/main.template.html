@@ -1,0 +1,4 @@
+<div ng-controller="MainController as vm" ng-class="vm.Styles.webPart">
+    <h1 ng-class="vm.Styles.greeting">Hello{{vm.GetSeparator()}}{{vm.MessageTo}}!</h1>
+    <div ng-include="'form-template'"></div>
+</div>

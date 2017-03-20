@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "ko-template-sample-client-side-solution",
+    "id": "705c1f53-3301-410a-9420-c169f8c5975c",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/ko-template-sample.spapp"
+  }
+}

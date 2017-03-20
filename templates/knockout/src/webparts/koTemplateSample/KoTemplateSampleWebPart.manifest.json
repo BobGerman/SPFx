@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "ec9f777a-a1b6-42dc-bf59-770ff904e35e",
+  "alias": "KoTemplateSampleWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "ec9f777a-a1b6-42dc-bf59-770ff904e35e",
+    "group": { "default": "Under Development" },
+    "title": { "default": "KOTemplateSample" },
+    "description": { "default": "A sample showing template in KnockOut" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "KOTemplateSample"
+    }
+  }]
+}

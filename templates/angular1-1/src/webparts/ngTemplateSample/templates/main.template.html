@@ -1,0 +1,6 @@
+<div ng-controller="MainController as vm" ng-class="vm.Styles.webPart">
+    <h1 ng-class="vm.Styles.greeting">Hello{{vm.GetSeparator()}}{{vm.MessageTo}}!</h1>
+
+    Who should I say hello to?
+    <input type="text" ng-model="vm.MessageTo" />
+</div>
