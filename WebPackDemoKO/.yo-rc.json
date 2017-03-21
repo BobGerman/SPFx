@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "web-pack-demo-ko",
+    "framework": "knockout",
+    "version": "1.0.0",
+    "libraryId": "8f6a3073-f38c-48fe-a04d-4bd64083ac42"
+  }
+}

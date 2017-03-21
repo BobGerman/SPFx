@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/webPackKo/WebPackKoWebPart.js",
+      "manifest": "./src/webparts/webPackKo/WebPackKoWebPart.manifest.json",
+      "outputPath": "./dist/web-pack-ko.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "webPackKoStrings": "webparts/webPackKo/loc/{locale}.js"
+  }
+}

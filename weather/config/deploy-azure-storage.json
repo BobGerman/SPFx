@@ -1,0 +1,14 @@
+// {
+//   "workingDir": "./temp/deploy/",
+//   "account": "<!-- STORAGE ACCOUNT NAME -->",
+//   "container": "weather",
+//   "accessKey": "<!-- ACCESS KEY -->"
+// }
+
+{
+  "workingDir": "./temp/deploy/",
+  "account": "bgtest14cdn",           // Storage account name
+  "container": "dev-cdn",             // Container name
+  "accessKey": "<Your Access Key Here>"
+}
+
