@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "56eb64b4-874b-4913-ba12-210101f9b4d0",
+  "alias": "WeatherWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "56eb64b4-874b-4913-ba12-210101f9b4d0",
+    "group": { "default": "Under Development" },
+    "title": { "default": "Weather" },
+    "description": { "default": "Display a weather forecast" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Weather"
+    }
+  }]
+}

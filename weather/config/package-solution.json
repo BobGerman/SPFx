@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "weather-client-side-solution",
+    "id": "b9c8ab04-837d-4065-bcd5-5dba8c9d6ddf",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/weather.sppkg"
+  }
+}

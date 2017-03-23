@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/weather/WeatherWebPart.js",
+      "manifest": "./src/webparts/weather/WeatherWebPart.manifest.json",
+      "outputPath": "./dist/weather.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "weatherStrings": "webparts/weather/loc/{locale}.js"
+  }
+}
