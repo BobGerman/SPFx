@@ -55,6 +55,7 @@ export class WeatherController implements IWeatherController {
         // update the weather forecast
         if (location) {
             this.timer = this.$timeout(() => {
+                this.Error = "";
                 this.getWeather(location);
                 this.delay = this.TYPE_DELAY;
             }, this.delay);
