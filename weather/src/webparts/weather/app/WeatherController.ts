@@ -3,6 +3,7 @@ export interface IWeatherController {
     Forecast: IWeatherForecast,     // Forecast information
     Error: string,                  // Error message
     ValidDataLoaded: boolean,       // True if forecast contains valid data
+    Styles: any,                    // CSS styles
     GetWeather: (string) => void    // Method to get the weather forecast
 }
 
@@ -13,12 +14,13 @@ import {IWeatherWebPartProps} from "../IWeatherWebPartProps";
 
 export class WeatherController implements IWeatherController {
     
-    static $inject = ["WeatherService", "WeatherPropService", "$timeout"];
+    static $inject = ["WeatherService", "WeatherPropService", "WeatherStyles", "$timeout"];
     
     // Define the ViewModel
     public Forecast: IWeatherForecast;
     public Error: string;
     public ValidDataLoaded: boolean = false;
+    public Styles: any = {};
     public GetWeather: (string) => void = this.getWeather;
 
     // Private members
@@ -29,9 +31,11 @@ export class WeatherController implements IWeatherController {
     
     constructor (private WeatherService: IWeatherService,
                  private WeatherPropService: IWeatherPropService,
+                 private WeatherStyles: any,
                  private $timeout: ng.ITimeoutService) {
 
-        // Wire up event handler when web part properties are set                     
+        // Wire up event handler when web part properties are set
+        this.Styles = WeatherStyles;
         WeatherPropService.SetPropertyUpdateHandler(this.updateProperties);
     }
     
