@@ -6,10 +6,13 @@ import { IMessageManager } from './IMessageManager';
 var getGreeting = <() => string> require('./Messages1.js');
 
 // All exports
-import * as messages2 from './Messages2';
+import * as randomMessages from './Messages2';
 
 // Specific exports
 import { IMessageFormatter, MessageFormatter, myMessage as msg } from './Messages3';
+
+// Import the default
+import deepThought from './Messages4';
 
 export class MessageManager implements IMessageManager {
 
@@ -20,9 +23,10 @@ export class MessageManager implements IMessageManager {
         result += `Greeting: ${getGreeting()}`;
         
         const mf: IMessageFormatter = new MessageFormatter();
-        result += '<br />The magic 8 ball says: ' + messages2.get8BallMessage();
-        result += '<br />Dice roll: ' + messages2.getDiceRoll();
+        result += '<br />The magic 8 ball says: ' + randomMessages.get8BallMessage();
+        result += '<br />Dice roll: ' + randomMessages.getDiceRoll();
         result += `<br />Shout about: ${mf.shout(msg)}`;
+        result += `<br />${deepThought.getAnswer()}`;
     
         return result;
     }

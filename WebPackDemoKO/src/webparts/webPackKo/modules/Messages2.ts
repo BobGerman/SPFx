@@ -20,25 +20,24 @@ export var getPhilMessage: () => string =
     var messages: string[] = [
         "Punxutawney Phil sees his shadow, 6 more weeks of winter",
         "Punxutawney Phil doesn't see his shadow, winter is over"
-    ]
+    ];
 
     var r: number =
         Math.floor(Math.random()*messages.length);
     
     return messages[r];
-}
+};
 
 export var getDiceRoll: () => string =
     () => {
 
     return "You rolled a " + Math.floor(Math.random()*6) + 1;
 
-}
+};
+
 
 // USAGE EXAMPLE:
 //
-// var getGreeting = <() => string> require('Messages1.js');
+// import * as messages2 from './Messages2';
 //
-// ...
-// 
-// var result = getGreeting();
+// var myFortune = messages2.get8BallMessage()

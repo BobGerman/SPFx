@@ -66,6 +66,7 @@ export default class WebPackKoWebPart extends BaseClientSideWebPart<IWebPackKoWe
       tagName,
       {
         viewModel: WebPackKoViewModel,
+        // Import HTML template as a string
         template: require('./WebPackKo.template.html'),
         synchronous: false
       }

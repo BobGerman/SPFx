@@ -7,11 +7,11 @@ export interface IMessageFormatter {
 
 export class MessageFormatter implements IMessageFormatter {
 
-    shout(s: string):string {
+    public shout(s: string):string {
         return s.toUpperCase() + "!";
     }
 
-    whisper(s: string): string {
+    public whisper(s: string): string {
         return s.toLowerCase();
     }
 

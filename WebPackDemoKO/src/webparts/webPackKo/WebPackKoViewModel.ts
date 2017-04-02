@@ -3,7 +3,7 @@ import styles from './WebPackKo.module.scss';
 import { IWebPackKoWebPartProps } from './IWebPackKoWebPartProps';
 
 import { IMessageManager } from './modules/IMessageManager';
-import { MessageManager } from './modules/MessageManager'
+import { MessageManager } from './modules/MessageManager';
 
 export interface IWebPackKoBindingContext extends IWebPackKoWebPartProps {
   shouter: KnockoutSubscribable<{}>;
@@ -21,7 +21,7 @@ export default class WebPackKoViewModel {
   constructor(bindings: IWebPackKoBindingContext) {
     this.description(bindings.description);
 
-    let mm = new MessageManager();
+    let mm: IMessageManager = new MessageManager();
     this.message(mm.GetMessage());
 
     // When web part description is updated, change this view model's description.
