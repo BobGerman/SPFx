@@ -19,7 +19,7 @@ export class MessageFormatter implements IMessageFormatter {
 
 // USAGE EXAMPLE:
 //
-// import { myMessage, IMessageFormatter, MessageFormatter } from './Messages';
+// import { IMessageFormatter, MessageFormatter, myMessage } from './Messages3';
 //
 // ...
 // 
