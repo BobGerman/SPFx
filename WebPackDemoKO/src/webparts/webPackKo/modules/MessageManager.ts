@@ -1,8 +1,15 @@
+
+// Interface
 import { IMessageManager } from './IMessageManager';
 
+// From JavaScript
 var getGreeting = <() => string> require('./Messages1.js');
-var randomMessage = <any> require ('./Messages2.js');
-import { IMessageFormatter, MessageFormatter, myMessage } from './Messages3';
+
+// All exports
+import * as messages2 from './Messages2';
+
+// Specific exports
+import { IMessageFormatter, MessageFormatter, myMessage as msg } from './Messages3';
 
 export class MessageManager implements IMessageManager {
 
@@ -10,11 +17,12 @@ export class MessageManager implements IMessageManager {
 
         var result: string = "";
 
-        result += getGreeting();
+        result += `Greeting: ${getGreeting()}`;
         
         const mf: IMessageFormatter = new MessageFormatter();
-        result += '<br />' + randomMessage.get8BallMessage();
-        result += `<br />Shout about ${mf.shout(myMessage)}`;
+        result += '<br />The magic 8 ball says: ' + messages2.get8BallMessage();
+        result += '<br />Dice roll: ' + messages2.getDiceRoll();
+        result += `<br />Shout about: ${mf.shout(msg)}`;
     
         return result;
     }

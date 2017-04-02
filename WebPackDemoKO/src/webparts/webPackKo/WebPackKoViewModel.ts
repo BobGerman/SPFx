@@ -12,11 +12,9 @@ export interface IWebPackKoBindingContext extends IWebPackKoWebPartProps {
 export default class WebPackKoViewModel {
   public description: KnockoutObservable<string> = ko.observable('');
 
-  public labelClass: string = styles.label;
   public helloWorldClass: string = styles.helloWorld;
   public containerClass: string = styles.container;
-  public rowClass: string = `ms-Grid-row ms-bgColor-tealDark ms-fontColor-white ${styles.row}`;
-  public buttonClass: string = `ms-Button ${styles.button}`;
+  public rowClass: string = `ms-Grid-row ms-bgColor-redDark ms-fontColor-white ${styles.row}`;
 
   public message: KnockoutObservable<string> = ko.observable('');
 
