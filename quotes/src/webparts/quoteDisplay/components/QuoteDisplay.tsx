@@ -4,22 +4,23 @@ import { IQuoteDisplayProps } from './IQuoteDisplayProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 
 export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, void> {
+
   public render(): React.ReactElement<IQuoteDisplayProps> {
     return (
-      <div className={styles.helloWorld}>
+      <div className={styles.quotes}>
         <div className={styles.container}>
-          <div className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}>
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              <span className="ms-font-xl ms-fontColor-white">Quote of the Minute</span>
-              <p className="ms-font-l ms-fontColor-white">{escape(this.props.Title)}</p>
-              <p className="ms-font-l ms-fontColor-white">{escape(this.props.Author)}</p>
-              <a href="https://aka.ms/spfx" className={styles.button}>
-                <span className={styles.label}>Learn more</span>
-              </a>
-            </div>
-          </div>
+          <ul>
+            <li className={styles.li}>{this.props.Title}</li>
+            <li className={styles.li2}>- {this.props.Author}</li>
+          </ul>
+          <input type="button" value="Get quotes" onClick={this.handleClick.bind(this)} />
         </div>
       </div>
     );
   }
+
+  private handleClick() {
+    
+  }
+
 }
