@@ -1,5 +1,7 @@
 import { IQuotation } from '../model/QuoteDataModel';
 
+import { CommandButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
+
 import * as React from 'react';
 import styles from './QuoteDisplay.module.scss';
 import { IQuoteDisplayProps } from './IQuoteDisplayProps';
@@ -15,13 +17,13 @@ export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, IQ
 
     return (
       <div className={styles.quotes}>
-        <div className={styles.container}>
-          <ul>
-            <li className={styles.li}>{this.state.displayedQuote.Title}</li>
-            <li className={styles.li2}>- {this.state.displayedQuote.Author}</li>
-          </ul>
-          <input type="button" value="Get quotes" onClick={this.handleClick.bind(this)} />
+        <div className="ms-font-xxl">
+          <div className={styles.line}>{this.state.displayedQuote.Title}</div>
+          <div className={styles.lastLine}>- {this.state.displayedQuote.Author}</div>
         </div>
+        <CommandButton className={styles.lastLine} icon='Refresh' onClick={this.handleClick.bind(this)}>
+          Get another quote
+        </CommandButton>
       </div>
     );
   }

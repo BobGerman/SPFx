@@ -1,17 +1,14 @@
 .quotes {
-  .container {
-    font-family: sans-serif;
-  }
+  
+  border: 2px;
+  border-style: solid;
+  padding: 14pt;
 
-  .li, .li2 {
-    list-style-type: none;
-    color: darkgreen;
-    font-size: 14pt;
+  .line, .lastLine {
     font-style: italic;
-    margin-bottom: 5pt;
   }
 
-  .li2 {
+  .lastLine {
     padding-left: 30pt;
   }
 
