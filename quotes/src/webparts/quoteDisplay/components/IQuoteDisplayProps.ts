@@ -1,3 +1,4 @@
 export interface IQuoteDisplayProps {
-  description: string;
+  Title: string;
+  Author: string;
 }
