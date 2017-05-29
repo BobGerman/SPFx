@@ -17,12 +17,14 @@ import { IQuoteDisplayProps } from './components/IQuoteDisplayProps';
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
 import { IQuotation } from './model/QuoteDataModel';
-import MockHttpClient from './model/MockQuotationService';
+import MockQuotationService from './model/MockQuotationService';
+import SPQuotationService from './model/SPQuotationService';
 
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
   public render(): void {
     this.getQuotation().then ((quotation: IQuotation) => {
+
       const element: React.ReactElement<IQuoteDisplayProps > = React.createElement(
         QuoteDisplay,
         {
@@ -36,11 +38,18 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
   }
 
   private getQuotation() : Promise<IQuotation> {
-    return MockHttpClient.get()
-      .then((data : IQuotation[]) => {
-        var quotations: IQuotation = this.selectRandomQuotation(data);
-        return quotations;
-      }) as Promise<IQuotation>;
+
+    if (Environment.type === EnvironmentType.Local) {
+      return MockQuotationService.get()
+        .then((data : IQuotation[]) => {
+          return this.selectRandomQuotation(data);
+        }) as Promise<IQuotation>;
+    } else {
+      return SPQuotationService.get(this.context)
+        .then((data : IQuotation[]) => {
+          return this.selectRandomQuotation(data);
+        }) as Promise<IQuotation>;
+    }
   }
 
   private selectRandomQuotation(quotes: IQuotation[]) : IQuotation {
