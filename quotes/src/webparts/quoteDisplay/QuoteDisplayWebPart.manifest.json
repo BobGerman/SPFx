@@ -14,7 +14,7 @@
     "description": { "default": "Displays quotations from a SharePoint list" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "QuoteDisplay"
+      "spListName": "quotes"
     }
   }]
 }

@@ -22,7 +22,12 @@ import SPQuotationService from './model/SPQuotationService';
 
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
+  protected get disableReactivePropertyChanges(): boolean {
+    return true;
+  }
+  
   public render(): void {
+
     this.getQuotation().then ((quotation: IQuotation[]) => {
 
       const element: React.ReactElement<IQuoteDisplayProps > = React.createElement(
@@ -41,7 +46,7 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
           return data;
         }) as Promise<IQuotation[]>;
     } else {
-      return SPQuotationService.get(this.context)
+      return SPQuotationService.get(this.context, this.properties.spListName)
         .then((data : IQuotation[]) => {
           return data;
         }) as Promise<IQuotation[]>;
@@ -63,7 +68,7 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
+                PropertyPaneTextField('spListName', {
                   label: strings.DescriptionFieldLabel
                 })
               ]

@@ -6,9 +6,9 @@ import { SPHttpClient, SPHttpClientResponse} from '@microsoft/sp-http';
 
 export default class SPQuotationService {
 
-    public static get(context: IWebPartContext): Promise<IQuotation[]> {
+    public static get(context: IWebPartContext, listName: string): Promise<IQuotation[]> {
 
-        var url = context.pageContext.web.absoluteUrl + "/_api/lists/GetByTitle('TQuotes')/items";
+        var url = context.pageContext.web.absoluteUrl + "/_api/lists/GetByTitle('" + listName + "')/items";
         
         return context.spHttpClient.get(url, SPHttpClient.configurations.v1)
             .then ((response: SPHttpClientResponse) => {

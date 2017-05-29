@@ -1,7 +1,7 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
-    "DescriptionFieldLabel": "Description Field"
+    "PropertyPaneDescription": "Web part to display quotations",
+    "BasicGroupName": "Quotation Source",
+    "DescriptionFieldLabel": "SharePoint List"
   }
 });
