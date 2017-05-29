@@ -30,7 +30,7 @@ export default class SPQuotationService {
             .catch ((response: SPHttpClientResponse) => {
                 // For now, any error does the same thing
                 return [];
-            })
+            });
     }
 
 }

@@ -31,7 +31,7 @@ export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, IQ
 
       return (
         <div>Error: select a valid SharePoint list</div>
-      )
+      );
       
     }
   }
