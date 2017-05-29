@@ -1,6 +1,6 @@
 import { IQuotation } from './QuoteDataModel';
 
-export default class MockHttpClient {
+export default class MockQuotationService {
 
     private static _items: IQuotation[] =
         [ 
@@ -10,7 +10,7 @@ export default class MockHttpClient {
 
     public static get(): Promise<IQuotation[]> {
         return new Promise<IQuotation[]>((resolve) => {
-            resolve (MockHttpClient._items);
+            resolve (MockQuotationService._items);
         });
     }
 }

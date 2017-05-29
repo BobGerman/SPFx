@@ -17,7 +17,7 @@ import { IQuoteDisplayProps } from './components/IQuoteDisplayProps';
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
 import { IQuotation } from './model/QuoteDataModel';
-import MockHttpClient from './model/MockHttpClient';
+import MockHttpClient from './model/MockQuotationService';
 
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
