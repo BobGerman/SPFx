@@ -16,7 +16,7 @@ import QuoteDisplay from './components/QuoteDisplay';
 import { IQuoteDisplayProps } from './components/IQuoteDisplayProps';
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
-import { IQuotation } from './model/QuoteDataModel';
+import { IQuotation } from './model/IQuotation';
 import MockQuotationService from './model/MockQuotationService';
 import SPQuotationService from './model/SPQuotationService';
 
@@ -26,7 +26,7 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
     return true;
   }
   
-  public render(): void {
+  public render(): void { 
 
     this.getQuotation().then ((quotation: IQuotation[]) => {
 

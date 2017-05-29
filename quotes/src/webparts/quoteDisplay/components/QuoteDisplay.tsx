@@ -1,4 +1,4 @@
-import { IQuotation } from '../model/QuoteDataModel';
+import { IQuotation } from '../model/IQuotation';
 
 import { CommandButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
 
@@ -6,7 +6,6 @@ import * as React from 'react';
 import styles from './QuoteDisplay.module.scss';
 import { IQuoteDisplayProps } from './IQuoteDisplayProps';
 import { IQuoteDisplayState } from './IQuoteDisplayState';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, IQuoteDisplayState> {
 
@@ -30,7 +29,7 @@ export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, IQ
 
   private handleClick() {
     var quote = this.selectRandomQuotation(this.props.quotes);
-    this.setState ({ displayedQuote: quote })
+    this.setState ({ displayedQuote: quote });
   }
 
   private selectRandomQuotation(quotes: IQuotation[]) : IQuotation {

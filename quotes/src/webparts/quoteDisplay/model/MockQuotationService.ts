@@ -1,4 +1,4 @@
-import { IQuotation } from './QuoteDataModel';
+import { IQuotation } from './IQuotation';
 
 export default class MockQuotationService {
 

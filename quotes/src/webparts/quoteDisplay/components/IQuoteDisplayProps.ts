@@ -1,5 +1,5 @@
-import { IQuotation } from '../model/QuoteDataModel';
+import { IQuotation } from '../model/IQuotation';
 
 export interface IQuoteDisplayProps {
-  quotes: IQuotation[]
+  quotes: IQuotation[];
 }

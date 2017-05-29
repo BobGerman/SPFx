@@ -1,4 +1,4 @@
-import { IQuotation } from './QuoteDataModel';
+import { IQuotation } from './IQuotation';
 import { IGetQuotesResponse } from './SPResponse';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
@@ -12,7 +12,7 @@ export default class SPQuotationService {
         
         return context.spHttpClient.get(url, SPHttpClient.configurations.v1)
             .then ((response: SPHttpClientResponse) => {
-                return response.json()
+                return response.json();
             })
             .then ((responseJSON: IGetQuotesResponse) => {
                 var result: IQuotation[] = [];
