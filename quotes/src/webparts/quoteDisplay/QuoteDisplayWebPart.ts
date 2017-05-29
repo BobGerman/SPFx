@@ -23,40 +23,30 @@ import SPQuotationService from './model/SPQuotationService';
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
   public render(): void {
-    this.getQuotation().then ((quotation: IQuotation) => {
+    this.getQuotation().then ((quotation: IQuotation[]) => {
 
       const element: React.ReactElement<IQuoteDisplayProps > = React.createElement(
-        QuoteDisplay,
-        {
-          Title: quotation.Title,
-          Author: quotation.Author
-        }
+        QuoteDisplay, { quotes: quotation }
       );
 
       ReactDom.render(element, this.domElement);
     });
   }
 
-  private getQuotation() : Promise<IQuotation> {
+  private getQuotation() : Promise<IQuotation[]> {
 
     if (Environment.type === EnvironmentType.Local) {
       return MockQuotationService.get()
         .then((data : IQuotation[]) => {
-          return this.selectRandomQuotation(data);
-        }) as Promise<IQuotation>;
+          return data;
+        }) as Promise<IQuotation[]>;
     } else {
       return SPQuotationService.get(this.context)
         .then((data : IQuotation[]) => {
-          return this.selectRandomQuotation(data);
-        }) as Promise<IQuotation>;
+          return data;
+        }) as Promise<IQuotation[]>;
     }
   }
-
-  private selectRandomQuotation(quotes: IQuotation[]) : IQuotation {
-    var index = Math.floor(Math.random() * quotes.length);
-    return quotes[index];
-  }
-
 
   protected get dataVersion(): Version {
     return Version.parse('1.0');

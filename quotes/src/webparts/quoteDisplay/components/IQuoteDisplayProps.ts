@@ -1,4 +1,5 @@
+import { IQuotation } from '../model/QuoteDataModel';
+
 export interface IQuoteDisplayProps {
-  Title: string;
-  Author: string;
+  quotes: IQuotation[]
 }
