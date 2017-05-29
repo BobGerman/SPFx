@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "e0e9e2a0-1eea-4588-86e2-6d7b0312a3fe",
+  "alias": "QuoteDisplayWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "e0e9e2a0-1eea-4588-86e2-6d7b0312a3fe",
+    "group": { "default": "Under Development" },
+    "title": { "default": "QuoteDisplay" },
+    "description": { "default": "Displays quotations from a SharePoint list" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "QuoteDisplay"
+    }
+  }]
+}

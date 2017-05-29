@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/quoteDisplay/QuoteDisplayWebPart.js",
+      "manifest": "./src/webparts/quoteDisplay/QuoteDisplayWebPart.manifest.json",
+      "outputPath": "./dist/quote-display.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "quoteDisplayStrings": "webparts/quoteDisplay/loc/{locale}.js"
+  }
+}
