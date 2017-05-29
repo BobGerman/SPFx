@@ -17,7 +17,6 @@ export default class SPQuotationService {
             .then ((responseJSON: IGetQuotesResponse) => {
                 var result: IQuotation[] = [];
 
-                // respnseJSON.value[0].Author0
                 var responseItems = responseJSON.value;
                 for (let q of responseItems) {
                     result.push ({
@@ -27,7 +26,11 @@ export default class SPQuotationService {
                 }
 
                 return result;
-            });
+            })
+            .catch ((response: SPHttpClientResponse) => {
+                // For now, any error does the same thing
+                return [];
+            })
     }
 
 }

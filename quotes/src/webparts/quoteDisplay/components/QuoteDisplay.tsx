@@ -12,19 +12,28 @@ export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, IQ
   public render(): React.ReactElement<IQuoteDisplayProps> {
 
     var quote = this.selectRandomQuotation(this.props.quotes);
-    this.state = { displayedQuote: quote };
+    if (quote) {
+      this.state = { displayedQuote: quote };
 
-    return (
-      <div className={styles.quotes}>
-        <div className="ms-font-xxl">
-          <div className={styles.line}>{this.state.displayedQuote.Title}</div>
-          <div className={styles.lastLine}>- {this.state.displayedQuote.Author}</div>
+      return (
+        <div className={styles.quotes}>
+          <div className="ms-font-xxl">
+            <div className={styles.line}>{this.state.displayedQuote.Title}</div>
+            <div className={styles.lastLine}>- {this.state.displayedQuote.Author}</div>
+          </div>
+          <CommandButton className={styles.lastLine} icon='Refresh' onClick={this.handleClick.bind(this)}>
+            Get another quote
+          </CommandButton>
         </div>
-        <CommandButton className={styles.lastLine} icon='Refresh' onClick={this.handleClick.bind(this)}>
-          Get another quote
-        </CommandButton>
-      </div>
-    );
+      );
+
+    } else {
+
+      return (
+        <div>Error: select a valid SharePoint list</div>
+      )
+      
+    }
   }
 
   private handleClick() {
@@ -33,7 +42,11 @@ export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, IQ
   }
 
   private selectRandomQuotation(quotes: IQuotation[]) : IQuotation {
-    var index = Math.floor(Math.random() * quotes.length);
-    return quotes[index];
+    if (quotes.length > 0) {
+      var index = Math.floor(Math.random() * quotes.length);
+      return quotes[index];
+    } else {
+      return null;
+    }
   }
 }
