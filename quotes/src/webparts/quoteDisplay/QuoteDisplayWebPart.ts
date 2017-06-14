@@ -15,6 +15,9 @@ import {
 import * as strings from 'quoteDisplayStrings';
 import QuoteDisplay from './components/QuoteDisplay';
 import { IQuoteDisplayProps } from './components/IQuoteDisplayProps';
+import QuoteGroupDisplay from './components/QuoteGroupDisplay';
+import { IQuoteGroupDisplayProps } from './components/IQuoteGroupDisplayProps';
+
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
 import { IQuotation } from './model/IQuotation';
@@ -31,8 +34,8 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
 
     this.getQuotation().then ((quotations: IQuotation[]) => {
 
-      const element: React.ReactElement<IQuoteDisplayProps > = React.createElement(
-        QuoteDisplay, { quotes: quotations, quoteCount: this.properties.quoteCount },
+      const element: React.ReactElement<IQuoteGroupDisplayProps > = React.createElement(
+        QuoteGroupDisplay, { quotes: quotations, quoteCount: this.properties.quoteCount },
       );
 
       ReactDom.render(element, this.domElement);
