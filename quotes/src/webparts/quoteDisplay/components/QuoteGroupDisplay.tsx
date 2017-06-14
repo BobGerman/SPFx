@@ -3,7 +3,7 @@ import { IQuotation } from '../model/IQuotation';
 import { CommandButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
 
 import * as React from 'react';
-import styles from './QuoteDisplay.module.scss';
+import styles from './Quotes.module.scss';
 import { IQuoteGroupDisplayProps } from './IQuoteGroupDisplayProps';
 import { IQuoteGroupDisplayState } from './IQuoteGroupDisplayState';
 
