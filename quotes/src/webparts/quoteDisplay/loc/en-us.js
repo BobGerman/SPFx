@@ -3,6 +3,7 @@ define([], function() {
     "PropertyPaneDescription": "Web part to display quotations",
     "BasicGroupName": "Quotation Source",
     "DescriptionFieldLabel": "SharePoint List",
-    "QuoteCountFieldLabel": "Number of quotes"
+    "QuoteCountFieldLabel": "Max number of quotes",
+    "MoreButtonLabel": "More"
   }
 });

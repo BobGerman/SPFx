@@ -3,6 +3,7 @@ declare interface IQuoteDisplayStrings {
   BasicGroupName: string;
   DescriptionFieldLabel: string;
   QuoteCountFieldLabel: string;
+  MoreButtonLabel: string;
 }
 
 declare module 'quoteDisplayStrings' {

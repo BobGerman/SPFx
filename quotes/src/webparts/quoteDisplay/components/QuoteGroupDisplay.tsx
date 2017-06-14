@@ -30,7 +30,7 @@ export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProp
             </div>
           ))}
           <CommandButton className={styles.lastLine} icon='Refresh' onClick={this.handleClick.bind(this)}>
-            Get another quote
+            {this.props.getMoreLabel}
           </CommandButton>
         </div>
       );
