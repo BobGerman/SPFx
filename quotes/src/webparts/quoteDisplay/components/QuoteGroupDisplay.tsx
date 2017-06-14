@@ -13,9 +13,7 @@ export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProp
 
   public render(): React.ReactElement<IQuoteGroupDisplayProps> {
 
-// TODO: Replace this with a shuffle
-//    var quote = this.selectRandomQuotation(this.props.quotes);
-    this.quotes = this.shuffleQuotes(this.props.quotes);
+    this.quotes = this.shuffle<IQuotation>(this.props.quotes);
 
     if (this.props.quotes) {
       this.state = { displayedQuotes: this.quotes };
@@ -44,13 +42,14 @@ export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProp
   }
 
   private handleClick() {
-    this.setState ({ displayedQuotes: this.shuffleQuotes(this.quotes) });
+    this.setState ({ displayedQuotes: this.shuffle<IQuotation>(this.quotes) });
   }
 
-  private shuffleQuotes(quotes: IQuotation[]) : IQuotation[] {
-    
+  private shuffle<T>(quotes: T[]) : T[] {
+
     var result = quotes;
 
+    // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
     if (result.length > 1) {
       for (let i=0; i<result.length-1; i++) {
         let r = i + Math.floor(Math.random() * result.length-i);
