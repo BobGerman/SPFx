@@ -8,7 +8,8 @@ import {
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneSlider
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'quoteDisplayStrings';
@@ -28,10 +29,10 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
   
   public render(): void { 
 
-    this.getQuotation().then ((quotation: IQuotation[]) => {
+    this.getQuotation().then ((quotations: IQuotation[]) => {
 
       const element: React.ReactElement<IQuoteDisplayProps > = React.createElement(
-        QuoteDisplay, { quotes: quotation }
+        QuoteDisplay, { quotes: quotations, quoteCount: this.properties.quoteCount },
       );
 
       ReactDom.render(element, this.domElement);
@@ -70,6 +71,13 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
               groupFields: [
                 PropertyPaneTextField('spListName', {
                   label: strings.DescriptionFieldLabel
+                }),
+                PropertyPaneSlider('quoteCount', {
+                  label: strings.QuoteCountFieldLabel,
+                  min: 1,
+                  max: 5,
+                  step: 1,
+                  showValue: true
                 })
               ]
             }
