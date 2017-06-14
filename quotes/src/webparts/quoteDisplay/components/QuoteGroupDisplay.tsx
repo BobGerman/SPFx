@@ -15,7 +15,7 @@ export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProp
 
 // TODO: Replace this with a shuffle
 //    var quote = this.selectRandomQuotation(this.props.quotes);
-    this.quotes = this.props.quotes;
+    this.quotes = this.shuffleQuotes(this.props.quotes);
 
     if (this.props.quotes) {
       this.state = { displayedQuotes: this.quotes };
@@ -44,18 +44,23 @@ export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProp
   }
 
   private handleClick() {
-// TODO: Replace this with a shuffle
-//    var quote = this.selectRandomQuotation(this.props.quotes);
-    // Shuffle this.quotes
-    this.setState ({ displayedQuotes: this.quotes });
+    this.setState ({ displayedQuotes: this.shuffleQuotes(this.quotes) });
   }
 
-  private selectRandomQuotation(quotes: IQuotation[]) : IQuotation {
-    if (quotes.length > 0) {
-      var index = Math.floor(Math.random() * quotes.length);
-      return quotes[index];
-    } else {
-      return null;
+  private shuffleQuotes(quotes: IQuotation[]) : IQuotation[] {
+    
+    var result = quotes;
+
+    if (result.length > 1) {
+      for (let i=0; i<result.length-1; i++) {
+        let r = i + Math.floor(Math.random() * result.length-i);
+        let temp = result[i];
+        result[i] = result[r];
+        result[r] = temp;
+      }
     }
+
+    return result;
+
   }
 }
