@@ -1,4 +1,4 @@
-import { IQuotation } from '../../model/IQuotation';
+import { IQuotation } from '../../model/QuotationService/IQuotation';
 
 import { CommandButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
 

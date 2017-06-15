@@ -1,4 +1,4 @@
-export interface Value {
+export interface ISPQuotesListResponse {
     odataType: string;
     odataId: string;
     odataItag: string;
@@ -19,10 +19,3 @@ export interface Value {
     Attachments: boolean;
     GUID: string;
 }
-
-export interface IGetQuotesResponse {
-    odataContext: string;
-    value: Value[];
-}
-
-
