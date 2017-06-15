@@ -1,7 +1,7 @@
 import { CommandButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
 
 import * as React from 'react';
-import styles from './Quotes.module.scss';
+import styles from '../Quotes.module.scss';
 import { IQuoteDisplayProps } from './IQuoteDisplayProps';
 
 export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, void> {

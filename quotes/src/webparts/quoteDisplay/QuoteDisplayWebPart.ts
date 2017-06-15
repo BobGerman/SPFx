@@ -13,8 +13,8 @@ import {
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'quoteDisplayStrings';
-import QuoteGroupDisplay from './components/QuoteGroupDisplay';
-import { IQuoteGroupDisplayProps } from './components/IQuoteGroupDisplayProps';
+import QuoteGroupDisplay from './components/QuoteGroupDisplay/QuoteGroupDisplay';
+import { IQuoteGroupDisplayProps } from './components/QuoteGroupDisplay/IQuoteGroupDisplayProps';
 
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
