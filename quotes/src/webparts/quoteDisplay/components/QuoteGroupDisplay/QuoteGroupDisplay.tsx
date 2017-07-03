@@ -2,12 +2,13 @@ import { IQuotation } from '../../model/QuotationService/IQuotation';
 
 import { CommandButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
 
+import QuoteDisplay from '../QuoteDisplay/QuoteDisplay';
 import * as React from 'react';
 import styles from '../Quotes.module.scss';
 import { IQuoteGroupDisplayProps } from './IQuoteGroupDisplayProps';
 import { IQuoteGroupDisplayState } from './IQuoteGroupDisplayState';
 
-export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProps, IQuoteGroupDisplayState> {
+export default class QuoteGroupDisplay extends React.Component<IQuoteGroupDisplayProps, IQuoteGroupDisplayState> {
 
   private quotes: IQuotation[];
 
@@ -24,10 +25,7 @@ export default class QuoteDisplay extends React.Component<IQuoteGroupDisplayProp
       return (
         <div className={styles.quotes}>
           {this.quotes.map(q =>(
-            <div className="ms-font-xxl">
-              <div className={styles.line}>{q.Title}</div>
-              <div className={styles.lastLine}>- {q.Author}</div>
-            </div>
+            <QuoteDisplay quote={q} />
           ))}
           <CommandButton className={styles.lastLine} icon='Refresh' onClick={this.handleClick.bind(this)}>
             {this.props.getMoreLabel}

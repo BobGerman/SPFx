@@ -11,6 +11,7 @@ export default class SPQuotationService implements IQuotationService {
 
     public get(context: IWebPartContext, listName: string): Promise<IQuotation[] | IException> {
 
+        // TODO: Only retrieve the columns we need
         return pnp.sp.web.lists.getByTitle(listName).items.get()
         .then((listItems: ISPQuotesListResponse[]) => {
 

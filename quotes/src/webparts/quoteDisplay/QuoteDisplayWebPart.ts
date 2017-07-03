@@ -34,7 +34,7 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
     service.get(this.context, this.properties.spListName)
     .then ((quotations: IQuotation[]) => {
 
-      const element: React.ReactElement<IQuoteGroupDisplayProps > = React.createElement(
+      const element: React.ReactElement<IQuoteGroupDisplayProps> = React.createElement(
         QuoteGroupDisplay, {
            quotes: quotations,
            quoteCount: this.properties.quoteCount,
