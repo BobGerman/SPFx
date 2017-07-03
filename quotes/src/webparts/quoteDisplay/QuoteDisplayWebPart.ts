@@ -14,6 +14,8 @@ import {
 import * as strings from 'quoteDisplayStrings';
 import QuoteGroupDisplay from './components/QuoteGroupDisplay/QuoteGroupDisplay';
 import { IQuoteGroupDisplayProps } from './components/QuoteGroupDisplay/IQuoteGroupDisplayProps';
+import ExceptionDisplay from './components/ExceptionDisplay/ExceptionDisplay';
+import { IExceptionDisplayProps } from './components/ExceptionDisplay/IExceptionDisplayProps';
 
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
@@ -46,14 +48,12 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
     })
     .catch ((exception: IException) => {
 
-      // TODO: Fix catch in SPQuotationService
-      // TODO: Render something better here
-      const element: React.ReactElement<IQuoteGroupDisplayProps > = React.createElement(
-        QuoteGroupDisplay, {
-           quotes: [],
-           quoteCount: this.properties.quoteCount,
-           getMoreLabel: exception.message
-          },
+      const element: React.ReactElement<IExceptionDisplayProps > = React.createElement(
+        ExceptionDisplay, {
+          message: exception.message,
+          statusCode: exception.status,
+          statusText: exception.statusText
+        }
       );
 
       ReactDom.render(element, this.domElement);
