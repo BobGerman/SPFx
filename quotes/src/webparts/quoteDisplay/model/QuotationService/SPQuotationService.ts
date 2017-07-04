@@ -1,6 +1,6 @@
 import { IQuotationService } from './IQuotationService';
 import { IQuotation } from './IQuotation';
-import { IException } from '../IException';
+import { IException } from '../../../../model/Exceptions/IException';
 import { ISPQuotesListResponse } from './ISPQuotesListResponse';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';

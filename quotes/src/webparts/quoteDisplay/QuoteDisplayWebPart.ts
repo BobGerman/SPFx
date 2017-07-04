@@ -19,9 +19,12 @@ import { IExceptionDisplayProps } from './components/ExceptionDisplay/IException
 
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
+import { IListPickerProps } from '../../components/ListPicker/IListPickerProps';
+import ListPicker from '../../components/ListPicker/ListPicker';
+
 import { QuotationServiceFactory } from './model/QuotationService/QuotationServiceFactory';
 import { IQuotation } from './model/QuotationService/IQuotation';
-import { IException } from './model/IException';
+import { IException } from '../../model/Exceptions/IException';
 
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
@@ -43,6 +46,13 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
            getMoreLabel: strings.MoreButtonLabel
           },
       );
+      // const element: React.ReactElement<IListPickerProps> = React.createElement(
+      //   ListPicker, {
+      //     webUrl: "",
+      //     initialListName: "",
+      //     onListSelectionChanged: (name) => { alert(name); }
+      //     },
+      // );
 
       ReactDom.render(element, this.domElement);
     })
