@@ -18,9 +18,9 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
 
   public render(): React.ReactElement<IListPickerProps> {
 
-    let { selectedItem } = this.state;
     const context = this.props.context;
 
+    // TODO: Add mock data
     var web = new Web(context.pageContext.web.absoluteUrl);
     web.lists.filter('hidden eq false and BaseTemplate eq 100').get()
     .then((lists: any) => {
@@ -34,6 +34,8 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
         })
       });
     });
+
+    let { selectedItem } = this.state;
 
     return (
         <div>
