@@ -52,7 +52,8 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
         ExceptionDisplay, {
           message: exception.message,
           statusCode: exception.status,
-          statusText: exception.statusText
+          statusText: exception.statusText,
+          onEditWebPart: () => { this.context.propertyPane.open(); }
         }
       );
 

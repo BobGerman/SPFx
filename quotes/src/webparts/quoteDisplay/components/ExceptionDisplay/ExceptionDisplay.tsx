@@ -25,6 +25,7 @@ export default class ExceptionDisplay extends React.Component<IExceptionDisplayP
   }
 
   private handleClick() {
+      this.props.onEditWebPart();
   }
 
 }
