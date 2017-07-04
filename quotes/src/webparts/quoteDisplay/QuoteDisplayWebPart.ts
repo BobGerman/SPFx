@@ -39,20 +39,20 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
     service.get(this.context, this.properties.spListName)
     .then ((quotations: IQuotation[]) => {
 
-      const element: React.ReactElement<IQuoteGroupDisplayProps> = React.createElement(
-        QuoteGroupDisplay, {
-           quotes: quotations,
-           quoteCount: this.properties.quoteCount,
-           getMoreLabel: strings.MoreButtonLabel
-          },
-      );
-      // const element: React.ReactElement<IListPickerProps> = React.createElement(
-      //   ListPicker, {
-      //     webUrl: "",
-      //     initialListName: "",
-      //     onListSelectionChanged: (name) => { alert(name); }
+      // const element: React.ReactElement<IQuoteGroupDisplayProps> = React.createElement(
+      //   QuoteGroupDisplay, {
+      //      quotes: quotations,
+      //      quoteCount: this.properties.quoteCount,
+      //      getMoreLabel: strings.MoreButtonLabel
       //     },
       // );
+      const element: React.ReactElement<IListPickerProps> = React.createElement(
+        ListPicker, {
+          context: this.context,
+          initialListName: "",
+          onListSelectionChanged: (name) => { console.log(name); }
+          },
+      );
 
       ReactDom.render(element, this.domElement);
     })

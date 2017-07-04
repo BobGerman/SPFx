@@ -1,41 +1,50 @@
-import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
+import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 import * as React from 'react';
 import { IListPickerProps } from './IListPickerProps';
 import { IListPickerState } from './IListPickerState';
 
+import { Web } from 'sp-pnp-js';
+
 export default class ListPicker extends React.Component<IListPickerProps, IListPickerState> {
 
   constructor() {
     super();
-    this.state = {selectedItem: { key: 'A', 'text': 'Option a'} };
+    this.state = {
+      options: [],
+      selectedItem: null
+    };
   }
 
   public render(): React.ReactElement<IListPickerProps> {
 
-    let x=100;
     let { selectedItem } = this.state;
+    const context = this.props.context;
+
+    var web = new Web(context.pageContext.web.absoluteUrl);
+    web.lists.filter('hidden eq false and BaseTemplate eq 100').get()
+    .then((lists: any) => {
+      this.setState({ ...this.state,
+        options: lists.map((li) => {
+          return {
+            key: li["Title"],
+            text: li["Title"],
+            selectedItem: false
+          };
+        })
+      });
+    });
 
     return (
         <div>
         <Dropdown
           label='Controlled example:'
-          selectedKey={ selectedItem && selectedItem.key }
+          selectedKey={ this.state.selectedItem && this.state.selectedItem.key }
           onChanged={ (item) => {
-            this.setState({ selectedItem: item });
-            alert(`You selected ${item.text}`);
+            this.props.onListSelectionChanged(item.text);
+            this.setState({ ...this.state, selectedItem: item });
             }}
-          options={
-            [
-              { key: 'A', text: 'Option a' },
-              { key: 'B', text: 'Option b' },
-              { key: 'C', text: 'Option c' },
-              { key: 'D', text: 'Option d' },
-              { key: 'E', text: 'Option e' },
-              { key: 'F', text: 'Option f' },
-              { key: 'G', text: 'Option g' },
-            ]
-          }
+          options={this.state.options}
         />
         </div>
     );

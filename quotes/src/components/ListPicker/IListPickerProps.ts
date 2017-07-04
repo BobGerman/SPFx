@@ -1,5 +1,7 @@
+import { IWebPartContext } from '@microsoft/sp-webpart-base';
+
 export interface IListPickerProps {
-    webUrl: string;
+    context: IWebPartContext;
     initialListName: string;
     onListSelectionChanged: (listName: string) => void;
 }
