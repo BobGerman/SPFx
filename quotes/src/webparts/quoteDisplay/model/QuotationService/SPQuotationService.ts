@@ -5,7 +5,7 @@ import { ISPQuotesListResponse } from './ISPQuotesListResponse';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
 
-import pnp from 'sp-pnp-js';
+import { Web } from 'sp-pnp-js';
 
 export default class SPQuotationService implements IQuotationService {
 
@@ -13,8 +13,9 @@ export default class SPQuotationService implements IQuotationService {
 
         return new Promise<IQuotation[] | IException>((resolve,reject) => {
 
-            // TODO: Only retrieve the columns we need
-            pnp.sp.web.lists.getByTitle(listName).items.get()
+            var web = new Web(context.pageContext.web.absoluteUrl);
+            
+            web.lists.getByTitle(listName).items.select('Title','Author0').get()
             .then((listItems: ISPQuotesListResponse[]) => {
 
                 var result: IQuotation[] = [];
