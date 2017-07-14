@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/linkPickerSample/LinkPickerSampleWebPart.js",
+      "manifest": "./src/webparts/linkPickerSample/LinkPickerSampleWebPart.manifest.json",
+      "outputPath": "./dist/link-picker-sample.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "linkPickerSampleStrings": "webparts/linkPickerSample/loc/{locale}.js"
+  }
+}
