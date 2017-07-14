@@ -20,7 +20,7 @@
     "description": { "default": "Demonstrates how to use the OneDrive link picker in a  web part" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "LinkPickerSample"
+      "url": ""
     }
   }]
 }

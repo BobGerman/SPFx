@@ -18,7 +18,7 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
     const element: React.ReactElement<ILinkPickerSampleProps > = React.createElement(
       LinkPickerSample,
       {
-        description: this.properties.description
+        url: this.properties.url
       }
     );
 
@@ -40,8 +40,8 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneTextField('url', {
+                  label: strings.UrlFieldLabel
                 })
               ]
             }

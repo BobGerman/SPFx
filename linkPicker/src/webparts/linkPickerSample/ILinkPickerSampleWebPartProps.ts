@@ -1,3 +1,3 @@
 export interface ILinkPickerSampleWebPartProps {
-  description: string;
+  url: string;
 }

@@ -1,7 +1,7 @@
 declare interface ILinkPickerSampleStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
-  DescriptionFieldLabel: string;
+  UrlFieldLabel: string;
 }
 
 declare module 'linkPickerSampleStrings' {

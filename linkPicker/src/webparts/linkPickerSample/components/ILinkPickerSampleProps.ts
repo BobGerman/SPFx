@@ -1,3 +1,3 @@
 export interface ILinkPickerSampleProps {
-  description: string;
+  url: string;
 }
