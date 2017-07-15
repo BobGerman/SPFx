@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styles from './LinkPickerSample.module.scss';
 import { ILinkPickerSampleProps } from './ILinkPickerSampleProps';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 enum LinkType { doc, image, other }
 
@@ -19,7 +18,7 @@ export default class LinkPickerSample extends React.Component<ILinkPickerSampleP
         let previewUrl = this.props.webAbsUrl +
           "/_layouts/15/getpreview.ashx?resolution=0&clientMode=modernWebPart&path=" +
           this.props.url + 
-          "&width=252&height=200"
+          "&width=252&height=200";
         linkDisplay = <a href={this.props.url + "?web=1"}
                          target="_blank"><img src={previewUrl} /></a>;
         break;
@@ -51,15 +50,15 @@ export default class LinkPickerSample extends React.Component<ILinkPickerSampleP
     var result = LinkType.other;
 
     const docExtensions = ["pdf", "xls", "xlsx", "doc", "docx", "ppt", "pptx", "pptm", "dot"];
-    for(var i in docExtensions){
-      if(url.indexOf(docExtensions[i], url.length - docExtensions[i].length) !== -1) {
+    for (let ext of docExtensions){
+      if(url.indexOf(ext, url.length - ext.length) !== -1) {
         result = LinkType.doc;
       }
     }
 
     const imageExtensions = [".gif",".jpg",".jpeg",".bmp",".dib",".tif","tiff",".ico",".png",".jxr"];
-    for(var i in imageExtensions){
-      if(url.indexOf(imageExtensions[i], url.length - imageExtensions[i].length) !== -1) {
+    for (let ext of imageExtensions){
+      if(url.indexOf(ext, url.length - ext.length) !== -1) {
         result = LinkType.image;
       }
     }

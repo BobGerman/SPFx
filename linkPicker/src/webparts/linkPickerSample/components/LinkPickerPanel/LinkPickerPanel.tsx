@@ -11,9 +11,7 @@ import { strings } from '../loc/en-us';
 
 export default class LinkPickerPanel extends React.Component<ILinkPickerPanelProps, ILinkPickerPanelState> {
 
-  constructor(
-      // public className: string,
-  ) {
+  constructor() {
       super();
       this.state = {
         isOpen: false,
@@ -35,7 +33,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
 
       <Panel isOpen={this.state.isOpen}
               onDismissed={this.removeMessageListener.bind(this)}
-              className={styles["link-picker"]}
+              className={styles.linkPicker}
               hasCloseButton={false}
               type={ PanelType.extraLarge }
               isLightDismiss={true}
@@ -61,17 +59,17 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
                 }]}/>
 
           {/* Doc picker iFrame or link entry form */}
-          <div className={styles["tabs"]}>
+          <div className={styles.tabs}>
 
               <div hidden={!showDocPickerIFrame}>
                 <iframe src={this.getDocPickerUrl()} role="application" title={strings.LinkPickerSelectFromSiteTitle}/>
               </div>
 
-              <div hidden={!showLinkEntryForm} className={styles["link-insert"]}>
+              <div hidden={!showLinkEntryForm} className={styles.linkInsert}>
                 <h2>{strings.LinkPickerSelectFromLinkLabel}</h2>
                 <label htmlFor="linkUrl">{strings.LinkPickerSelectFromLinkDescription}</label><br/>
                 <textarea id="linkUrl" aria-label={strings.LinkPickerSelectFromLinkDescription} onChange={this.onLinkTextChange.bind(this)} defaultValue={this.state.url}/>
-                <div className={styles["buttons"]}>
+                <div className={styles.buttons}>
                   <PrimaryButton disabled={!this.state.isUrlValid} onClick={this.onOkButtonClick.bind(this)}>{strings.LinkPickerSelectButtonText}</PrimaryButton>
                   <DefaultButton onClick={this.onCancelButtonClick.bind(this)}>{strings.LinkPickerCancelButtonText}</DefaultButton>
                 </div>

@@ -1,4 +1,4 @@
 export interface ILinkPickerSampleProps {
-  webAbsUrl: string,
+  webAbsUrl: string;
   url: string;
 }

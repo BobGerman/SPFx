@@ -1,4 +1,4 @@
-.link-picker {
+.linkPicker {
     & [role="navigation"] {
         width: 210px;
         min-height: 100%;
@@ -14,7 +14,7 @@
             }
         }
     }
-    & .source-type {
+    & .sourceType {
         height: 100%;
     }
     & .tabs {
@@ -29,7 +29,7 @@
             width: 100%;
             border: none;
         }
-        & .link-insert {
+        & .linkInsert {
             padding-left: 30px;
             box-sizing: border-box;
             border-top: 40px solid #F4F4F4;

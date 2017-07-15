@@ -11,10 +11,9 @@ import {
 import * as strings from 'linkPickerSampleStrings';
 
 import LinkPickerPanel from './components/LinkPickerPanel/LinkPickerPanel';
-import { ILinkPickerPanelProps, LinkType } from './components/LinkPickerPanel/ILinkPickerPanelProps';
+import { LinkType } from './components/LinkPickerPanel/ILinkPickerPanelProps';
 
 import LinkPickerSample from './components/LinkPickerSample';
-import { ILinkPickerSampleProps } from './components/ILinkPickerSampleProps';
 
 import { ILinkPickerSampleWebPartProps } from './ILinkPickerSampleWebPartProps';
 
@@ -53,11 +52,13 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
   }
 
   private getLink() {
-    this.linkPickerPanel && this.linkPickerPanel.pickLink()
-    .then ((url) => {
-      this.properties.url = url;
-      this.context.propertyPane.refresh();
-    });
+    if (this.linkPickerPanel) {
+      this.linkPickerPanel.pickLink()
+      .then ((url) => {
+        this.properties.url = url;
+        this.context.propertyPane.refresh();
+      });
+    }
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
