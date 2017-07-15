@@ -4,7 +4,8 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneButton, PropertyPaneButtonType
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'linkPickerSampleStrings';
@@ -40,6 +41,12 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
             {
               groupName: strings.BasicGroupName,
               groupFields: [
+                PropertyPaneButton("itemChangeLink",{
+                  text: strings.SelectLink,
+                  buttonType: PropertyPaneButtonType.Primary,
+                  onClick: () => { alert('Somebody clicked me') }
+                }),
+
                 PropertyPaneTextField('url', {
                   label: strings.UrlFieldLabel
                 })
