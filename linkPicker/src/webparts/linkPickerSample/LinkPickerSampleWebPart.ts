@@ -24,26 +24,28 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
 
   public render(): void {
 
-    const element: React.ReactElement<any> = React.createElement(
-      "div",
-      null,
-      React.createElement(
-        LinkPickerSample,
-        {
-          url: this.properties.url
-        }
-      ),
-      React.createElement(
-        LinkPickerPanel,
-        {
-          webAbsUrl: this.context.pageContext.web.absoluteUrl,
-          linkType: LinkType.any,
-          ref: (ref) => { this.linkPickerPanel = ref; }
-        }
-      )
-    )
+    const element: React.DOMElement<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> = 
+      React.DOM.div({
+        children: [
+          React.createElement(
+            LinkPickerSample,
+            {
+              webAbsUrl: this.context.pageContext.web.absoluteUrl,
+              url: this.properties.url,
+            }
+          ),
+          React.createElement(
+            LinkPickerPanel,
+            {
+              webAbsUrl: this.context.pageContext.web.absoluteUrl,
+              linkType: LinkType.any,
+              ref: (ref) => { this.linkPickerPanel = ref; }
+            }
+          )
+        ]
+      });
 
-    ReactDom.render(element, this.domElement);
+      ReactDom.render(element, this.domElement);
   }
 
   protected get dataVersion(): Version {
@@ -53,21 +55,9 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
   private getLink() {
     this.linkPickerPanel && this.linkPickerPanel.pickLink()
     .then ((url) => {
-      this.properties.url = this.fixDocLink(url);
+      this.properties.url = url;
       this.context.propertyPane.refresh();
     });
-  }
-
-  private fixDocLink(url: string) {
-      var isDoc = false;
-      const docExtensions = ["pdf", "xls", "xlsx", "doc", "docx", "ppt", "pptx", "pptm", "dot"];
-      for(var i in docExtensions){
-        if(url.indexOf(docExtensions[i], url.length - docExtensions[i].length) !== -1) {
-          isDoc = true;
-        }
-      }
-
-      return url + (isDoc ? "?web=1" : "");
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {

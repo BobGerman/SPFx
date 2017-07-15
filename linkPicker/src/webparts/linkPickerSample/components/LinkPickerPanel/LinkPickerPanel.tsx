@@ -82,6 +82,22 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
       );
   }
   
+  // ** Open and Close Panel **
+
+  // Promise methods for returning link to caller
+  private resolvePickLink: (value?: string | Thenable<string>) => void;
+  private rejectPickLink: (value?: string | Thenable<string>) => void;
+
+  // Public method to pick a link
+  public pickLink (): Promise<string> {
+      this.openLinkPanel();
+      return new Promise<string>(
+          (resolve, reject) => {
+              this.resolvePickLink = resolve;
+              this.rejectPickLink = reject;
+      });
+  }
+
   private openLinkPanel() {
       this.addMessageListener();
       this.setState({
@@ -96,19 +112,6 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
       this.removeMessageListener();
       this.setState({
         isOpen: false,
-      });
-  }
-
-  // ** Method to open panel and pick a link **
-
-  private resolvePickLink: (value?: string | Thenable<string>) => void;
-  private rejectPickLink: (value?: string | Thenable<string>) => void;
-  public pickLink (): Promise<string> {
-      this.openLinkPanel();
-      return new Promise<string>(
-          (resolve, reject) => {
-              this.resolvePickLink = resolve;
-              this.rejectPickLink = reject;
       });
   }
 
