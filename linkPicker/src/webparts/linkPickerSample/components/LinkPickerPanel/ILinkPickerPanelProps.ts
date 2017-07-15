@@ -8,9 +8,7 @@ export enum LinkType {
 }
 
 export interface ILinkPickerPanelProps {
-    className: string;
+    className?: string;
     webAbsUrl: string;
-    isOpen: boolean;
     linkType: LinkType;
-    onClose: (string) => void;
 }

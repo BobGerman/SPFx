@@ -12,25 +12,18 @@ import { strings } from '../loc/en-us';
 export default class LinkPickerPanel extends React.Component<ILinkPickerPanelProps, ILinkPickerPanelState> {
 
   constructor(
-      public className: string,
+      // public className: string,
   ) {
       super();
       this.state = {
-          navState: NavState.site,
-          isStarted: false,
-          isUrlValid: false,
-          url: ""
+        isOpen: false,
+        navState: NavState.site,
+        isUrlValid: false,
+        url: ""
       };
   }
 
   public render(): JSX.Element {
-
-    // Initialize the component if needed
-    if (this.props.isOpen) {
-      this.ensureComponentStarted();
-    } else {
-      this.ensureComponentStopped();
-    }
 
     // Figure out which UI to show based on the navigation state
     const showDocPickerIFrame =
@@ -40,7 +33,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
     
     return (
 
-      <Panel isOpen={this.props.isOpen}
+      <Panel isOpen={this.state.isOpen}
               onDismissed={this.removeMessageListener.bind(this)}
               className={styles["link-picker"]}
               hasCloseButton={false}
@@ -89,28 +82,35 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
       );
   }
   
-    // ** Functions to start/stop the component **
-  private ensureComponentStarted() {
-    if (!this.state.isStarted) {
+  private openLinkPanel() {
       this.addMessageListener();
-      this.state = {
-        navState: NavState.site,
-        isStarted: true,
-        isUrlValid: false,
-        url: ""
-      };
-    }
+      this.setState({
+          isOpen: true, 
+          navState: NavState.site,
+          isUrlValid: false,
+          url: ""  
+      });
   }
 
-  private ensureComponentStopped() {
-    if (this.state.isStarted) {
+  private closeLinkPanel() {
       this.removeMessageListener();
-      this.state = {
-        isStarted: false,
-      };
-    }
+      this.setState({
+        isOpen: false,
+      });
   }
 
+  // ** Method to open panel and pick a link **
+
+  private resolvePickLink: (value?: string | Thenable<string>) => void;
+  private rejectPickLink: (value?: string | Thenable<string>) => void;
+  public pickLink (): Promise<string> {
+      this.openLinkPanel();
+      return new Promise<string>(
+          (resolve, reject) => {
+              this.resolvePickLink = resolve;
+              this.rejectPickLink = reject;
+      });
+  }
 
   // ** Functions to manage the document selection iFrame **
 
@@ -130,12 +130,12 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
       switch (eventType) {
         case 'success':
           const url = json.items[0].sharePoint.url;
-          this.ensureComponentStopped();
-          this.props.onClose(url);
+          this.resolvePickLink(url);
+          this.closeLinkPanel();
           break;
         case 'cancel':
-          this.ensureComponentStopped();
-          this.props.onClose(null);
+          this.rejectPickLink();
+          this.closeLinkPanel();
           break;
       }
     }
@@ -196,13 +196,13 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
   }
 
   private onOkButtonClick(event){
-    this.props.onClose(this.state.url);
-    this.ensureComponentStopped();
+    this.resolvePickLink(this.state.url);
+    this.closeLinkPanel();
   }
   
   private onCancelButtonClick(){
-    this.props.onClose(null);
-    this.ensureComponentStopped();
+    this.rejectPickLink();
+    this.closeLinkPanel();
   }
 
   // ** Validation  **
