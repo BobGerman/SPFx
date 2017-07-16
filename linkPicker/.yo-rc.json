@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.1.1",
+    "libraryName": "link-picker",
+    "libraryId": "9cd6c260-84d8-4621-bf06-bba1bd5b6a14",
+    "environment": "spo"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "link-picker-client-side-solution",
+    "id": "9cd6c260-84d8-4621-bf06-bba1bd5b6a14",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/link-picker.sppkg"
+  }
+}
