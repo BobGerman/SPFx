@@ -1,8 +1,8 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
+    "PropertyPaneDescription": "Configure link to display in the web part",
+    "BasicGroupName": "Link Selection",
     "SelectLink": "Select Link",
-    "UrlFieldLabel": "Link URL"
+    "UrlFieldLabel": "URL"
   }
 });

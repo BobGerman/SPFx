@@ -8,13 +8,12 @@ import {
   PropertyPaneButton, PropertyPaneButtonType
 } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'linkPickerSampleStrings';
-
 import LinkPickerPanel from './components/LinkPickerPanel/LinkPickerPanel';
 import { LinkType } from './components/LinkPickerPanel/ILinkPickerPanelProps';
 
 import LinkPickerSample from './components/LinkPickerSample';
 
+import * as strings from 'linkPickerSampleStrings';
 import { ILinkPickerSampleWebPartProps } from './ILinkPickerSampleWebPartProps';
 
 export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILinkPickerSampleWebPartProps> {
@@ -72,15 +71,16 @@ export default class LinkPickerSampleWebPart extends BaseClientSideWebPart<ILink
             {
               groupName: strings.BasicGroupName,
               groupFields: [
+                PropertyPaneTextField('url', {
+                  label: strings.UrlFieldLabel,
+                  multiline: true,
+                  disabled: true
+                }),
                 PropertyPaneButton("itemChangeLink",{
                   text: strings.SelectLink,
                   buttonType: PropertyPaneButtonType.Primary,
                   onClick: () => { this.getLink(); }
                 }),
-
-                PropertyPaneTextField('url', {
-                  label: strings.UrlFieldLabel
-                })
               ]
             }
           ]
