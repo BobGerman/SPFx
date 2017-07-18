@@ -10,16 +10,8 @@ Usage:
         // Absolute URL for SPWeb
         webAbsUrl = <string>
 
-        // True to open the link picker
-        isOpen = <boolean>
-
         // Type of link to pick (see below)
         linkType = <LinkType>
-
-        // Called when panel is closed
-        // a null url indicates the panel was closed
-        //    without selecting a link
-        onClose = <(url?:string) => void>
     />
 
 The link type is used to filter the files shown in the document browser, and to add
@@ -37,53 +29,23 @@ LinkType is a bitwise enumeration, so you can use the OR operator to allow selec
 
 will select documents, pages, and images. The any type is the logical OR of the other values.
 
-The parent component needs to maintain the open/closed state of the LinkPickerPanel.
-This is the same pattern used by Office UI Fabric panels and dialogs, and is in keeping with the [principle of "lifting state up"](https://facebook.github.io/react/docs/lifting-state-up.html).
+To open and use the panel, obtain a reference to the panel React component using a ref function:
 
-1. Initially set your open/closed state to closed
+      private linkPickerPanel: LinkPickerPanel;
 
-        constructor(){
-            super();
-            this.state = {
-                isLinkPanelOpen : false
-            };
-        }
+      // ...
 
-
-2. Render the LinkPickerPanel with isOpen= based on your open/closed state
-
-        public render(): React.ReactElement<IBoxButtonWebPartProps> {
-            return (
-                <LinkPickerPanel
-                    className={styles["link-picker"]}
-                    webAbsUrl={this.props.context.pageContext.web.absoluteUrl}
-                    isOpen={this.state.isLinkPanelOpen}
-                    linkType={LinkType.any}
-                    onDismiss={this.dismissLinkPicker.bind(this)} />
-                }
-            );
-        }
-
-3. To open the link picker, set your own state to open, and render will pass it in the isOpen prop.
-
-        private openLinkPicker(event){
-            this.setState({
-            isLinkPanelOpen: true
-            });
-        }
+      <LinkPickerPanel
+            webAbsUrl={this.props.context.pageContext.web.absoluteUrl}
+            linkType={ LinkType.any }
+            ref={ (ref) => {this.linkPickerPanel = ref;}} />
 
 
-4. When onClose is called, it's your job to set your state to closed.
+Then call the pickLink() method on the LinkPickerPanel component to obtain a link from the user. pickLink() returns a promise, which will be rejected if the user closes the link picker without selecting a link.
 
-        private onLinkPickerClosed(url) {
-            if (url) {
-                // User picked a link
-                // Do something with it!
-            }
-            this.setState({
-                isLinkPanelOpen: false
-            });
-        }
+      this.linkPickerPanel.pickLink()
+      .then ((url) => {
+        this.props.setUrl(url);
+      });
 
-
-onClose() returns a url if one was picked, or null if the panel was closed without selecting a link.
+This design was chosen to allow the link picker to manage its own state, as it may be used directly within an SPFx web part.
