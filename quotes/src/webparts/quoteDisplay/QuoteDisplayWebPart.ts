@@ -49,6 +49,7 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
       const element: React.ReactElement<IListPickerProps> = React.createElement(
         ListPicker, {
           context: this.context,
+          environmentType: Environment.type,
           initialListName: "",
           onListSelectionChanged: (name) => { console.log(name); }
           },
