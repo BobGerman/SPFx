@@ -8,8 +8,8 @@ import {
   PropertyPaneButton, PropertyPaneButtonType
 } from '@microsoft/sp-webpart-base';
 
-import LinkPickerPanel from './components/LinkPickerPanel/LinkPickerPanel';
-import { LinkType } from './components/LinkPickerPanel/ILinkPickerPanelProps';
+import LinkPickerPanel from '../../components/LinkPickerPanel/LinkPickerPanel';
+import { LinkType } from '../../components/LinkPickerPanel/ILinkPickerPanelProps';
 
 import LinkPickerSample from './components/LinkPickerSample';
 
