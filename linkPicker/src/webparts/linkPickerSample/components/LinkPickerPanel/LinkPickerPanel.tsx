@@ -123,7 +123,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
     removeEventListener('message',this.onMessageReceived.bind(this),false);
   }
 
-  private onMessageReceived(event){
+  private onMessageReceived(event: React.CompositionEvent<HTMLIFrameElement>){
     if (event.data.indexOf('[OneDrive-FromPicker]',0)===0) {
       const json = JSON.parse(event.data.replace('[OneDrive-FromPicker]',''));
       const eventType = json.type;
@@ -165,15 +165,15 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
   // ** UI Event Handlers **
   
   // <Nav> event handlers
-  private onSiteNavClick(event) {
-    this.onNavClick(NavState.site);
+  private onSiteNavClick(event: React.MouseEvent<HTMLElement>) {
+    this.onNavClick(NavState.site, event);
   }
 
-  private onLinkNavClick(event) {
-    this.onNavClick(NavState.link);
+  private onLinkNavClick(event: React.MouseEvent<HTMLElement>) {
+    this.onNavClick(NavState.link, event);
   }
 
-  private onNavClick(navState: NavState) {
+  private onNavClick(navState: NavState, event: React.MouseEvent<HTMLElement>) {
 
      event.stopPropagation();
      event.preventDefault();
@@ -189,14 +189,14 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
   }
 
   // Link entry form
-  private onLinkTextChange(event){
+  private onLinkTextChange(event: React.FormEvent<HTMLTextAreaElement>){
     this.setState ({
-      url: event.target.value,
-      isUrlValid: this.isValidLink(event.target.value)
+      url: event.currentTarget.value,
+      isUrlValid: this.isValidLink(event.currentTarget.value)
     });
   }
 
-  private onOkButtonClick(event){
+  private onOkButtonClick(event: React.MouseEvent<HTMLElement>){
     this.resolvePickLink(this.state.url);
     this.closeLinkPanel();
   }
