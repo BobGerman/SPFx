@@ -24,6 +24,7 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
 
     if (this.state.options.length === 0) {
       if (this.props.environmentType === EnvironmentType.SharePoint) {
+        
         // Set options using lists within this site
         var web = new Web(context.pageContext.web.absoluteUrl);
         web.lists.filter('hidden eq false and BaseTemplate eq 100').get()
@@ -40,7 +41,7 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
         });
       } else {
         // Set options using mock data
-        // Can't set the state inside render or it will recurse endlessly
+        // Use timeout because we can't set the state inside render or it will recurse endlessly
         setTimeout(() => {    
           this.setState({ ...this.state,
             options: [
