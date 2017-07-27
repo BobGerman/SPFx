@@ -20,17 +20,19 @@ import { IExceptionDisplayProps } from './components/ExceptionDisplay/IException
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
 import { IListPickerProps } from '../../components/ListPicker/IListPickerProps';
-import ListPicker from '../../components/ListPicker/ListPicker';
+// import ListPicker from '../../components/ListPicker/ListPicker';
 
 import { QuotationServiceFactory } from './model/QuotationService/QuotationServiceFactory';
 import { IQuotation } from './model/QuotationService/IQuotation';
 import { IException } from '../../model/Exceptions/IException';
 
+import { PropertyPaneListPicker } from '../../components/propertyFieldListPicker/PropertyFieldListPicker';
+
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
-  protected get disableReactivePropertyChanges(): boolean {
-    return true;
-  }
+  // protected get disableReactivePropertyChanges(): boolean {
+  //   return true;
+  // }
   
   public render(): void { 
 
@@ -39,21 +41,21 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
     service.get(this.context, this.properties.spListName)
     .then ((quotations: IQuotation[]) => {
 
-      // const element: React.ReactElement<IQuoteGroupDisplayProps> = React.createElement(
-      //   QuoteGroupDisplay, {
-      //      quotes: quotations,
-      //      quoteCount: this.properties.quoteCount,
-      //      getMoreLabel: strings.MoreButtonLabel
-      //     },
-      // );
-      const element: React.ReactElement<IListPickerProps> = React.createElement(
-        ListPicker, {
-          context: this.context,
-          environmentType: Environment.type,
-          initialListName: "",
-          onListSelectionChanged: (name) => { console.log(name); }
+      const element: React.ReactElement<IQuoteGroupDisplayProps> = React.createElement(
+        QuoteGroupDisplay, {
+           quotes: quotations,
+           quoteCount: this.properties.quoteCount,
+           getMoreLabel: strings.MoreButtonLabel
           },
       );
+      // const element: React.ReactElement<IListPickerProps> = React.createElement(
+      //   ListPicker, {
+      //     context: this.context,
+      //     environmentType: Environment.type,
+      //     initialListName: "",
+      //     onListSelectionChanged: (name) => { console.log(name); }
+      //     },
+      // );
 
       ReactDom.render(element, this.domElement);
     })
@@ -90,6 +92,14 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
                 PropertyPaneTextField('spListName', {
                   label: strings.DescriptionFieldLabel
                 }),
+                // PropertyFieldListPicker('spListName', {
+                //   properties: this.properties,
+                //   context: this.context,
+                //   environmentType: Environment.type,
+                //   initialListName: this.properties.spListName,
+                //   key: "ListPicker",
+                //   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this)
+                // }),
                 PropertyPaneSlider('quoteCount', {
                   label: strings.QuoteCountFieldLabel,
                   min: 1,
