@@ -7,7 +7,6 @@ import {
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField,
   PropertyPaneSlider
 } from '@microsoft/sp-webpart-base';
 
@@ -19,9 +18,6 @@ import { IExceptionDisplayProps } from './components/ExceptionDisplay/IException
 
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
-// import { IListPickerProps } from '../../components/ListPicker/IListPickerProps';
-// import ListPicker from '../../components/ListPicker/ListPicker';
-
 import { QuotationServiceFactory } from './model/QuotationService/QuotationServiceFactory';
 import { IQuotation } from './model/QuotationService/IQuotation';
 import { IException } from '../../model/Exceptions/IException';
@@ -30,10 +26,6 @@ import { PropertyPaneListPicker } from '../../components/propertyFieldListPicker
 
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 
-  // protected get disableReactivePropertyChanges(): boolean {
-  //   return true;
-  // }
-  
   public render(): void { 
 
     var service = QuotationServiceFactory.getService(Environment.type);
@@ -48,14 +40,6 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
            getMoreLabel: strings.MoreButtonLabel
           },
       );
-      // const element: React.ReactElement<IListPickerProps> = React.createElement(
-      //   ListPicker, {
-      //     context: this.context,
-      //     environmentType: Environment.type,
-      //     initialListName: "",
-      //     onListSelectionChanged: (name) => { console.log(name); }
-      //     },
-      // );
 
       ReactDom.render(element, this.domElement);
     })
@@ -89,9 +73,6 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                // PropertyPaneTextField('spListName', {
-                //   label: strings.DescriptionFieldLabel
-                // }),
                 PropertyPaneListPicker('spListName', {
                   label: "My Label",
                   properties: this.properties,

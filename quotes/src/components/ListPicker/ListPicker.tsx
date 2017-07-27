@@ -14,7 +14,7 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
     super();
     this.state = {
       options: [],
-      selectedItem: ""
+      selectedKeyValue: ""
     };
   }
 
@@ -22,44 +22,46 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
 
     const context = this.props.context;
 
-    if (this.props.environmentType === EnvironmentType.SharePoint) {
-      // Set options using lists within this site
-      var web = new Web(context.pageContext.web.absoluteUrl);
-      web.lists.filter('hidden eq false and BaseTemplate eq 100').get()
-      .then((lists: any) => {
-        this.setState({ ...this.state,
-          options: lists.map((li) => {
-            return {
-              key: li["Title"],
-              text: li["Title"],
-              selected: li["Title"] == (this.state.selectedItem || this.props.initialListName)
-            };
-          })
+    if (this.state.options.length === 0) {
+      if (this.props.environmentType === EnvironmentType.SharePoint) {
+        // Set options using lists within this site
+        var web = new Web(context.pageContext.web.absoluteUrl);
+        web.lists.filter('hidden eq false and BaseTemplate eq 100').get()
+        .then((lists: any) => {
+          this.setState({ ...this.state,
+            options: lists.map((li) => {
+              return {
+                key: li["Title"],
+                text: li["Title"],
+                selected: li["Title"] == (this.state.selectedKeyValue || this.props.initialListName)
+              };
+            })
+          });
         });
-      });
-    } else {
-      // Set options using mock data
-      // Can't set the state inside render or it will recurse endlessly
-      setTimeout(() => {    
-        this.setState({ ...this.state,
-          options: [
-            {key: "List A", text: "List A", selected: false},
-            {key: "List B", text: "List B", selected: false},
-            {key: "List C", text: "List C", selected: false},
-        ]});
-      }, 0);
+      } else {
+        // Set options using mock data
+        // Can't set the state inside render or it will recurse endlessly
+        setTimeout(() => {    
+          this.setState({ ...this.state,
+            options: [
+              {key: "List A", text: "List A", selected: false},
+              {key: "List B", text: "List B", selected: false},
+              {key: "List C", text: "List C", selected: false},
+          ]});
+        }, 0);
+      }
     }
 
-    let selectedItem = this.state.selectedItem || this.props.initialListName;
+    let selectedItem = this.state.selectedKeyValue || this.props.initialListName;
 
     return (
         <div>
         <Dropdown
           label='Controlled example:'
-          selectedKey={ this.state.selectedItem }
+          selectedKey={ this.state.selectedKeyValue }
           onChanged={ (item) => {
             this.props.onListSelectionChanged(item.text);
-            this.setState({ ...this.state, selectedItem: item.key.toString() });
+            this.setState({ ...this.state, selectedKeyValue: item.key.toString() });
             }}
           options={this.state.options}
         />
