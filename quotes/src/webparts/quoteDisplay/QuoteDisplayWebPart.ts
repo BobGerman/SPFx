@@ -19,7 +19,7 @@ import { IExceptionDisplayProps } from './components/ExceptionDisplay/IException
 
 import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
-import { IListPickerProps } from '../../components/ListPicker/IListPickerProps';
+// import { IListPickerProps } from '../../components/ListPicker/IListPickerProps';
 // import ListPicker from '../../components/ListPicker/ListPicker';
 
 import { QuotationServiceFactory } from './model/QuotationService/QuotationServiceFactory';
@@ -89,17 +89,19 @@ export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDis
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('spListName', {
-                  label: strings.DescriptionFieldLabel
-                }),
-                // PropertyFieldListPicker('spListName', {
-                //   properties: this.properties,
-                //   context: this.context,
-                //   environmentType: Environment.type,
-                //   initialListName: this.properties.spListName,
-                //   key: "ListPicker",
-                //   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this)
+                // PropertyPaneTextField('spListName', {
+                //   label: strings.DescriptionFieldLabel
                 // }),
+                PropertyPaneListPicker('spListName', {
+                  label: "My Label",
+                  properties: this.properties,
+                  context: this.context,
+                  environment: Environment.type,
+                  initialValue: this.properties.spListName,
+                  key: "ListPicker",
+                  render: this.render.bind(this),
+                  onPropertyChange: this.onPropertyPaneFieldChanged.bind(this)
+                }),
                 PropertyPaneSlider('quoteCount', {
                   label: strings.QuoteCountFieldLabel,
                   min: 1,

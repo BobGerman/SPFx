@@ -2,14 +2,20 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import {
   IPropertyPaneField,
-  PropertyPaneFieldType
+  PropertyPaneFieldType,
+  IWebPartContext
 } from '@microsoft/sp-webpart-base';
+import { 
+  EnvironmentType
+} from '@microsoft/sp-core-library';
 import PropertyFieldLinkPickerHost, { IPropertyFieldLinkPickerHostProps } from './PropertyFieldListPickerHost';
 
 export interface IPropertyFieldListPickerProps{
     label: string;
-    initialValue?: string[];
+    initialValue?: string;
     placeHolder?: string;
+    context: IWebPartContext,
+    environment: EnvironmentType,
     onPropertyChange(propertyPath: string, oldValue: any, newValue: any): void;
     render(): void;
     disableReactivePropertyChanges?: boolean;
@@ -22,7 +28,7 @@ export interface IPropertyFieldListPickerProps{
 
 export interface IPropertyFieldGroupListPickerInternal extends IPropertyFieldListPickerProps{
     label: string;
-    initialValue?: string[];
+    initialValue?: string;
     placeHolder?: string;
     targetProperty: string;
     onRender(elem: HTMLElement): void;
@@ -43,11 +49,13 @@ class PropertyFieldGroupSortBuilder implements IPropertyPaneField<IPropertyField
 
     //Custom properties
     private label: string;
-    private initialValue: string[];
+    private initialValue: string;
     private placeHolder: string;
     private onPropertyChange: (propertyPath: string, oldValue: any, newValue: any) => void;
     private customProperties: any;
     private key: string;
+    private context: IWebPartContext;
+    private environment: EnvironmentType;
     private disabled: boolean = false;
     private onGetErrorMessage: (value: string) => string | Promise<string>;
     private deferredValidationTime: number = 200;
@@ -65,6 +73,8 @@ class PropertyFieldGroupSortBuilder implements IPropertyPaneField<IPropertyField
         this.onPropertyChange = _properties.onPropertyChange;
         this.customProperties = _properties.properties;
         this.key = _properties.key;
+        this.context = _properties.context;
+        this.environment = _properties.environment;
         if (_properties.disabled === true)
         this.disabled = _properties.disabled;
         this.onGetErrorMessage = _properties.onGetErrorMessage;
@@ -88,6 +98,8 @@ class PropertyFieldGroupSortBuilder implements IPropertyPaneField<IPropertyField
             onPropertyChange: this.onPropertyChange,
             properties: this.customProperties,
             key: this.key,
+            context: this.context,
+            environment: this.environment,
             disabled: this.disabled,
             onGetErrorMessage: this.onGetErrorMessage,
             deferredValidationTime: this.deferredValidationTime,
@@ -112,6 +124,8 @@ export function PropertyPaneListPicker(targetProperty: string, properties: IProp
         onDispose: null,
         onRender: null,
         key: properties.key,
+        context: properties.context,
+        environment: properties.environment,
         disabled: properties.disabled,
         onGetErrorMessage: properties.onGetErrorMessage,
         deferredValidationTime: properties.deferredValidationTime,
