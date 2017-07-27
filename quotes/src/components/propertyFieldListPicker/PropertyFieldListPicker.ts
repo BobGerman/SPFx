@@ -14,8 +14,8 @@ export interface IPropertyFieldListPickerProps{
     label: string;
     initialValue?: string;
     placeHolder?: string;
-    context: IWebPartContext,
-    environment: EnvironmentType,
+    context: IWebPartContext;
+    environment: EnvironmentType;
     onPropertyChange(propertyPath: string, oldValue: any, newValue: any): void;
     render(): void;
     disableReactivePropertyChanges?: boolean;

@@ -7,9 +7,6 @@ import { Async } from 'office-ui-fabric-react/lib/Utilities';
 import { CommandButton } from 'office-ui-fabric-react/lib/Button';
 
 import ListPicker from '../ListPicker/ListPicker';
-import { IListPickerProps } from '../ListPicker/IListPickerProps';
-
-//import styles from '../PropertyFields.module.scss';
 
 export interface IPropertyFieldLinkPickerHostProps extends IPropertyFieldGroupListPickerInternal{}
 export interface IPropertyFieldLinkPickerState{
@@ -79,59 +76,15 @@ export default class PropertyFieldLinkPickerHost extends React.Component<IProper
         this.async.dispose();
     }
 
-    // private moveUp() {
-    //     var e: HTMLSelectElement = document.getElementById("groupList") as HTMLSelectElement;
-    //     if(e != undefined){
-    //         if(e.selectedIndex > 0){
-    //             var cloneValue = JSON.parse(JSON.stringify(this.state.currentValue));
-    //             var tmp = cloneValue[e.selectedIndex];
-    //             cloneValue[e.selectedIndex] = cloneValue[e.selectedIndex - 1];
-    //             cloneValue[e.selectedIndex - 1] = tmp;
-    //             this.onValueChanged(cloneValue);
-    //         }
-    //     }
-    // }
-
-    // private moveDown() {
-    //     var e: HTMLSelectElement = document.getElementById("groupList") as HTMLSelectElement;
-    //     if(e != undefined){
-    //         if(e.selectedIndex < this.state.currentValue.length - 1){
-    //             var cloneValue = JSON.parse(JSON.stringify(this.state.currentValue));
-    //             var tmp = cloneValue[e.selectedIndex];
-    //             cloneValue[e.selectedIndex] = cloneValue[e.selectedIndex + 1];
-    //             cloneValue[e.selectedIndex + 1] = tmp;
-    //             this.onValueChanged(cloneValue);
-    //         }
-    //     }
-    // }
-    
     public render(): JSX.Element {
         return (
             <div>
                 <Label>{this.props.label}</Label>
                 <ListPicker context={this.props.context} environmentType={this.props.environment}
-                            initialListName={this.props.initialValue}
+                            initialListName="Authors"
                             onListSelectionChanged={(newVal) => {
                                 this.onValueChanged(newVal);
                             }} />
-                {/* <CommandButton onClick={this.moveUp.bind(this)}>Move Up</CommandButton>
-                <CommandButton onClick={this.moveDown.bind(this)}>Move Down</CommandButton>
-                <select id="groupList" size={this.state.currentValue.length} disabled={this.props.disabled} aria-invalid={ !!this.state.errorMessage }>
-                    { this.state.currentValue.length > 0 &&
-                    this.state.currentValue.map((item) => {
-                        return (
-                        <option value={item}>{item}</option>
-                        );
-                    }
-                    )}
-                </select>
-                { this.state.errorMessage != null && this.state.errorMessage != '' && this.state.errorMessage != undefined ?
-                    <div><div aria-live='assertive' className='ms-u-screenReaderOnly' data-automation-id='error-message'>{  this.state.errorMessage }</div>
-                    <span>
-                        <p className='ms-TextField-errorMessage ms-u-slideDownIn20'>{ this.state.errorMessage }</p>
-                    </span>
-                    </div>
-                : ''} */}
             </div>
         );
     }

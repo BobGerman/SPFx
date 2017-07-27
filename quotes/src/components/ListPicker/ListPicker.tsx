@@ -14,7 +14,7 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
     super();
     this.state = {
       options: [],
-      selectedItem: null
+      selectedItem: ""
     };
   }
 
@@ -32,7 +32,7 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
             return {
               key: li["Title"],
               text: li["Title"],
-              selected: false
+              selected: li["Title"] == (this.state.selectedItem || this.props.initialListName)
             };
           })
         });
@@ -50,16 +50,16 @@ export default class ListPicker extends React.Component<IListPickerProps, IListP
       }, 0);
     }
 
-    let { selectedItem } = this.state;
+    let selectedItem = this.state.selectedItem || this.props.initialListName;
 
     return (
         <div>
         <Dropdown
           label='Controlled example:'
-          selectedKey={ this.state.selectedItem && this.state.selectedItem.key }
+          selectedKey={ this.state.selectedItem }
           onChanged={ (item) => {
             this.props.onListSelectionChanged(item.text);
-            this.setState({ ...this.state, selectedItem: item });
+            this.setState({ ...this.state, selectedItem: item.key.toString() });
             }}
           options={this.state.options}
         />
