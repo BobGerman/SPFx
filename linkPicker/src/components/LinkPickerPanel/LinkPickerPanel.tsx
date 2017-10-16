@@ -28,7 +28,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
       this.state.navState == NavState.site;
     const showLinkEntryForm =
       this.state.navState == NavState.link;
-    
+
     return (
 
       <Panel isOpen={this.state.isOpen}
@@ -44,8 +44,8 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
                 groups={[{
                 links:[
                   {
-                    name: strings.LinkPickerSiteNav, 
-                    icon:"Globe", key:"site", url:"#", 
+                    name: strings.LinkPickerSiteNav,
+                    icon:"Globe", key:"site", url:"#",
                     onClick:this.onSiteNavClick.bind(this),
                     isExpanded: showDocPickerIFrame
                   },
@@ -79,7 +79,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
       </Panel>
       );
   }
-  
+
   // ** Open and Close Panel **
 
   // Promise methods for returning link to caller
@@ -99,10 +99,10 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
   private openLinkPanel() {
       this.addMessageListener();
       this.setState({
-          isOpen: true, 
+          isOpen: true,
           navState: NavState.site,
           isUrlValid: false,
-          url: ""  
+          url: ""
       });
   }
 
@@ -130,6 +130,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
 
       switch (eventType) {
         case 'success':
+          console.log(json.items);
           const url = json.items[0].sharePoint.url;
           this.resolvePickLink(url);
           this.closeLinkPanel();
@@ -144,7 +145,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
 
   private getDocPickerUrl(){
     const anchor = document.createElement('a');
-    anchor.href = this.props.webAbsUrl;
+    anchor.href = this.props.webAbsUrl.replace(/\/$/, "");
 
     let typeFilter = '&view=2&p=2&typeFilters=';
     if (this.props.linkType & LinkType.folder) typeFilter += 'folder,';
@@ -163,7 +164,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
   }
 
   // ** UI Event Handlers **
-  
+
   // <Nav> event handlers
   private onSiteNavClick(event: React.MouseEvent<HTMLElement>) {
     this.onNavClick(NavState.site, event);
@@ -177,12 +178,12 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
 
      event.stopPropagation();
      event.preventDefault();
-     
+
      this.setState(
       {
         navState: navState,
         isUrlValid:false,
-        url: ""          
+        url: ""
       }
     );
     return false;
@@ -200,7 +201,7 @@ export default class LinkPickerPanel extends React.Component<ILinkPickerPanelPro
     this.resolvePickLink(this.state.url);
     this.closeLinkPanel();
   }
-  
+
   private onCancelButtonClick(){
     this.rejectPickLink();
     this.closeLinkPanel();
