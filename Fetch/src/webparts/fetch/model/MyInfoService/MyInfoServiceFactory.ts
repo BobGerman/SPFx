@@ -3,14 +3,16 @@ import MockMyInfoService from './MockMyInfoService';
 import MyInfoService from './MyInfoService';
 
 import { EnvironmentType } from '@microsoft/sp-core-library';
+import { IWebPartContext } from '@microsoft/sp-webpart-base';
 
 export class MyInfoServiceFactory {
-    public static getService(environmentType: EnvironmentType) : IMyInfoService {
+    public static getService(context: IWebPartContext, 
+                             environmentType: EnvironmentType) : IMyInfoService {
 
         if (environmentType === EnvironmentType.Local) {
-          return new MockMyInfoService();
+          return new MockMyInfoService(context);
         } else {
-          return new MyInfoService();
+          return new MyInfoService(context);
         }
     }
 }

@@ -23,13 +23,13 @@ export default class Fetch extends React.Component<IFetchProps, {}> {
               <p>Lists:</p>
               <ul>
                 {this.props.info.spListNames.map(s => {
-                  return <li>{s}</li>
+                  return <li>{s}</li>;
                 })}
               </ul>
               <p>Customers:</p>
               <ul>
                 {this.props.info.customers.map(s => {
-                  return <li>{s}</li>
+                  return <li>{s}</li>;
                 })}
               </ul>
             </div>

@@ -12,7 +12,9 @@ export default class MockMyInfoService implements IMyInfoService {
         customers: ["A Datum", "Blue Yonder Airlines","Contoso"]
     };
 
-    public get(context: IWebPartContext): Promise<IMyInfo | string> {
+    constructor(context: IWebPartContext) { }
+
+    public get(): Promise<IMyInfo | string> {
         return new Promise<IMyInfo>((resolve) => {
             resolve (this.mockItems);
         });
