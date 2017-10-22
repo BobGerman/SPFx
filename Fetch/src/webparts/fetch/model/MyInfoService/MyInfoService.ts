@@ -5,13 +5,6 @@ import { IWebPartContext } from '@microsoft/sp-webpart-base';
 
 export default class MyInfoService implements IMyInfoService {
 
-    private mockItems: IMyInfo =
-    {
-        myName: "Bob Mock",
-        spListNames: ["List A", "List B", "List C"],
-        customers: ["A Datum", "Blue Yonder Airlines","Contoso"]
-    };
-
     private context: IWebPartContext;
     constructor(context: IWebPartContext) {
         this.context = context;
@@ -19,7 +12,36 @@ export default class MyInfoService implements IMyInfoService {
 
     public get(): Promise<IMyInfo | string> {
         return new Promise<IMyInfo>((resolve) => {
-            resolve (this.mockItems);
+        
+            Promise.all([
+                this.getName(),
+                this.getLists(),
+                this.getCustomers()
+            ]).then((values) => {
+                resolve ({
+                    myName: values[0],
+                    spListNames: values[1],
+                    customers: values[2]
+                });
+            });
+        });
+    }
+
+    private getName(): Promise<string> {
+        return new Promise<string>((resolve) => {
+            resolve("Bob Promise");
+        });
+    }
+
+    private getLists(): Promise<string[]> {
+        return new Promise<string[]>((resolve) => {
+            resolve(["List Alpha", "List B", "List C"]);
+        });
+    }
+
+    private getCustomers(): Promise<string[]> {
+        return new Promise<string[]>((resolve) => {
+            resolve(["A Datum", "Blue Yonder Airlines","Contoso"]);
         });
     }
 }
