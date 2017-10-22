@@ -1,3 +1,6 @@
+import { IMyInfo } from '../model/MyInfoService/IMyInfo';
+
 export interface IFetchProps {
-  description: string;
+  info: IMyInfo;
+  message: string;
 }

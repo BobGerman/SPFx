@@ -25,18 +25,12 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
 
     let service = MyInfoServiceFactory.getService(Environment.type);
     service.get(this.context)
-    .then((result: IMyInfo) => {
-      let display = result.myName + "\n";
-      for (let i of result.spListNames) {
-        display += i + " ";
-      }
-      for (let i of result.customers) {
-        display += i + " ";
-      }
-      const element: React.ReactElement<IFetchProps > = React.createElement(
+    .then((result: IMyInfo) => {      
+      const element: React.ReactElement<IFetchProps> = React.createElement(
         Fetch,
         {
-          description: display
+          info: result,
+          message: ""
         }
       );
   
@@ -46,7 +40,8 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
       const element: React.ReactElement<IFetchProps > = React.createElement(
         Fetch,
         {
-          description: `ERROR: ${message}`
+          info: null,
+          message: `ERROR: ${message}`
         }
       );
   
