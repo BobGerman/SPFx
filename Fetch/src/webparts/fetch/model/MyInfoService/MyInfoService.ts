@@ -41,7 +41,21 @@ export default class MyInfoService implements IMyInfoService {
 
     private getCustomers(): Promise<string[]> {
         return new Promise<string[]>((resolve) => {
-            resolve(["A Datum", "Blue Yonder Airlines","Contoso"]);
+            let query = "http://services.odata.org/Northwind/Northwind.svc/Customers/?$top=10";
+
+            var myInit: RequestInit = {
+                method: 'GET',
+                headers: {"accept": "application/json"},
+                mode: 'cors',
+                cache: 'default' 
+            };
+
+            fetch(query, myInit).then ((response) => {
+                response.json().then((o) => {
+                    let result = o.value.map((v) => { return v.CompanyName; });
+                    resolve(result);
+                });
+            });
         });
     }
 }
