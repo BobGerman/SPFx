@@ -2,6 +2,7 @@ import { IMyInfoService } from './IMyInfoService';
 import { IMyInfo } from './IMyInfo';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -33,12 +34,28 @@ export default class MyInfoService implements IMyInfoService {
         });
     }
 
+    // Example using SPHttpClient - local SharePoint site
+    // import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
     private getLists(): Promise<string[]> {
         return new Promise<string[]>((resolve) => {
-            resolve(["List Alpha", "List B", "List C"]);
+            this.context.spHttpClient.fetch(
+                this.context.pageContext.web.absoluteUrl +
+                    "/_api/lists?$filter=Hidden%20eq%20false",
+                SPHttpClient.configurations.v1,
+                {
+                    method: "GET"
+                }
+            )
+            .then((response: SPHttpClientResponse) => {
+                response.json().then((o) => {
+                    let result = o.value.map((v) => { return v.Title; });
+                    resolve(result);
+                });                
+            });
         });
     }
 
+    // Example using simple fetch - Northwind DB
     private getCustomers(): Promise<string[]> {
         return new Promise<string[]>((resolve) => {
             let query = "http://services.odata.org/Northwind/Northwind.svc/Customers/?$top=10";
@@ -50,6 +67,7 @@ export default class MyInfoService implements IMyInfoService {
                 cache: 'default' 
             };
 
+            // NOTE: you could use this.context.HttpClient.fetch() - same thing
             fetch(query, myInit).then ((response) => {
                 response.json().then((o) => {
                     let result = o.value.map((v) => { return v.CompanyName; });
