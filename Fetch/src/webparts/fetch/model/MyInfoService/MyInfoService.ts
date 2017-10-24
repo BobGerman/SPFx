@@ -6,9 +6,9 @@ import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
 
-import { IGraphMeResponse } from './IGraphMeResponse';
-import { ISpListResponse } from './ISpListResponse';
-import { ICustomersResponse } from './ICustomersResponse';
+import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
+import { ISpListResponse } from './HttpResponses/ISpListResponse';
+import { ICustomersResponse } from './HttpResponses/ICustomersResponse';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -41,7 +41,7 @@ export default class MyInfoService implements IMyInfoService {
 
     // Example using GraphHttpClient
     // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
-    // import { IGraphMeResponse } from './IGraphMeResponse';
+    // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
     private getName(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
 
@@ -65,7 +65,7 @@ export default class MyInfoService implements IMyInfoService {
 
     // Example using SPHttpClient - local SharePoint site
     // import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
-    // import { ISpListResponse } from './ISpListResponse';
+    // import { ISpListResponse } from './HttpResponses/ISpListResponse';
     private getLists(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
             this.context.spHttpClient.fetch(
@@ -95,7 +95,7 @@ export default class MyInfoService implements IMyInfoService {
 
     // Example using simple fetch - Northwind DB
     // import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
-    // import { ICustomersResponse } from './ICustomersResponse';
+    // import { ICustomersResponse } from './HttpResponses/ICustomersResponse';
     private getCustomers(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
             let query = "http://services.odata.org/Northwind/Northwind.svc/Customers/?$top=10";
