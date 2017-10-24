@@ -3,6 +3,7 @@ import { IMyInfo } from './IMyInfo';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
+import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -11,33 +12,55 @@ export default class MyInfoService implements IMyInfoService {
         this.context = context;
     }
 
+    // Get all or nothing
     public get(): Promise<IMyInfo | string> {
-        return new Promise<IMyInfo>((resolve) => {
+        return new Promise<IMyInfo>((resolve, reject) => {
         
             Promise.all([
                 this.getName(),
                 this.getLists(),
                 this.getCustomers()
-            ]).then((values) => {
+            ])
+            .then((values) => {
                 resolve ({
                     myName: values[0],
                     spListNames: values[1],
                     customers: values[2]
                 });
+            })
+            .catch((e) => {
+                reject(e);
             });
         });
     }
 
+    // Example using GraphHttpClient
+    // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
     private getName(): Promise<string> {
-        return new Promise<string>((resolve) => {
-            resolve("Bob Promise");
+        return new Promise<string>((resolve, reject) => {
+
+            this.context.graphHttpClient.get("v1.0/me",
+                GraphHttpClient.configurations.v1)
+            .then ((response: GraphHttpClientResponse) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw (`Error ${response.status}: ${response.statusText}`);  
+                }
+            })
+            .then ((o) => {
+                resolve(o.displayName);
+            })
+            .catch ((e) => {
+                reject(e);
+            });
         });
     }
 
     // Example using SPHttpClient - local SharePoint site
     // import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
     private getLists(): Promise<string[]> {
-        return new Promise<string[]>((resolve) => {
+        return new Promise<string[]>((resolve, reject) => {
             this.context.spHttpClient.fetch(
                 this.context.pageContext.web.absoluteUrl +
                     "/_api/lists?$filter=Hidden%20eq%20false",
@@ -47,32 +70,47 @@ export default class MyInfoService implements IMyInfoService {
                 }
             )
             .then((response: SPHttpClientResponse) => {
-                response.json().then((o) => {
-                    let result = o.value.map((v) => { return v.Title; });
-                    resolve(result);
-                });                
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw (`Error ${response.status}: ${response.statusText}`);  
+                }
+            })
+            .then((o) => {
+                let result = o.value.map((v) => { return v.Title; });
+                resolve(result);
+            })
+            .catch ((e) => {
+                reject(e);
             });
         });
     }
 
     // Example using simple fetch - Northwind DB
     private getCustomers(): Promise<string[]> {
-        return new Promise<string[]>((resolve) => {
+        return new Promise<string[]>((resolve, reject) => {
             let query = "http://services.odata.org/Northwind/Northwind.svc/Customers/?$top=10";
 
-            var myInit: RequestInit = {
+            // NOTE: you could use this.context.HttpClient.fetch() - same thing
+            fetch(query, {
                 method: 'GET',
                 headers: {"accept": "application/json"},
                 mode: 'cors',
                 cache: 'default' 
-            };
-
-            // NOTE: you could use this.context.HttpClient.fetch() - same thing
-            fetch(query, myInit).then ((response) => {
-                response.json().then((o) => {
-                    let result = o.value.map((v) => { return v.CompanyName; });
-                    resolve(result);
-                });
+            })
+            .then ((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw (`Error ${response.status}: ${response.statusText}`);
+                }
+            })
+            .then((o) => {
+                let result = o.value.map((v) => { return v.CompanyName; });
+                resolve(result);
+            })
+            .catch ((e) => {
+                reject([e]);
             });
         });
     }

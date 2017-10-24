@@ -18,15 +18,15 @@ export default class Fetch extends React.Component<IFetchProps, {}> {
             <div className="ms-Grid-col ms-lg10 ms-xl8 ms-xlPush2 ms-lgPush1">
               <span className="ms-font-xl ms-fontColor-white">Fetch Demo Web Part</span>
               <p className="ms-font-l ms-fontColor-white">
-                {escape(this.props.info.myName)}
+                Hello {escape(this.props.info.myName)}
               </p>
-              <p>Lists:</p>
+              <p>Lists in this site:</p>
               <ul>
                 {this.props.info.spListNames.map(s => {
                   return <li>{s}</li>;
                 })}
               </ul>
-              <p>Customers:</p>
+              <p>Top 10 customers:</p>
               <ul>
                 {this.props.info.customers.map(s => {
                   return <li>{s}</li>;
