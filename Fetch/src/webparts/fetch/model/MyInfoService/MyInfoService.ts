@@ -2,8 +2,13 @@ import { IMyInfoService } from './IMyInfoService';
 import { IMyInfo } from './IMyInfo';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
+
+import { IGraphMeResponse } from './IGraphMeResponse';
+import { ISpListResponse } from './ISpListResponse';
+import { ICustomersResponse } from './ICustomersResponse';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -36,6 +41,7 @@ export default class MyInfoService implements IMyInfoService {
 
     // Example using GraphHttpClient
     // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
+    // import { IGraphMeResponse } from './IGraphMeResponse';
     private getName(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
 
@@ -48,7 +54,7 @@ export default class MyInfoService implements IMyInfoService {
                     throw (`Error ${response.status}: ${response.statusText}`);  
                 }
             })
-            .then ((o) => {
+            .then ((o: IGraphMeResponse) => {
                 resolve(o.displayName);
             })
             .catch ((e) => {
@@ -59,6 +65,7 @@ export default class MyInfoService implements IMyInfoService {
 
     // Example using SPHttpClient - local SharePoint site
     // import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
+    // import { ISpListResponse } from './ISpListResponse';
     private getLists(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
             this.context.spHttpClient.fetch(
@@ -76,7 +83,7 @@ export default class MyInfoService implements IMyInfoService {
                     throw (`Error ${response.status}: ${response.statusText}`);  
                 }
             })
-            .then((o) => {
+            .then((o: ISpListResponse) => {
                 let result = o.value.map((v) => { return v.Title; });
                 resolve(result);
             })
@@ -87,12 +94,16 @@ export default class MyInfoService implements IMyInfoService {
     }
 
     // Example using simple fetch - Northwind DB
+    // import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
+    // import { ICustomersResponse } from './ICustomersResponse';
     private getCustomers(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
             let query = "http://services.odata.org/Northwind/Northwind.svc/Customers/?$top=10";
 
-            // NOTE: you could use this.context.HttpClient.fetch() - same thing
-            fetch(query, {
+            // NOTE: you could use just fetch() on modern browsers (not IE)
+            this.context.httpClient
+                .fetch(query, HttpClient.configurations.v1,
+            {
                 method: 'GET',
                 headers: {"accept": "application/json"},
                 mode: 'cors',
@@ -105,7 +116,7 @@ export default class MyInfoService implements IMyInfoService {
                     throw (`Error ${response.status}: ${response.statusText}`);
                 }
             })
-            .then((o) => {
+            .then((o: ICustomersResponse) => {
                 let result = o.value.map((v) => { return v.CompanyName; });
                 resolve(result);
             })
