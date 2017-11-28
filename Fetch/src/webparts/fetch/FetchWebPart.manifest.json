@@ -1,0 +1,26 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "121e3ccc-75a7-49b5-a371-a8ae8db99191",
+  "alias": "FetchWebPart",
+  "componentType": "WebPart",
+
+  // The "*" signifies that the version should be taken from the package.json
+  "version": "*",
+  "manifestVersion": 2,
+
+  // If true, the component can only be installed on sites where Custom Script is allowed.
+  // Components that allow authors to embed arbitrary script code should set this to true.
+  // https://support.office.com/en-us/article/Turn-scripting-capabilities-on-or-off-1f2c515f-5d7e-448a-9fd7-835da935584f
+  "requiresCustomScript": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "121e3ccc-75a7-49b5-a371-a8ae8db99191",
+    "group": { "default": "Under Development" },
+    "title": { "default": "Fetch" },
+    "description": { "default": "Fetches information and shows calling web APIs with Fetch" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Fetch"
+    }
+  }]
+}

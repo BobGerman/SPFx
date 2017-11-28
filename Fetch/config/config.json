@@ -1,0 +1,18 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "fetch-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/fetch/FetchWebPart.js",
+          "manifest": "./src/webparts/fetch/FetchWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "FetchWebPartStrings": "lib/webparts/fetch/loc/{locale}.js"
+  }
+}
