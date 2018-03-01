@@ -1,15 +1,21 @@
 {
-  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
-
-  "id": "e0e9e2a0-1eea-4588-86e2-6d7b0312a3fe",
+  "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "a8fc55a7-b7ac-4a90-b4c2-ac8818c7f65d",
   "alias": "QuoteDisplayWebPart",
   "componentType": "WebPart",
-  "version": "0.0.1",
+
+  // The "*" signifies that the version should be taken from the package.json
+  "version": "*",
   "manifestVersion": 2,
 
+  // If true, the component can only be installed on sites where Custom Script is allowed.
+  // Components that allow authors to embed arbitrary script code should set this to true.
+  // https://support.office.com/en-us/article/Turn-scripting-capabilities-on-or-off-1f2c515f-5d7e-448a-9fd7-835da935584f
+  "requiresCustomScript": false,
+
   "preconfiguredEntries": [{
-    "groupId": "e0e9e2a0-1eea-4588-86e2-6d7b0312a3fe",
-    "group": { "default": "Under Development" },
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
+    "group": { "default": "Other" },
     "title": { "default": "QuoteDisplay" },
     "description": { "default": "Displays quotations from a SharePoint list" },
     "officeFabricIconFontName": "Page",

@@ -1,4 +1,4 @@
-declare interface IQuoteDisplayStrings {
+declare interface IQuoteDisplayWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
@@ -6,7 +6,7 @@ declare interface IQuoteDisplayStrings {
   MoreButtonLabel: string;
 }
 
-declare module 'quoteDisplayStrings' {
-  const strings: IQuoteDisplayStrings;
+declare module 'QuoteDisplayWebPartStrings' {
+  const strings: IQuoteDisplayWebPartStrings;
   export = strings;
 }

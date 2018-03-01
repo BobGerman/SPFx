@@ -1,8 +1,8 @@
 {
   "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
     "libraryName": "quotes",
-    "framework": "react",
-    "version": "1.0.2",
-    "libraryId": "4fc4438b-4cdd-43d0-8c3b-42e64772bf48"
+    "libraryId": "b619b16b-9e1e-416c-8afb-45937d81718f",
+    "environment": "spo"
   }
 }

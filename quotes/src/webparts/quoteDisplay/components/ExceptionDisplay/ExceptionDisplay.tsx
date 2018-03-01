@@ -7,7 +7,7 @@ import * as React from 'react';
 import { IExceptionDisplayProps } from './IExceptionDisplayProps';
 import styles from '../Quotes.module.scss';
 
-export default class ExceptionDisplay extends React.Component<IExceptionDisplayProps, void> {
+export default class ExceptionDisplay extends React.Component<IExceptionDisplayProps, {}> {
 
   public render(): React.ReactElement<IExceptionDisplayProps> {
 
