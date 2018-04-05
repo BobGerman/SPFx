@@ -4,7 +4,7 @@ import * as React from 'react';
 import styles from '../Quotes.module.scss';
 import { IQuoteDisplayProps } from './IQuoteDisplayProps';
 
-export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, void> {
+export default class QuoteDisplay extends React.Component<IQuoteDisplayProps, {}> {
 
   public render(): React.ReactElement<IQuoteDisplayProps> {
 

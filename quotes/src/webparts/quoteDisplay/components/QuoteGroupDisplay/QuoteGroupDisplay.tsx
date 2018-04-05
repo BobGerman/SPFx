@@ -27,7 +27,7 @@ export default class QuoteGroupDisplay extends React.Component<IQuoteGroupDispla
           {this.quotes.map(q =>(
             <QuoteDisplay quote={q} />
           ))}
-          <CommandButton className={styles.lastLine} icon='Refresh' onClick={this.handleClick.bind(this)}>
+          <CommandButton className={styles.lastLine} iconProps= { {iconName: 'Refresh'} } onClick={this.handleClick.bind(this)}>
             {this.props.getMoreLabel}
           </CommandButton>
         </div>

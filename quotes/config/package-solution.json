@@ -1,8 +1,10 @@
 {
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "quotes-client-side-solution",
-    "id": "4fc4438b-4cdd-43d0-8c3b-42e64772bf48",
-    "version": "1.0.0.0"
+    "id": "b619b16b-9e1e-416c-8afb-45937d81718f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
   },
   "paths": {
     "zippedPackage": "solution/quotes.sppkg"

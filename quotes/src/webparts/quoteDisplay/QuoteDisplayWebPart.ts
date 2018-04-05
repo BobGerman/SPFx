@@ -10,19 +10,22 @@ import {
   PropertyPaneSlider
 } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'quoteDisplayStrings';
+import * as strings from 'QuoteDisplayWebPartStrings';
 import QuoteGroupDisplay from './components/QuoteGroupDisplay/QuoteGroupDisplay';
 import { IQuoteGroupDisplayProps } from './components/QuoteGroupDisplay/IQuoteGroupDisplayProps';
 import ExceptionDisplay from './components/ExceptionDisplay/ExceptionDisplay';
 import { IExceptionDisplayProps } from './components/ExceptionDisplay/IExceptionDisplayProps';
-
-import { IQuoteDisplayWebPartProps } from './IQuoteDisplayWebPartProps';
 
 import { QuotationServiceFactory } from './model/QuotationService/QuotationServiceFactory';
 import { IQuotation } from './model/QuotationService/IQuotation';
 import { IException } from '../../model/Exceptions/IException';
 
 import { PropertyPaneListPicker } from '../../components/propertyFieldListPicker/PropertyFieldListPicker';
+
+export interface IQuoteDisplayWebPartProps {
+  spListName: string;
+  quoteCount: number;
+}
 
 export default class QuoteDisplayWebPart extends BaseClientSideWebPart<IQuoteDisplayWebPartProps> {
 

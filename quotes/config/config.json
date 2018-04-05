@@ -1,13 +1,18 @@
 {
-  "entries": [
-    {
-      "entry": "./lib/webparts/quoteDisplay/QuoteDisplayWebPart.js",
-      "manifest": "./src/webparts/quoteDisplay/QuoteDisplayWebPart.manifest.json",
-      "outputPath": "./dist/quote-display.bundle.js"
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "quote-display-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/quoteDisplay/QuoteDisplayWebPart.js",
+          "manifest": "./src/webparts/quoteDisplay/QuoteDisplayWebPart.manifest.json"
+        }
+      ]
     }
-  ],
+  },
   "externals": {},
   "localizedResources": {
-    "quoteDisplayStrings": "webparts/quoteDisplay/loc/{locale}.js"
+    "QuoteDisplayWebPartStrings": "lib/webparts/quoteDisplay/loc/{locale}.js"
   }
 }
