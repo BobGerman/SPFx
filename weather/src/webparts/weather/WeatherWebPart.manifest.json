@@ -1,17 +1,23 @@
 {
-  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
-
-  "id": "56eb64b4-874b-4913-ba12-210101f9b4d0",
+  "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "8740b576-96ed-4baf-922b-f7c0e3ee261d",
   "alias": "WeatherWebPart",
   "componentType": "WebPart",
-  "version": "0.0.1",
+
+  // The "*" signifies that the version should be taken from the package.json
+  "version": "*",
   "manifestVersion": 2,
 
+  // If true, the component can only be installed on sites where Custom Script is allowed.
+  // Components that allow authors to embed arbitrary script code should set this to true.
+  // https://support.office.com/en-us/article/Turn-scripting-capabilities-on-or-off-1f2c515f-5d7e-448a-9fd7-835da935584f
+  "requiresCustomScript": false,
+
   "preconfiguredEntries": [{
-    "groupId": "56eb64b4-874b-4913-ba12-210101f9b4d0",
-    "group": { "default": "Under Development" },
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
+    "group": { "default": "Other" },
     "title": { "default": "Weather" },
-    "description": { "default": "Display a weather forecast" },
+    "description": { "default": "Displays current weather forecast" },
     "officeFabricIconFontName": "Page",
     "properties": {
       "description": "Weather"

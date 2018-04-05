@@ -1,13 +1,13 @@
 // WeatherService Interface
 export interface IWeatherService {
-    GetWeather(string): ng.IPromise<IWeatherForecast | IWeatherError>
+    GetWeather(string): ng.IPromise<IWeatherForecast | IWeatherError>;
 }
 
 import {IWeatherForecast, ITemperature, IWeatherError} from './WeatherModel';
 
 export class WeatherService implements IWeatherService {
 
-    static $inject = ["$http", "$q", "appId"];
+    public static $inject = ["$http", "$q", "appId"];
     constructor(
         private $http: ng.IHttpService, 
         private $q: ng.IQService, 
@@ -18,10 +18,10 @@ export class WeatherService implements IWeatherService {
         this.getWeather;
 
     // getWeather - Get the weather from a web service            
-    getWeather(query: string) {
+    private getWeather(query: string) {
 
         let defer = this.$q.defer();
-        let promise: ng.IPromise<IWeatherForecast | IWeatherError> = defer.promise;
+        let promise: ng.IPromise<IWeatherForecast | IWeatherError> = <any>defer.promise;
 
         this.$http.get('http://api.openweathermap.org/data/2.5/weather?q=' + query +
             '&appid=' + this.appId)
@@ -51,7 +51,7 @@ export class WeatherService implements IWeatherService {
         return promise;
     }
 
-    GetTemps(temp: any): [ITemperature] {
+    private GetTemps(temp: any): ITemperature[] {
         return [
             {
                 "Units": "Farenheit",

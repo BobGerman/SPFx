@@ -1,20 +1,20 @@
 // Weather Controller ViewModel
 export interface IWeatherController {
-    Forecast: IWeatherForecast,     // Forecast information
-    Error: string,                  // Error message
-    ValidDataLoaded: boolean,       // True if forecast contains valid data
-    Styles: any,                    // CSS styles
-    GetWeather: (string) => void    // Method to get the weather forecast
+    Forecast: IWeatherForecast;     // Forecast information
+    Error: string;                  // Error message
+    ValidDataLoaded: boolean;       // True if forecast contains valid data
+    Styles: any;                    // CSS styles
+    GetWeather: (string) => void;   // Method to get the weather forecast
 }
 
 import {IWeatherForecast, ITemperature, IWeatherError} from './WeatherModel';
 import {IWeatherService} from "./WeatherService";
 import {IWeatherPropService} from "./WeatherPropService";
-import {IWeatherWebPartProps} from "../IWeatherWebPartProps";
+import {IWeatherWebPartProps} from "../WeatherWebPart";
 
 export class WeatherController implements IWeatherController {
     
-    static $inject = ["WeatherService", "WeatherPropService", "WeatherStyles", "$timeout"];
+    public static $inject = ["WeatherService", "WeatherPropService", "WeatherStyles", "$timeout"];
     
     // Define the ViewModel
     public Forecast: IWeatherForecast;
@@ -42,7 +42,7 @@ export class WeatherController implements IWeatherController {
     // Internal methods
     
     // updateProperties() - Called when web part properties are updated
-    updateProperties = (props: IWeatherWebPartProps) : void => {
+    public updateProperties = (props: IWeatherWebPartProps) : void => {
         
         let location = props.location;
 
@@ -63,7 +63,7 @@ export class WeatherController implements IWeatherController {
     }
 
     // getWeather() - Update the weather forecast
-    getWeather(query: string) : void {
+    public getWeather(query: string) : void {
         
         this.WeatherService.GetWeather(query)
             .then ((result : IWeatherForecast) => {
@@ -72,7 +72,6 @@ export class WeatherController implements IWeatherController {
             })
             .catch ((reason : IWeatherError) => {
                 this.Error = reason.ErrorMessage;
-            })
-            
+            });
     }     
 }

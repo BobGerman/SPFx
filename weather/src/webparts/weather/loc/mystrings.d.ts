@@ -1,10 +1,10 @@
-declare interface IWeatherStrings {
+declare interface IWeatherWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   LocationFieldLabel: string;
 }
 
-declare module 'weatherStrings' {
-  const strings: IWeatherStrings;
+declare module 'WeatherWebPartStrings' {
+  const strings: IWeatherWebPartStrings;
   export = strings;
 }

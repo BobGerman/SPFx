@@ -12,7 +12,7 @@ export interface IWeatherForecast {
 // ITemperature - a single temperature referenced in a weather forecast
 export interface ITemperature {
     Units: string;
-    Current: number
+    Current: number;
 }
 
 // IWeatherError - error encountered when retrieving the weather

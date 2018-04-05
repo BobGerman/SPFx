@@ -1,8 +1,10 @@
 {
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "weather-client-side-solution",
-    "id": "b9c8ab04-837d-4065-bcd5-5dba8c9d6ddf",
-    "version": "1.0.0.0"
+    "id": "36a03502-1957-4dd4-81d4-319ce0ec9c92",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
   },
   "paths": {
     "zippedPackage": "solution/weather.sppkg"

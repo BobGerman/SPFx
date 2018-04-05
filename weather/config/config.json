@@ -1,13 +1,18 @@
 {
-  "entries": [
-    {
-      "entry": "./lib/webparts/weather/WeatherWebPart.js",
-      "manifest": "./src/webparts/weather/WeatherWebPart.manifest.json",
-      "outputPath": "./dist/weather.bundle.js"
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "weather-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/weather/WeatherWebPart.js",
+          "manifest": "./src/webparts/weather/WeatherWebPart.manifest.json"
+        }
+      ]
     }
-  ],
+  },
   "externals": {},
   "localizedResources": {
-    "weatherStrings": "webparts/weather/loc/{locale}.js"
+    "WeatherWebPartStrings": "lib/webparts/weather/loc/{locale}.js"
   }
 }

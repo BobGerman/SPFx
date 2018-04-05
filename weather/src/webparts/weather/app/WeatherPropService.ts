@@ -4,7 +4,7 @@ export interface IWeatherPropService {
     UpdateProperties: (IWeatherWebPartProps) => void;
 }
 
-import {IWeatherWebPartProps} from '../IWeatherWebPartProps';
+import {IWeatherWebPartProps} from "../WeatherWebPart";
 
 export class WeatherPropService implements IWeatherPropService {
 
