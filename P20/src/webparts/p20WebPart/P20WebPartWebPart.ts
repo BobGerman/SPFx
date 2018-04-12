@@ -4,7 +4,7 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneDropdown
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'P20WebPartWebPartStrings';
@@ -12,7 +12,7 @@ import P20WebPart from './components/P20WebPart';
 import { IP20WebPartProps } from './components/IP20WebPartProps';
 
 export interface IP20WebPartWebPartProps {
-  description: string;
+  backgroundColor: string;
 }
 
 export default class P20WebPartWebPart extends BaseClientSideWebPart<IP20WebPartWebPartProps> {
@@ -21,7 +21,7 @@ export default class P20WebPartWebPart extends BaseClientSideWebPart<IP20WebPart
     const element: React.ReactElement<IP20WebPartProps > = React.createElement(
       P20WebPart,
       {
-        description: this.properties.description
+        backgroundColor: this.properties.backgroundColor
       }
     );
 
@@ -43,8 +43,15 @@ export default class P20WebPartWebPart extends BaseClientSideWebPart<IP20WebPart
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneDropdown('backgroundColor', {
+                  label: strings.BackgroundColorFieldLabel,
+                  options: [
+                    { key: 'blue', text: "Blue" },
+                    { key: 'green', text: "Green" },
+                    { key: 'orange', text: "Orange" },
+                    { key: 'red', text: "Red" }
+                  ],
+                  selectedKey: 'red'
                 })
               ]
             }

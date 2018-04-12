@@ -1,7 +1,7 @@
 declare interface IP20WebPartWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
-  DescriptionFieldLabel: string;
+  BackgroundColorFieldLabel: string;
 }
 
 declare module 'P20WebPartWebPartStrings' {

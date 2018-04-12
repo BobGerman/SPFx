@@ -20,7 +20,7 @@
     "description": { "default": "Test web part for P20 hack-a-thon" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "P20-WebPart"
+      "backgroundColor": "red"
     }
   }]
 }

@@ -1,7 +1,7 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
-    "DescriptionFieldLabel": "Description Field"
+    "PropertyPaneDescription": "Edit P20 Webpart",
+    "BasicGroupName": "Useless settings",
+    "BackgroundColorFieldLabel": "Background color"
   }
 });

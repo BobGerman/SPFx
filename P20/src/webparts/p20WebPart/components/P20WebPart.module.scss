@@ -5,6 +5,7 @@
     max-width: 700px;
     margin: 0px auto;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
 
   .row {
@@ -13,7 +14,7 @@
     padding: 20px;
     background-color: yellow;
   }
-  
+
   .redRow {
     background-color: darkred;
   }
@@ -22,6 +23,9 @@
   }
   .blueRow {
     background-color: darkblue;
+  }
+  .orangeRow {
+    background-color: darkorange;
   }
 
   .column {
