@@ -1,7 +1,7 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
-    "DescriptionFieldLabel": "Description Field"
+    "PropertyPaneDescription": "Fetch Web Part",
+    "BasicGroupName": "Fetch Settings",
+    "ClientModeLabel": "Graph client"
   }
 });

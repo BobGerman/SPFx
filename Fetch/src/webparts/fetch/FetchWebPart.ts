@@ -4,7 +4,8 @@ import { Version, Environment } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneChoiceGroup
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'FetchWebPartStrings';
@@ -14,9 +15,10 @@ import { IFetchProps } from './components/IFetchProps';
 import { IMyInfo } from './model/MyInfoService/IMyInfo';
 import { IMyInfoService } from './model/MyInfoService/IMyInfoService';
 import { MyInfoServiceFactory } from './model/MyInfoService/MyInfoServiceFactory';
+import { ClientMode } from './model/ClientModes';
 
 export interface IFetchWebPartProps {
-  description: string;
+  clientMode: string;
 }
 
 export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartProps> {
@@ -64,8 +66,13 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneChoiceGroup('clientMode', {
+                  label: strings.ClientModeLabel,
+                  options: [
+                    { key: ClientMode.aadHttpClient, text: "AadHttpClient" },
+                    { key: ClientMode.graphHttpClient, text: "MSGraphClient" },
+                    { key: ClientMode.msGraphClient, text: "GraphHttpClient (deprecated)" }
+                  ]
                 })
               ]
             }

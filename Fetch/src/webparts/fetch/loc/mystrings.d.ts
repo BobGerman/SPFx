@@ -1,7 +1,7 @@
 declare interface IFetchWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
-  DescriptionFieldLabel: string;
+  ClientModeLabel: string;
 }
 
 declare module 'FetchWebPartStrings' {
