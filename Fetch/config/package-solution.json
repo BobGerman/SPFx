@@ -2,9 +2,9 @@
   "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "fetch-client-side-solution",
-    "id": "83dde6ef-f4e0-4e29-beee-fda6dc2f1c00",
+    "id": "599bf217-2434-4477-8faa-c9eda54d9163",
     "version": "1.0.0.0",
-    "skipFeatureDeployment": false
+    "includeClientSideAssets": true
   },
   "paths": {
     "zippedPackage": "solution/fetch.sppkg"

@@ -1,8 +1,8 @@
 {
   "@microsoft/generator-sharepoint": {
-    "version": "1.2.0",
+    "version": "1.4.1",
     "libraryName": "fetch",
-    "libraryId": "83dde6ef-f4e0-4e29-beee-fda6dc2f1c00",
+    "libraryId": "599bf217-2434-4477-8faa-c9eda54d9163",
     "environment": "spo"
   }
 }

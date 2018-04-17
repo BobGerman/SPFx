@@ -1,23 +1,23 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import {
-   Version,
-   Environment
-} from '@microsoft/sp-core-library';
+import { Version, Environment } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-webpart-base';
 
+import * as strings from 'FetchWebPartStrings';
+import Fetch from './components/Fetch';
+import { IFetchProps } from './components/IFetchProps';
+
 import { IMyInfo } from './model/MyInfoService/IMyInfo';
 import { IMyInfoService } from './model/MyInfoService/IMyInfoService';
 import { MyInfoServiceFactory } from './model/MyInfoService/MyInfoServiceFactory';
 
-import * as strings from 'FetchWebPartStrings';
-import Fetch from './components/Fetch';
-import { IFetchProps } from './components/IFetchProps';
-import { IFetchWebPartProps } from './IFetchWebPartProps';
+export interface IFetchWebPartProps {
+  description: string;
+}
 
 export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartProps> {
 
@@ -47,7 +47,6 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
   
       ReactDom.render(element, this.domElement);
     });
-
   }
 
   protected get dataVersion(): Version {

@@ -3,8 +3,6 @@ import styles from './Fetch.module.scss';
 import { IFetchProps } from './IFetchProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 
-import { IMyInfo } from '../model/MyInfoService/IMyInfo';
-
 export default class Fetch extends React.Component<IFetchProps, {}> {
   public render(): React.ReactElement<IFetchProps> {
 

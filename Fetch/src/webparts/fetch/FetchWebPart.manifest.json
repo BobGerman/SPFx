@@ -1,6 +1,6 @@
 {
   "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
-  "id": "121e3ccc-75a7-49b5-a371-a8ae8db99191",
+  "id": "15243a2a-3567-43cc-adf6-f66cf1732dea",
   "alias": "FetchWebPart",
   "componentType": "WebPart",
 
@@ -14,10 +14,10 @@
   "requiresCustomScript": false,
 
   "preconfiguredEntries": [{
-    "groupId": "121e3ccc-75a7-49b5-a371-a8ae8db99191",
-    "group": { "default": "Under Development" },
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
+    "group": { "default": "Other" },
     "title": { "default": "Fetch" },
-    "description": { "default": "Fetches information and shows calling web APIs with Fetch" },
+    "description": { "default": "Demonstrates various ways of fetching information from web services" },
     "officeFabricIconFontName": "Page",
     "properties": {
       "description": "Fetch"
