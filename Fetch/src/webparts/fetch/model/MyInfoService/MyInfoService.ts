@@ -24,13 +24,13 @@ export default class MyInfoService implements IMyInfoService {
             Promise.all([
                 this.getName(),
                 this.getLists(),
-                this.getCustomers()
+                this.getPostings()
             ])
             .then((values) => {
                 resolve ({
                     myName: values[0],
                     spListNames: values[1],
-                    customers: values[2]
+                    postings: values[2]
                 });
             })
             .catch((e) => {
@@ -96,7 +96,7 @@ export default class MyInfoService implements IMyInfoService {
     // Example using simple fetch - Northwind DB
     // import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
     // import { ICustomersResponse } from './HttpResponses/ICustomersResponse';
-    private getCustomers(): Promise<string[]> {
+    private getPostings(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
             let query = "https://jsonplaceholder.typicode.com/posts/";
 

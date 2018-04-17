@@ -9,7 +9,7 @@ export default class MockMyInfoService implements IMyInfoService {
     {
         myName: "Bob Mock",
         spListNames: ["List A", "List B", "List C"],
-        customers: ["A Datum", "Blue Yonder Airlines","Contoso"]
+        postings: ["lorem ipsum", "haec ineptias","non est contoso"]
     };
 
     constructor(context: IWebPartContext) { }

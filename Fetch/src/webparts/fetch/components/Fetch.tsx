@@ -24,9 +24,9 @@ export default class Fetch extends React.Component<IFetchProps, {}> {
                   return <li>{s}</li>;
                 })}
               </ul>
-              <p>Top 10 phrases in Latin gibberish :</p>
+              <p>Top phrases in Latin gibberish :</p>
               <ul>
-                {this.props.info.customers.map(s => {
+                {this.props.info.postings.map(s => {
                   return <li>{s}</li>;
                 })}
               </ul>
