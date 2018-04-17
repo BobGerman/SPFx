@@ -8,7 +8,7 @@ import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
 
 import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
 import { ISpListResponse } from './HttpResponses/ISpListResponse';
-import { ICustomersResponse } from './HttpResponses/ICustomersResponse';
+import { IPosting } from './HttpResponses/IPosting';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -98,7 +98,7 @@ export default class MyInfoService implements IMyInfoService {
     // import { ICustomersResponse } from './HttpResponses/ICustomersResponse';
     private getCustomers(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
-            let query = "http://services.odata.org/Northwind/Northwind.svc/Customers/?$top=10";
+            let query = "https://jsonplaceholder.typicode.com/posts/";
 
             // NOTE: you could use just fetch() on modern browsers (not IE)
             this.context.httpClient
@@ -116,8 +116,8 @@ export default class MyInfoService implements IMyInfoService {
                     throw (`Error ${response.status}: ${response.statusText}`);
                 }
             })
-            .then((o: ICustomersResponse) => {
-                let result = o.value.map((v) => { return v.CompanyName; });
+            .then((o: IPosting[]) => {
+                let result = o.slice(0,9).map((v) => { return v.title; });
                 resolve(result);
             })
             .catch ((e) => {
