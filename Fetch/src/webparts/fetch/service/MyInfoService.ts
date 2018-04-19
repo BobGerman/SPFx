@@ -49,6 +49,10 @@ export default class MyInfoService implements IMyInfoService {
     }
 
     // Example using MSGraphClient
+
+    // MSGraphClient is a wrapper for this library:
+    //   https://github.com/microsoftgraph/msgraph-sdk-javascript
+
     // TODO FIX these comments
     // import { MSGraphClient } from '@microsoft/sp-client-preview';
     // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
@@ -69,21 +73,6 @@ export default class MyInfoService implements IMyInfoService {
                   });
             // PROBLEM: https://github.com/SharePoint/sp-dev-docs/issues/1383
 
-        //     this.context.graphHttpClient.get("v1.0/me",
-        //         GraphHttpClient.configurations.v1)
-        //     .then ((response: GraphHttpClientResponse) => {
-        //         if (response.ok) {
-        //             return response.json();
-        //         } else {
-        //             throw (`Error ${response.status}: ${response.statusText}`);  
-        //         }
-        //     })
-        //     .then ((o: IGraphMeResponse) => {
-        //         resolve(o.displayName + " MSGraphClient");
-        //     })
-        //     .catch ((e) => {
-        //         reject(e);
-        //     });
         });
     }
 
