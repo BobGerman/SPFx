@@ -1,4 +1,4 @@
-import { IMyInfo } from '../model/MyInfoService/IMyInfo';
+import { IMyInfo } from '../model/IMyInfo';
 
 export interface IFetchProps {
   info: IMyInfo;

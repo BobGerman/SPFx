@@ -1,5 +1,5 @@
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import { IMyInfo } from './IMyInfo';
+import { IMyInfo } from '../model/IMyInfo';
 
 export interface IMyInfoService {
     get(): Promise<IMyInfo | string>;

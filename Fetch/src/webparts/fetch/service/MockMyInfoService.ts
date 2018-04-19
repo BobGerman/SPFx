@@ -1,5 +1,5 @@
 import { IMyInfoService } from './IMyInfoService';
-import { IMyInfo } from './IMyInfo';
+import { IMyInfo } from '../model/IMyInfo';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
 

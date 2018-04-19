@@ -12,10 +12,10 @@ import * as strings from 'FetchWebPartStrings';
 import Fetch from './components/Fetch';
 import { IFetchProps } from './components/IFetchProps';
 
-import { IMyInfo } from './model/MyInfoService/IMyInfo';
-import { IMyInfoService } from './model/MyInfoService/IMyInfoService';
-import { MyInfoServiceFactory } from './model/MyInfoService/MyInfoServiceFactory';
+import { IMyInfo } from './model/IMyInfo';
 import { ClientMode } from './model/ClientModes';
+import { IMyInfoService } from './service/IMyInfoService';
+import { MyInfoServiceFactory } from './service/MyInfoServiceFactory';
 
 export interface IFetchWebPartProps {
   clientMode: string;
