@@ -5,6 +5,8 @@ import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
+
+import { ServiceScope } from '@microsoft/sp-core-library';
 import { MSGraphClient } from '@microsoft/sp-client-preview';
 
 import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
@@ -16,8 +18,10 @@ import { ClientMode } from '../model/ClientModes';
 export default class MyInfoService implements IMyInfoService {
 
     private context: IWebPartContext;
-    constructor(context: IWebPartContext) {
+    private serviceScope: ServiceScope;
+    constructor(context: IWebPartContext, serviceScope: ServiceScope) {
         this.context = context;
+        this.serviceScope = serviceScope;
     }
 
     // Get all or nothing
@@ -46,30 +50,44 @@ export default class MyInfoService implements IMyInfoService {
 
     // Example using MSGraphClient
     // TODO FIX these comments
-    // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
+    // import { MSGraphClient } from '@microsoft/sp-client-preview';
     // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
     private getNameMSGraphClient(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
 
-            this.context.graphHttpClient.get("v1.0/me",
-                GraphHttpClient.configurations.v1)
-            .then ((response: GraphHttpClientResponse) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw (`Error ${response.status}: ${response.statusText}`);  
-                }
-            })
-            .then ((o: IGraphMeResponse) => {
-                resolve(o.displayName + " MSGraphClient");
-            })
-            .catch ((e) => {
-                reject(e);
-            });
+            const graphClient: MSGraphClient =
+                this.serviceScope.consume(MSGraphClient.serviceKey);
+
+            graphClient.api('/me')
+                  .get((error, response:any, rawResponse?: any) => {
+                    if (!error) {
+                        response.json()
+                        .then((o: IGraphMeResponse) => {
+                            resolve (o.displayName);
+                        });
+                    }
+                  });
+            // PROBLEM: https://github.com/SharePoint/sp-dev-docs/issues/1383
+
+        //     this.context.graphHttpClient.get("v1.0/me",
+        //         GraphHttpClient.configurations.v1)
+        //     .then ((response: GraphHttpClientResponse) => {
+        //         if (response.ok) {
+        //             return response.json();
+        //         } else {
+        //             throw (`Error ${response.status}: ${response.statusText}`);  
+        //         }
+        //     })
+        //     .then ((o: IGraphMeResponse) => {
+        //         resolve(o.displayName + " MSGraphClient");
+        //     })
+        //     .catch ((e) => {
+        //         reject(e);
+        //     });
         });
     }
 
-    // Example using GraphHttpClient
+    // Example using GraphHttpClient (deprecated!)
     // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
     // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
     private getNameGraphHttpClient(): Promise<string> {

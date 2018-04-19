@@ -25,7 +25,10 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
 
   public render(): void {
 
-    let service = MyInfoServiceFactory.getService(this.context, Environment.type);
+    let service = MyInfoServiceFactory.getService(
+      this.context,
+      this.context.serviceScope,
+      Environment.type);
     service.get(<ClientMode>(parseInt(this.properties.clientMode)))
     .then((result: IMyInfo) => {      
       const element: React.ReactElement<IFetchProps> = React.createElement(
