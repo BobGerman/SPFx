@@ -5,10 +5,13 @@ import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
+import { MSGraphClient } from '@microsoft/sp-client-preview';
 
 import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
 import { ISpListResponse } from './HttpResponses/ISpListResponse';
 import { IPosting } from './HttpResponses/IPosting';
+
+import { ClientMode } from '../model/ClientModes';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -18,11 +21,13 @@ export default class MyInfoService implements IMyInfoService {
     }
 
     // Get all or nothing
-    public get(): Promise<IMyInfo | string> {
+    public get(mode: ClientMode): Promise<IMyInfo | string> {
         return new Promise<IMyInfo>((resolve, reject) => {
         
             Promise.all([
-                this.getName(),
+                mode === ClientMode.graphHttpClient ?
+                    this.getNameGraphHttpClient() :
+                    this.getNameMSGraphClient(),
                 this.getLists(),
                 this.getPostings()
             ])
@@ -39,10 +44,35 @@ export default class MyInfoService implements IMyInfoService {
         });
     }
 
+    // Example using MSGraphClient
+    // TODO FIX these comments
+    // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
+    // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
+    private getNameMSGraphClient(): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+
+            this.context.graphHttpClient.get("v1.0/me",
+                GraphHttpClient.configurations.v1)
+            .then ((response: GraphHttpClientResponse) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw (`Error ${response.status}: ${response.statusText}`);  
+                }
+            })
+            .then ((o: IGraphMeResponse) => {
+                resolve(o.displayName + " MSGraphClient");
+            })
+            .catch ((e) => {
+                reject(e);
+            });
+        });
+    }
+
     // Example using GraphHttpClient
     // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
     // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
-    private getName(): Promise<string> {
+    private getNameGraphHttpClient(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
 
             this.context.graphHttpClient.get("v1.0/me",

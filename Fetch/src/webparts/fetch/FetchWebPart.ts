@@ -26,7 +26,7 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
   public render(): void {
 
     let service = MyInfoServiceFactory.getService(this.context, Environment.type);
-    service.get()
+    service.get(<ClientMode>(parseInt(this.properties.clientMode)))
     .then((result: IMyInfo) => {      
       const element: React.ReactElement<IFetchProps> = React.createElement(
         Fetch,
@@ -69,9 +69,8 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
                 PropertyPaneChoiceGroup('clientMode', {
                   label: strings.ClientModeLabel,
                   options: [
-                    { key: ClientMode.aadHttpClient, text: "AadHttpClient" },
-                    { key: ClientMode.graphHttpClient, text: "MSGraphClient" },
-                    { key: ClientMode.msGraphClient, text: "GraphHttpClient (deprecated)" }
+                    { key: ClientMode.msGraphClient, text: strings.MsGraphClientMode },
+                    { key: ClientMode.graphHttpClient, text: strings.GraphHttpClientMode }
                   ]
                 })
               ]

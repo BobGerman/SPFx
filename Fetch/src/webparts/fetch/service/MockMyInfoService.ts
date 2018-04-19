@@ -2,6 +2,7 @@ import { IMyInfoService } from './IMyInfoService';
 import { IMyInfo } from '../model/IMyInfo';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { ClientMode } from '../model/ClientModes';
 
 export default class MockMyInfoService implements IMyInfoService {
 
@@ -14,7 +15,7 @@ export default class MockMyInfoService implements IMyInfoService {
 
     constructor(context: IWebPartContext) { }
 
-    public get(): Promise<IMyInfo | string> {
+    public get(clientMode: ClientMode): Promise<IMyInfo | string> {
         return new Promise<IMyInfo>((resolve) => {
             resolve (this.mockItems);
         });

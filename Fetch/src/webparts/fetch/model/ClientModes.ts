@@ -1,3 +1,3 @@
-export const enum ClientMode {
-    aadHttpClient, msGraphClient, graphHttpClient
+export enum ClientMode {
+    msGraphClient, graphHttpClient
 }
