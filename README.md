@@ -11,21 +11,21 @@ Bob German (@Bob1German)
 
 The [Slides](./Slides/) folder contains slide decks from recent workshops I've led on SPFx. Each deck ends with helpful reference links.
 
-[_SP-S01 Office 365 Development Overview_](.\Slides\SP-S01_Office_365_Development_Overview.pdf) - Introduction to Office 365 development all-up, including Office add-ins, SharePoint development, Teams development, and more
+[_SP-S01 Office 365 Development Overview_](./Slides/SP-S01_Office_365_Development_Overview.pdf) - Introduction to Office 365 development all-up, including Office add-ins, SharePoint development, Teams development, and more
 
-[_SP-S02 - What is Modern SharePoint_](.\Slides\SP-S02_Modern_SharePoint.pdf) - Modern SharePoint is the #1 reason for adopting the SharePoint Framework. This presentation explains how Microsoft is modernizing SharePoint even as it serves millions of users around the world.
+[_SP-S02 - What is Modern SharePoint_](./Slides/SP-S02_Modern_SharePoint.pdf) - Modern SharePoint is the #1 reason for adopting the SharePoint Framework. This presentation explains how Microsoft is modernizing SharePoint even as it serves millions of users around the world.
 
-[_SP-T01 - SharePoint Framework Tools and work flow_](.\SP-T00_Prework_-_Dev_Setup.pdf) - Introduction to the tools used to build for SPFx; starting from scratch
+[_SP-T01 - SharePoint Framework Tools and work flow_](./SP-T00_Prework_-_Dev_Setup.pdf) - Introduction to the tools used to build for SPFx; starting from scratch
 
-[_SP-T02 - Introduction to TypeScript_](.\Slides\SP-T02 TypeScript.pdf) - Getting started with TypeScript (accompanying source code is [here](http://bit.ly/LearnTypeScript))
+[_SP-T02 - Introduction to TypeScript_](./Slides/SP-T02 TypeScript.pdf) - Getting started with TypeScript (accompanying source code is [here](http://bit.ly/LearnTypeScript))
 
-[_SP-T03 - Bundling and Webpack_](.\Slides\SP-T03_Webpack.pdf) - Bundling concepts; importing and exporting modules
+[_SP-T03 - Bundling and Webpack_](./Slides/SP-T03_Webpack.pdf) - Bundling concepts; importing and exporting modules
 (accompanying source code is [here](https://github.com/BobGerman/SPFx/tree/master/WebPackDemoKO))
 
-[_SP-T04 - React Basics_](.\Slides\SP-T04_React.pdf) - Learn enough React to get started and to build small projects like web parts and extensions
+[_SP-T04 - React Basics_](./Slides/SP-T04_React.pdf) - Learn enough React to get started and to build small projects like web parts and extensions
 (accompanying source code is [here](https://bit.ly/ReactQuotes)) and [here](https://github.com/BobGerman/SPFx/tree/master/quotes)
 
-[_SP-T05 - Accessing SharePoint and Graph APIs_](.\Slides\SP-T05_Accessing_SP_and_Graph_APIs.pdf) - This section needs an update to the new MSGraphClient and AadHttpClient
+[_SP-T05 - Accessing SharePoint and Graph APIs_](./Slides/SP-T05_Accessing_SP_and_Graph_APIs.pdf) - This section needs an update to the new MSGraphClient and AadHttpClient
 (accompanying source code is [here](https://github.com/BobGerman/SPFx/tree/master/Fetch))
 
 ## Samples
