@@ -13,7 +13,7 @@ Bob German (@Bob1German)
 
 The [Slides](./Slides/) folder contains slide decks from recent workshops I've led on SPFx. Each deck ends with helpful reference links.
 
-_SP-S01 Office 365 Development Overview_ - Introduction to Office 365 development all-up, including Office add-ins, SharePoint development, Teams development, and more
+[_SP-S01 Office 365 Development Overview_](.\Slides\SP-S01 Office 365 Development Overview.pdf) - Introduction to Office 365 development all-up, including Office add-ins, SharePoint development, Teams development, and more
 
 _SP-S02 - What is Modern SharePoint_ - Modern SharePoint is the #1 reason for adopting the SharePoint Framework. This presentation explains how Microsoft is modernizing SharePoint even as it serves millions of users around the world.
 
