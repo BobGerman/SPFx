@@ -3,8 +3,6 @@
 
 This repo contains SharePoint Framework samples used in my talks at various conferences since July 2016. I update solutions from time to time, which is good unless you were looking for the version from two years ago!
 
-I'm in the process of copying this stuff over to the official [SharePoint Dev Samples repo](https://github.com/SharePoint/sp-dev-samples) but will keep copies here for now since I've given out a lot of links to the projects. The links below point to the current version, regardless of which repo that's in.
-
 Thanks!
 
 Bob German (@Bob1German)
@@ -13,21 +11,21 @@ Bob German (@Bob1German)
 
 The [Slides](./Slides/) folder contains slide decks from recent workshops I've led on SPFx. Each deck ends with helpful reference links.
 
-[_SP-S01 Office 365 Development Overview_](.\Slides\SP-S01 Office 365 Development Overview.pdf) - Introduction to Office 365 development all-up, including Office add-ins, SharePoint development, Teams development, and more
+[_SP-S01 Office 365 Development Overview_](.\Slides\SP-S01%20Office%20365%20Development%20Overview.pdf) - Introduction to Office 365 development all-up, including Office add-ins, SharePoint development, Teams development, and more
 
-_SP-S02 - What is Modern SharePoint_ - Modern SharePoint is the #1 reason for adopting the SharePoint Framework. This presentation explains how Microsoft is modernizing SharePoint even as it serves millions of users around the world.
+[_SP-S02 - What is Modern SharePoint_](.\Slides\SP-S02%20Modern%20SharePoint.pdf) - Modern SharePoint is the #1 reason for adopting the SharePoint Framework. This presentation explains how Microsoft is modernizing SharePoint even as it serves millions of users around the world.
 
-_SP-T01 - SharePoint Framework Tools and work flow_ - Introduction to the tools used to build for SPFx; starting from scratch
+[_SP-T01 - SharePoint Framework Tools and work flow_](.\SP-T00%20Prework%20-%20Dev%20Setup.pdf) - Introduction to the tools used to build for SPFx; starting from scratch
 
-_SP-T02 - Introduction to TypeScript_ - Getting started with TypeScript (accompanying source code is [here](http://bit.ly/LearnTypeScript))
+[_SP-T02 - Introduction to TypeScript_](.\Slides\SP-T02 TypeScript.pdf) - Getting started with TypeScript (accompanying source code is [here](http://bit.ly/LearnTypeScript))
 
-_SP-T03 - Bundling and Webpack_ - Bundling concepts; importing and exporting modules
+[_SP-T03 - Bundling and Webpack_](.\Slides\SP-T03%20Webpack.pdf) - Bundling concepts; importing and exporting modules
 (accompanying source code is [here](https://github.com/BobGerman/SPFx/tree/master/WebPackDemoKO))
 
-_SP-T04 - React Basics - Learn enough React to get started and to build small projects like web parts and extensions
+[_SP-T04 - React Basics_](.\Slides\SP-T04%20React.pdf) - Learn enough React to get started and to build small projects like web parts and extensions
 (accompanying source code is [here](https://bit.ly/ReactQuotes)) and [here](https://github.com/BobGerman/SPFx/tree/master/quotes)
 
-_SP-T05 - Accessing SharePoint and Graph APIs_ - This section needs an update to the new MSGraphClient and AadHttpClient
+[_SP-T05 - Accessing SharePoint and Graph APIs_](.\Slides\SP-T05%20Accessing%20SP%20and%20Graph%20APIs.pdf) - This section needs an update to the new MSGraphClient and AadHttpClient
 (accompanying source code is [here](https://github.com/BobGerman/SPFx/tree/master/Fetch))
 
 ## Samples
