@@ -25,7 +25,7 @@ The [Slides](./Slides/) folder contains slide decks from recent workshops I've l
 [_SP-T04 - React Basics_](./Slides/SP-T04_React.pdf) - Learn enough React to get started and to build small projects like web parts and extensions
 (accompanying source code is [here](https://bit.ly/ReactQuotes)) and [here](https://github.com/BobGerman/SPFx/tree/master/quotes)
 
-[_SP-T05 - Accessing SharePoint and Graph APIs_](./Slides/SP-T05 Accessing_SP_and_Graph_APIs.pdf) - This section needs an update to the new MSGraphClient and AadHttpClient
+[_SP-T05 - Accessing SharePoint and Graph APIs_](./Slides/SP-T05_Accessing_SP_and_Graph_APIs.pdf) - This section needs an update to the new MSGraphClient and AadHttpClient
 (accompanying source code is [here](https://github.com/BobGerman/SPFx/tree/master/Fetch))
 
 ## Samples
