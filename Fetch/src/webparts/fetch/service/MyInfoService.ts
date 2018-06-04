@@ -1,19 +1,18 @@
 import { IMyInfoService } from './IMyInfoService';
 import { IMyInfo } from '../model/IMyInfo';
+import { ClientMode } from '../model/ClientModes';
+import { ISubService } from './ISubService';
+
+import { SSaadHttpClient } from './SSaadHttpClient';
+import { SSgraphHttpClient } from './ssGraphHttpClient';
+import { SShttpClient } from './SShttpClient';
+import { SSmsGraphClient } from './SSmsGraphClient';
+import { SSsimpleFetch } from './SSSimpleFetch';
+import { SSspHttpClient } from './SSspHttpClient';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
-import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
-import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
-
 import { ServiceScope } from '@microsoft/sp-core-library';
 import { MSGraphClient } from '@microsoft/sp-client-preview';
-
-import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
-import { ISpListResponse } from './HttpResponses/ISpListResponse';
-import { IPosting } from './HttpResponses/IPosting';
-
-import { ClientMode } from '../model/ClientModes';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -26,139 +25,38 @@ export default class MyInfoService implements IMyInfoService {
 
     // Get all or nothing
     public get(mode: ClientMode): Promise<IMyInfo | string> {
-        return new Promise<IMyInfo>((resolve, reject) => {
-        
-            Promise.all([
-                mode === ClientMode.graphHttpClient ?
-                    this.getNameGraphHttpClient() :
-                    this.getNameMSGraphClient(),
-                this.getLists(),
-                this.getPostings()
-            ])
-            .then((values) => {
-                resolve ({
-                    title: values[0],
-                    items: values[1]
-                });
-            })
-            .catch((e) => {
-                reject(e);
-            });
-        });
+
+        let client: ISubService = null;
+
+        switch (mode) {
+            case ClientMode.aadHttp: {
+                client = new SSaadHttpClient();
+                break;
+            }
+            case ClientMode.graphHttpClient: {
+                client = new SSgraphHttpClient();
+                break;
+            }
+            case ClientMode.httpClient: {
+                client = new SShttpClient();
+                break;
+            }
+            case ClientMode.msGraphClient: {
+                client = new SSmsGraphClient();
+                break;
+            }
+            case ClientMode.simpleFetch: {
+                client = new SSsimpleFetch();
+                break;
+            }
+            case ClientMode.spHttpClient: {
+                client = new SSspHttpClient();
+                break;
+            }
+        }
+
+        return client.getInfo(this.context, this.serviceScope);
+
     }
 
-    // Example using MSGraphClient
-
-    // MSGraphClient is a wrapper for this library:
-    //   https://github.com/microsoftgraph/msgraph-sdk-javascript
-
-    // TODO FIX these comments
-    // import { MSGraphClient } from '@microsoft/sp-client-preview';
-    // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
-    private getNameMSGraphClient(): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
-
-            const graphClient: MSGraphClient =
-                this.serviceScope.consume(MSGraphClient.serviceKey);
-
-            graphClient.api('/me')
-                  .get((error, response:any, rawResponse?: any) => {
-                    if (!error) {
-                        response.json()
-                        .then((o: IGraphMeResponse) => {
-                            resolve (o.displayName);
-                        });
-                    }
-                  });
-            // PROBLEM: https://github.com/SharePoint/sp-dev-docs/issues/1383
-
-        });
-    }
-
-    // Example using GraphHttpClient (deprecated!)
-    // import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
-    // import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
-    private getNameGraphHttpClient(): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
-
-            this.context.graphHttpClient.get("v1.0/me",
-                GraphHttpClient.configurations.v1)
-            .then ((response: GraphHttpClientResponse) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw (`Error ${response.status}: ${response.statusText}`);  
-                }
-            })
-            .then ((o: IGraphMeResponse) => {
-                resolve(o.displayName);
-            })
-            .catch ((e) => {
-                reject(e);
-            });
-        });
-    }
-
-    // Example using SPHttpClient - local SharePoint site
-    // import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
-    // import { ISpListResponse } from './HttpResponses/ISpListResponse';
-    private getLists(): Promise<string[]> {
-        return new Promise<string[]>((resolve, reject) => {
-            this.context.spHttpClient.fetch(
-                this.context.pageContext.web.absoluteUrl +
-                    "/_api/lists?$filter=Hidden%20eq%20false",
-                SPHttpClient.configurations.v1,
-                {
-                    method: "GET"
-                }
-            )
-            .then((response: SPHttpClientResponse) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw (`Error ${response.status}: ${response.statusText}`);  
-                }
-            })
-            .then((o: ISpListResponse) => {
-                let result = o.value.map((v) => { return v.Title; });
-                resolve(result);
-            })
-            .catch ((e) => {
-                reject(e);
-            });
-        });
-    }
-
-    // Example using simple fetch - Northwind DB
-    // import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
-    // import { ICustomersResponse } from './HttpResponses/ICustomersResponse';
-    private getPostings(): Promise<string[]> {
-        return new Promise<string[]>((resolve, reject) => {
-            let query = "https://jsonplaceholder.typicode.com/posts/";
-
-            // NOTE: you could use just fetch() on modern browsers (not IE)
-            this.context.httpClient
-                .fetch(query, HttpClient.configurations.v1,
-            {
-                method: 'GET',
-                headers: {"accept": "application/json"},
-                mode: 'cors',
-                cache: 'default' 
-            })
-            .then ((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw (`Error ${response.status}: ${response.statusText}`);
-                }
-            })
-            .then((o: IPosting[]) => {
-                let result = o.slice(0,9).map((v) => { return v.title; });
-                resolve(result);
-            })
-            .catch ((e) => {
-                reject([e]);
-            });
-        });
-    }
 }

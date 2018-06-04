@@ -30,7 +30,8 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
       this.context.serviceScope,
       Environment.type);
     service.get(<ClientMode>(parseInt(this.properties.clientMode)))
-    .then((result: IMyInfo) => {      
+    .then((result: IMyInfo) => {
+
       const element: React.ReactElement<IFetchProps> = React.createElement(
         Fetch,
         {
@@ -38,11 +39,11 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
           message: ""
         }
       );
-  
       ReactDom.render(element, this.domElement);
+
     })
     .catch((message: string) => {
-      const element: React.ReactElement<IFetchProps > = React.createElement(
+      const element: React.ReactElement<IFetchProps> = React.createElement(
         Fetch,
         {
           info: null,
