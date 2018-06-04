@@ -7,7 +7,7 @@ import { MSGraphClient } from '@microsoft/sp-client-preview';
 
 export class SSmsGraphClient implements ISubService {
 
-    getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
+    public getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
         return new Promise<IMyInfo | string> ((resolve, reject) => {
 
             resolve ({

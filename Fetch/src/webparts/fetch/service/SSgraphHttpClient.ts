@@ -8,7 +8,7 @@ import { IGraphMeResponse } from './HttpResponses/IGraphMeResponse';
 
 export class SSgraphHttpClient implements ISubService {
 
-    getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
+    public getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
         return new Promise<IMyInfo | string> ((resolve, reject) => {
             context.graphHttpClient.get("v1.0/me",
             GraphHttpClient.configurations.v1)

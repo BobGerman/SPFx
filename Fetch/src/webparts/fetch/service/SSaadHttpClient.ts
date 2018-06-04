@@ -5,7 +5,7 @@ import { ISubService } from './ISubService';
 
 export class SSaadHttpClient implements ISubService {
 
-    getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
+    public getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
         return new Promise<IMyInfo | string> ((resolve, reject) => {
 
             resolve ({

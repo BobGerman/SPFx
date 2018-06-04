@@ -11,11 +11,11 @@ export class SShttpClient implements ISubService {
     public getInfo(context: IWebPartContext, serviceScope: ServiceScope) {
         return new Promise<IMyInfo | string> ((resolve, reject) => {
 
-            let query = "https://jsonplaceholder.typicode.com/posts/";
-
             // NOTE: you could use just fetch() on modern browsers (not IE)
+            // httpClient is really just providing a polyfill
             context.httpClient
-                .fetch(query, HttpClient.configurations.v1,
+                .fetch("https://jsonplaceholder.typicode.com/posts/",
+                HttpClient.configurations.v1,
             {
                 method: 'GET',
                 headers: {"accept": "application/json"},
