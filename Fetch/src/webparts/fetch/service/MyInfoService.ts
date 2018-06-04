@@ -37,9 +37,8 @@ export default class MyInfoService implements IMyInfoService {
             ])
             .then((values) => {
                 resolve ({
-                    myName: values[0],
-                    spListNames: values[1],
-                    postings: values[2]
+                    title: values[0],
+                    items: values[1]
                 });
             })
             .catch((e) => {

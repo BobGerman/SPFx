@@ -8,9 +8,8 @@ export default class MockMyInfoService implements IMyInfoService {
 
     private mockItems: IMyInfo =
     {
-        myName: "Bob Mock",
-        spListNames: ["List A", "List B", "List C"],
-        postings: ["lorem ipsum", "haec ineptias","non est contoso"]
+        title: "Mock data",
+        items: ["lorem ipsum", "haec ineptias","non est contoso"]
     };
 
     constructor(context: IWebPartContext) { }
