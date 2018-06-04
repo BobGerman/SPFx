@@ -4,7 +4,13 @@
     "name": "fetch-client-side-solution",
     "id": "599bf217-2434-4477-8faa-c9eda54d9163",
     "version": "1.0.0.0",
-    "includeClientSideAssets": true
+    "includeClientSideAssets": true,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "People.Read"
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/fetch.sppkg"
