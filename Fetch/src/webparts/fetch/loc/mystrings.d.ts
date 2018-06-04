@@ -2,8 +2,12 @@ declare interface IFetchWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   ClientModeLabel: string;
+  SimpleFetchMode: string;
+  HttpClientMode: string;
+  SpHttpClientMode: string;
   MsGraphClientMode: string;
   GraphHttpClientMode: string;
+  AadHttpClient: string;
 }
 
 declare module 'FetchWebPartStrings' {

@@ -3,7 +3,11 @@ define([], function() {
     "PropertyPaneDescription": "Fetch Web Part",
     "BasicGroupName": "Fetch Settings",
     "ClientModeLabel": "Graph client",
+    "SimpleFetchMode": "Simple Fetch",
+    "HttpClientMode": "HttpClient to anonymous service",
+    "SpHttpClientMode": "SharePoint HttpClient",
     "MsGraphClientMode": "MSGraphClient (preview)",
-    "GraphHttpClientMode": "GraphHttpClient (deprecated)"
+    "GraphHttpClientMode": "GraphHttpClient (deprecated)",
+    "AadHttpClient": "Azure AD Http Client (preview)"
   }
 });
