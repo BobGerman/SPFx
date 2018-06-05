@@ -4,7 +4,7 @@ import { IMyInfo } from '../model/IMyInfo';
 import { ISubService } from './ISubService';
 
 import { MSGraphClient } from '@microsoft/sp-client-preview';
-import { IGraphPeopleResponse } from './HttpResponses/IGraphPeopleResponse';
+import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 
 export class SSmsGraphClient implements ISubService {
 
@@ -17,15 +17,18 @@ export class SSmsGraphClient implements ISubService {
             client
                 .api("me/people")
                 .version("v1.0")
-                .get((err, res) => {
+                .get((error, response) => {
                     
-                    if (err) {
+                    if (error) {
 
-                        reject(err.message);
+                        reject(error.message);
 
                     } else {
 
-                        let result: string[] = res.value.slice(0,9).map((v) => {
+                        // Transform the array of Persons to an array of
+                        // strings to be displayed
+                        const value: MicrosoftGraph.Person[] = response.value;
+                        const result: string[] = value.slice(0,9).map((v) => {
                             if (v.givenName || v.surname) {
                                 return v.givenName + " " + v.surname;
                             } else if (v.scoredEmailAddresses && v.scoredEmailAddresses[0]
