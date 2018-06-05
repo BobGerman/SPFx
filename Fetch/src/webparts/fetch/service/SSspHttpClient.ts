@@ -29,7 +29,7 @@ export class SSspHttpClient implements ISubService {
             .then((o: ISpListResponse) => {
                 let result = o.value.map((v) => { return v.Title; });
                 resolve({
-                    "title": "SharePoint lists in this site",
+                    "title": "SharePoint lists in this site from SpHttpClient",
                     "items": result
                 });
             })

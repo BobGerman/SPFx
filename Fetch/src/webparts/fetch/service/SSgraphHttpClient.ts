@@ -20,7 +20,6 @@ export class SSgraphHttpClient implements ISubService {
                 }
             })
             .then ((o: IGraphPeopleResponse) => {
-                let x=1;
                 let result: string[] = o.value.slice(0,9).map((v) => {
                     if (v.givenName || v.surname) {
                         return v.givenName + " " + v.surname;
@@ -32,7 +31,7 @@ export class SSgraphHttpClient implements ISubService {
                     }
                 });
                 resolve({
-                    "title": "Graph call",
+                    "title": "Graph /me/people using GraphHttpClient (deprecated)",
                     "items": result
                 });
             })
