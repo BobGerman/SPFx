@@ -4,15 +4,13 @@ import { ClientMode } from '../model/ClientModes';
 import { ISubService } from './ISubService';
 
 import { SSaadHttpClient } from './SSaadHttpClient';
-import { SSgraphHttpClient } from './ssGraphHttpClient';
 import { SShttpClient } from './SShttpClient';
 import { SSmsGraphClient } from './SSmsGraphClient';
-import { SSsimpleFetch } from './SSSimpleFetch';
+import { SSsimpleFetch } from './SSsimpleFetch';
 import { SSspHttpClient } from './SSspHttpClient';
 
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { ServiceScope } from '@microsoft/sp-core-library';
-import { MSGraphClient } from '@microsoft/sp-client-preview';
 
 export default class MyInfoService implements IMyInfoService {
 
@@ -31,10 +29,6 @@ export default class MyInfoService implements IMyInfoService {
         switch (mode) {
             case ClientMode.aadHttp: {
                 client = new SSaadHttpClient();
-                break;
-            }
-            case ClientMode.graphHttpClient: {
-                client = new SSgraphHttpClient();
                 break;
             }
             case ClientMode.httpClient: {

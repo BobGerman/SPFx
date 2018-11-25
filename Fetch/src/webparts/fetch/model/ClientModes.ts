@@ -3,6 +3,5 @@ export enum ClientMode {
     httpClient,
     spHttpClient,
     msGraphClient,
-    graphHttpClient,
     aadHttp
 }

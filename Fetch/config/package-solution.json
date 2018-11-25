@@ -1,10 +1,11 @@
 {
-  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "fetch-client-side-solution",
-    "id": "599bf217-2434-4477-8faa-c9eda54d9163",
+    "id": "0911d3c3-071f-4c8a-8806-5f16589590d4",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
+    "isDomainIsolated": false,
     "webApiPermissionRequests": [
       {
         "resource": "Microsoft Graph",

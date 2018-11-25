@@ -6,7 +6,6 @@ declare interface IFetchWebPartStrings {
   HttpClientMode: string;
   SpHttpClientMode: string;
   MsGraphClientMode: string;
-  GraphHttpClientMode: string;
   AadHttpClient: string;
 }
 

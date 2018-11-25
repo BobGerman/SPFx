@@ -1,8 +1,12 @@
 {
   "@microsoft/generator-sharepoint": {
-    "version": "1.4.1",
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.7.0",
     "libraryName": "fetch",
-    "libraryId": "599bf217-2434-4477-8faa-c9eda54d9163",
-    "environment": "spo"
+    "libraryId": "0911d3c3-071f-4c8a-8806-5f16589590d4",
+    "packageManager": "npm",
+    "isDomainIsolated": false,
+    "componentType": "webpart"
   }
 }

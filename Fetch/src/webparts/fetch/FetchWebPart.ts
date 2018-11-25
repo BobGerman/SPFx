@@ -77,7 +77,6 @@ export default class FetchWebPart extends BaseClientSideWebPart<IFetchWebPartPro
                     { key: ClientMode.httpClient, text: strings.HttpClientMode },
                     { key: ClientMode.spHttpClient, text: strings.SpHttpClientMode },
                     { key: ClientMode.msGraphClient, text: strings.MsGraphClientMode },
-                    { key: ClientMode.graphHttpClient, text: strings.GraphHttpClientMode },
                     { key: ClientMode.aadHttp, text: strings.AadHttpClient }
                   ]
                 })

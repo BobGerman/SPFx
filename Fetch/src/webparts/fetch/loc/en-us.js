@@ -6,8 +6,7 @@ define([], function() {
     "SimpleFetchMode": "Simple Fetch",
     "HttpClientMode": "HttpClient to anonymous service",
     "SpHttpClientMode": "SharePoint HttpClient",
-    "MsGraphClientMode": "MSGraphClient (preview)",
-    "GraphHttpClientMode": "GraphHttpClient (deprecated)",
-    "AadHttpClient": "Azure AD Http Client (preview)"
+    "MsGraphClientMode": "MSGraphClient",
+    "AadHttpClient": "Azure AD Http Client"
   }
 });
