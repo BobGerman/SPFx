@@ -39,7 +39,7 @@ export class SSaadHttpClient implements ISubService {
                         }
                     });
                     resolve({
-                        "title": "Graph /me/people using AadHttpClient (preview)",
+                        "title": "Graph /me/people using AadHttpClient",
                         "items": result
                     });
                     

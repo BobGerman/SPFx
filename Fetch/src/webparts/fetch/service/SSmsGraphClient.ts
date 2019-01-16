@@ -39,7 +39,7 @@ export class SSmsGraphClient implements ISubService {
                                 }
                             });
                             resolve({
-                                "title": "Graph /me/people from MSGraphClient (preview)",
+                                "title": "Graph /me/people from MSGraphClient",
                                 "items": result
                             });
     
