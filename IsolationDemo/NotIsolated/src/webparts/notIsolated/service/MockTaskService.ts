@@ -1,7 +1,5 @@
-import { ITaskService } from './ITaskService';
-import { ITask } from '../model/ITask';
+import { ITaskService, ITask } from './ITaskService';
 
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
 
 export default class MockMyInfoService implements ITaskService {
 
@@ -11,8 +9,6 @@ export default class MockMyInfoService implements ITaskService {
         { title: "Mock task 2" },
         { title: "Mock task 3" }
     ];
-
-    constructor(context: IWebPartContext) { }
 
     public get(): Promise<ITask[] | string> {
         return new Promise<ITask[]>((resolve) => {

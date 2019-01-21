@@ -1,19 +1,20 @@
 import { ITaskService } from './ITaskService';
-import MockMyInfoService from './MockTaskService';
+import MockTaskService from './MockTaskService';
+import GraphTaskService from './GraphTaskService';
 
 import { EnvironmentType } from '@microsoft/sp-core-library';
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { ServiceScope } from '@microsoft/sp-core-library';
 
 export class ServiceFactory {
-    public static getService(context: IWebPartContext, 
+    public static getService(context: WebPartContext, 
                              serviceScope: ServiceScope,
                              environmentType: EnvironmentType) : ITaskService {
 
         if (environmentType === EnvironmentType.Local) {
-          return new MockMyInfoService(context);
+          return new MockTaskService();
         } else {
-          return new MockMyInfoService(context);  //, serviceScope);
+          return new GraphTaskService(context, serviceScope);
         }
     }
 }

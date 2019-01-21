@@ -1,4 +1,6 @@
-import { ITask } from '../model/ITask';
+export interface ITask {
+    title: string;
+}
 
 export interface ITaskService {
     get(): Promise<ITask[] | string>;

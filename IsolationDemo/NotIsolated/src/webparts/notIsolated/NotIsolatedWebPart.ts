@@ -10,7 +10,7 @@ import {
 import * as strings from 'NotIsolatedWebPartStrings';
 import { ListOfStrings, IListOfStringsProps } from './components/ListOfStrings';
 import { ServiceFactory } from './service/ServiceFactory';
-import { ITask } from './model/ITask';
+import { ITask } from './service/ITaskService';
 
 export interface INotIsolatedWebPartProps {
   description: string;
