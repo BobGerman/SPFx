@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "not-isolated-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/notIsolated/NotIsolatedWebPart.js",
+          "manifest": "./src/webparts/notIsolated/NotIsolatedWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "NotIsolatedWebPartStrings": "lib/webparts/notIsolated/loc/{locale}.js"
+  }
+}
