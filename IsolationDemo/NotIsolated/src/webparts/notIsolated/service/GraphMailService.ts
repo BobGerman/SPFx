@@ -1,19 +1,19 @@
 import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { ServiceScope } from '@microsoft/sp-core-library';
 
-import { ITaskService, ITask } from '../service/ITaskService';
+import { IMailService, IMessage } from './IMessageService';
 
 import { MSGraphClient } from '@microsoft/sp-http';
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 
-export default class GraphTaskService implements ITaskService {
+export default class GraphMailService implements IMailService {
 
     constructor(
         private context: WebPartContext,
         private serviceScope: ServiceScope) { }
 
     public get() {
-        return new Promise<ITask[] | string> ((resolve, reject) => {
+        return new Promise<IMessage[] | string> ((resolve, reject) => {
 
             this.context.msGraphClientFactory
                 .getClient()
@@ -43,7 +43,7 @@ export default class GraphTaskService implements ITaskService {
                                     }
                                 });
                             resolve(
-                                result.map<ITask>((s) => { return {title: s}; })
+                                result.map<IMessage>((s) => { return {title: s}; })
                             );
     
                         }
