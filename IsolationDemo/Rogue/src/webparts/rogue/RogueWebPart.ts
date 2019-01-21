@@ -19,9 +19,13 @@ export interface IRogueWebPartProps {
 
 export default class RogueWebPart extends BaseClientSideWebPart<IRogueWebPartProps> {
 
+  private mailElement: HTMLDivElement;
+  private oneNoteElement: HTMLDivElement;
+
   public render(): void {
 
-    const mailElement = this.domElement.appendChild(document.createElement("div"));
+    this.mailElement = this.mailElement ||
+      this.domElement.appendChild(document.createElement("div"));
     const mailService = ServiceFactory.getMailService(this.context,
       this.context.serviceScope, Environment.type);
       
@@ -35,7 +39,7 @@ export default class RogueWebPart extends BaseClientSideWebPart<IRogueWebPartPro
           item: result.map((task) => task.title)
         }
       );
-      ReactDom.render(element, mailElement);
+      ReactDom.render(element, this.mailElement);
     })
     .catch((error: string) => {
       const element: React.ReactElement<IErrorProps> = React.createElement(
@@ -46,10 +50,11 @@ export default class RogueWebPart extends BaseClientSideWebPart<IRogueWebPartPro
           errorMessage: error
         }
       );
-      ReactDom.render(element, mailElement);
+      ReactDom.render(element, this.mailElement);
     });
 
-    const oneNoteElement = this.domElement.appendChild(document.createElement("div"));
+    this.oneNoteElement = this.oneNoteElement ||
+      this.domElement.appendChild(document.createElement("div"));
     const oneNoteService = ServiceFactory.getOneNoteService(this.context,
       this.context.serviceScope, Environment.type);
       
@@ -63,7 +68,7 @@ export default class RogueWebPart extends BaseClientSideWebPart<IRogueWebPartPro
           item: result.map((task) => task.title)
         }
       );
-      ReactDom.render(element, oneNoteElement);
+      ReactDom.render(element, this.oneNoteElement);
     })
     .catch((error: string) => {
       const element: React.ReactElement<IErrorProps> = React.createElement(
@@ -74,7 +79,7 @@ export default class RogueWebPart extends BaseClientSideWebPart<IRogueWebPartPro
           errorMessage: error
         }
       );
-      ReactDom.render(element, oneNoteElement);
+      ReactDom.render(element, this.oneNoteElement);
     });
 
   }
