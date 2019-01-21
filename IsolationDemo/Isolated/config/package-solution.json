@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "isolated-client-side-solution",
+    "id": "59571c4b-cb3a-4933-930f-b8c87a8ef717",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": true,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Notes.Read"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/isolated.sppkg"
+  }
+}

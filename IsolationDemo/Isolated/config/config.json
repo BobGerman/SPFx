@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "isolated-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/isolated/IsolatedWebPart.js",
+          "manifest": "./src/webparts/isolated/IsolatedWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "IsolatedWebPartStrings": "lib/webparts/isolated/loc/{locale}.js"
+  }
+}
