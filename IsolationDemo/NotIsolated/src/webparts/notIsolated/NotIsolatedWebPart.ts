@@ -9,6 +9,7 @@ import {
 
 import * as strings from 'NotIsolatedWebPartStrings';
 import { ListOfStrings, IListOfStringsProps } from './components/ListOfStrings';
+import { Error, IErrorProps } from './components/Error';
 import { ServiceFactory } from './service/ServiceFactory';
 import { IGraphItem } from './service/IGraphItemService';
 
@@ -27,7 +28,7 @@ export default class NotIsolatedWebPart extends BaseClientSideWebPart<INotIsolat
       this.context.serviceScope, Environment.type);
     service.get()
     .then((result: IGraphItem[]) => { 
-      const element: React.ReactElement<IListOfStringsProps > = React.createElement(
+      const element: React.ReactElement<IListOfStringsProps> = React.createElement(
         ListOfStrings,
         {
           title: title,
@@ -38,12 +39,12 @@ export default class NotIsolatedWebPart extends BaseClientSideWebPart<INotIsolat
       ReactDom.render(element, this.domElement);
     })
     .catch((error: string) => {
-      const element: React.ReactElement<IListOfStringsProps > = React.createElement(
-        ListOfStrings,
+      const element: React.ReactElement<IErrorProps> = React.createElement(
+        Error,
         {
           title: title,
           description: description,
-          item: ["Error!", error]
+          errorMessage: error
         }
       );
       ReactDom.render(element, this.domElement);

@@ -21,6 +21,7 @@ export default class GraphMailService implements IGraphItemService {
                     client
                     .api("me/messages")
                     .version("v1.0")
+                    .top(5)
                     .get((error, response) => {
                         
                         if (error) {
