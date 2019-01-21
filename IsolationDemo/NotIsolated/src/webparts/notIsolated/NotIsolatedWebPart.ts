@@ -10,7 +10,7 @@ import {
 import * as strings from 'NotIsolatedWebPartStrings';
 import { ListOfStrings, IListOfStringsProps } from './components/ListOfStrings';
 import { ServiceFactory } from './service/ServiceFactory';
-import { IMessage } from './service/IMessageService';
+import { IGraphItem } from './service/IGraphItemService';
 
 export interface INotIsolatedWebPartProps {
   description: string;
@@ -26,7 +26,7 @@ export default class NotIsolatedWebPart extends BaseClientSideWebPart<INotIsolat
     const service = ServiceFactory.getService(this.context,
       this.context.serviceScope, Environment.type);
     service.get()
-    .then((result: IMessage[]) => { 
+    .then((result: IGraphItem[]) => { 
       const element: React.ReactElement<IListOfStringsProps > = React.createElement(
         ListOfStrings,
         {
