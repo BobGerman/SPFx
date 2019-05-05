@@ -1,21 +1,44 @@
 import * as React from 'react';
 import styles from './TwitterSearch.module.scss';
-import { ITwitterSearchProps } from './ITwitterSearchProps';
-import { escape } from '@microsoft/sp-lodash-subset';
+// import { escape } from '@microsoft/sp-lodash-subset';
+import { ITwitterService } from '../service/twitter/ITwitterService';
+import Tweets, { ITweetsProps } from './Tweets';
+import ITweet from '../model/ITweet';
 
-export default class TwitterSearch extends React.Component<ITwitterSearchProps, {}> {
+export interface ITwitterSearchProps {
+  query: string;
+  twitterService: ITwitterService;
+}
+
+export interface ITwitterSearchState {
+  isLoaded: boolean;
+  tweets: ITweet[];
+}
+
+export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitterSearchState> {
+
+  constructor (props: ITwitterSearchProps) {
+    super(props);
+    this.state = { isLoaded: false, tweets: [] };
+  }
+
   public render(): React.ReactElement<ITwitterSearchProps> {
+
+    if (!this.state.isLoaded) {
+      this.props.twitterService.searchTweets(
+        this.props.query
+      )
+      .then((tweets: ITweet[]) => {
+        this.setState({ isLoaded: true, tweets: tweets });
+      });  
+    }
+
     return (
       <div className={ styles.twitterSearch }>
         <div className={ styles.container }>
           <div className={ styles.row }>
             <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!</span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
+              <Tweets tweets={this.state.tweets}></Tweets>
             </div>
           </div>
         </div>

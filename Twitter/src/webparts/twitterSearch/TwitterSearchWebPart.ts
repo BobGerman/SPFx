@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import { Version, Environment } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import {
   IPropertyPaneConfiguration,
@@ -8,8 +8,9 @@ import {
 } from '@microsoft/sp-property-pane';
 
 import * as strings from 'TwitterSearchWebPartStrings';
-import TwitterSearch from './components/TwitterSearch';
-import { ITwitterSearchProps } from './components/ITwitterSearchProps';
+import { TwitterSearch, ITwitterSearchProps } from './components/TwitterSearch';
+import { ITwitterService, ITwitterServiceProps } from './service/twitter/ITwitterService';
+import ServiceFactory from './service/ServiceFactory';
 
 export interface ITwitterSearchWebPartProps {
   description: string;
@@ -17,11 +18,23 @@ export interface ITwitterSearchWebPartProps {
 
 export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitterSearchWebPartProps> {
 
+  private twitterService: ITwitterService;
+
   public render(): void {
-    const element: React.ReactElement<ITwitterSearchProps > = React.createElement(
+
+    this.twitterService = ServiceFactory.getTwitterService(Environment.type, {
+      context: this.context,
+      serviceScope: this.context.serviceScope,
+      clientId: "123",
+      searchEndPointUrl: "#1",
+      postEndpointUrl: "#2"
+    });
+
+    const element: React.ReactElement<ITwitterSearchProps> = React.createElement(
       TwitterSearch,
       {
-        description: this.properties.description
+        query: this.properties.description,
+        twitterService: this.twitterService
       }
     );
 
