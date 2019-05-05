@@ -1,7 +1,11 @@
 declare interface ITwitterSearchWebPartStrings {
   PropertyPaneDescription: string;
-  BasicGroupName: string;
-  DescriptionFieldLabel: string;
+  QueryGroupName: string;
+  ConnectionGroupName: string;
+  QueryFieldLabel: string;
+  ClientIdFieldLabel: string;
+  SearchEndPointUrlFieldLabel: string;
+  PostEndpointUrlFieldLabel: string;
 }
 
 declare module 'TwitterSearchWebPartStrings' {

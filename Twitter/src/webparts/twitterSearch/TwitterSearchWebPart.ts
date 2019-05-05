@@ -13,27 +13,32 @@ import { ITwitterService, ITwitterServiceProps } from './service/twitter/ITwitte
 import ServiceFactory from './service/ServiceFactory';
 
 export interface ITwitterSearchWebPartProps {
-  description: string;
+  query: string;
+  clientId: string;
+  searchEndPointUrl: string;
+  postEndpointUrl: string;
 }
 
 export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitterSearchWebPartProps> {
 
   private twitterService: ITwitterService;
 
+  protected get disableReactivePropertyChanges(): boolean { return true; }
+
   public render(): void {
 
     this.twitterService = ServiceFactory.getTwitterService(Environment.type, {
       context: this.context,
       serviceScope: this.context.serviceScope,
-      clientId: "123",
-      searchEndPointUrl: "#1",
-      postEndpointUrl: "#2"
+      clientId: this.properties.clientId,
+      searchEndPointUrl: this.properties.searchEndPointUrl,
+      postEndpointUrl: this.properties.postEndpointUrl
     });
 
     const element: React.ReactElement<ITwitterSearchProps> = React.createElement(
       TwitterSearch,
       {
-        query: this.properties.description,
+        query: this.properties.query,
         twitterService: this.twitterService
       }
     );
@@ -58,10 +63,24 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
           },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: strings.QueryGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneTextField('query', {
+                  label: strings.QueryFieldLabel
+                })
+              ]
+            },
+            {
+              groupName: strings.ConnectionGroupName,
+              groupFields: [
+                PropertyPaneTextField('clientId', {
+                  label: strings.ClientIdFieldLabel
+                }),
+                PropertyPaneTextField('searchEndPointUrl', {
+                  label: strings.SearchEndPointUrlFieldLabel
+                }),
+                PropertyPaneTextField('postEndpointUrl', {
+                  label: strings.PostEndpointUrlFieldLabel
                 })
               ]
             }
