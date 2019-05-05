@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "twitter-search-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/twitterSearch/TwitterSearchWebPart.js",
+          "manifest": "./src/webparts/twitterSearch/TwitterSearchWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "TwitterSearchWebPartStrings": "lib/webparts/twitterSearch/loc/{locale}.js"
+  }
+}
