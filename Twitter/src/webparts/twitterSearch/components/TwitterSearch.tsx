@@ -3,6 +3,7 @@ import styles from './TwitterSearch.module.scss';
 // import { escape } from '@microsoft/sp-lodash-subset';
 import { ITwitterService } from '../service/twitter/ITwitterService';
 import { Tweets } from './Tweets';
+import { PostTweet } from './PostTweet';
 import { Message } from './Message';
 import ITweet from '../model/ITweet';
 
@@ -42,10 +43,17 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
     } else {
 
       return (
-        <div className={styles.twitterSearch}>
-          <div className={styles.container}>
-                <Tweets tweets={this.state.tweets}></Tweets>
-                <Message message={this.state.message}></Message>
+        <div>
+          <div className={styles.twitterSearch}>
+            <div className={styles.container}>
+              <Tweets tweets={this.state.tweets}></Tweets>
+              <Message message={this.state.message}></Message>
+            </div>
+          </div>
+          <div className={styles.postTweet}>
+            <div className={styles.container}>
+              <PostTweet twitterService={this.props.twitterService} />
+            </div>
           </div>
         </div>
       );
