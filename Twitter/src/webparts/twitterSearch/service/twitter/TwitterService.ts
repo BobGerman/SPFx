@@ -42,7 +42,7 @@ export default class TwitterService implements ITwitterService {
                         let tweets: ITweet[] = rawTweets.map((value) => {
                             return {
                                 text: value.TweetText,
-                                from: `@${value.TweetedBy} (${value.UserDetails.FullName}) `,
+                                from: `${value.UserDetails.FullName} (@${value.TweetedBy}) `,
                                 dateTimeSent: new Date(value.CreatedAtIso),
                                 imageUrl: value.UserDetails.ProfileImageUrl
                             };

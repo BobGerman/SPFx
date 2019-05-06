@@ -9,42 +9,63 @@
 
   .row {
     @include ms-Grid-row;
-    @include ms-fontColor-white;
-    background-color: $ms-color-themeDark;
-    padding: 10px;
+    color: $ms-color-black;
+    background-color: $ms-color-white;
+    padding: 0, 3em, 0, 3em;
+  }
+
+  .firstFullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+    min-height: 1em;
+  }
+
+  .lastFullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+    min-height: 1em;
+  }
+
+  .fullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
   }
 
   .imageColumn {
     @include ms-Grid-col;
-    @include ms-lg2;
-    @include ms-xl1;
+    @include ms-lg3;
+    @include ms-xl2;
   }
 
   .textColumn {
     @include ms-Grid-col;
-    @include ms-lg10;
-    @include ms-xl11;
+    @include ms-lg9;
+    @include ms-xl10;
   }
 
   .senderImage {
-    width: 4em;
-    margin-right: 10px;
-    margin-top: 5px;
-    float: left;
+    width: 5em;
+    /* Center the image in its column */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .senderName {
     font-size: large;
-    color: yellow;
+    color: $ms-color-themePrimary;
   }
 
   .tweetDate {
     font-size: large;
-    color: greenyellow;
+    color: $ms-color-themePrimary;
   }
 
   .tweetText {
-    color: white;
+    color: $ms-color-themeDark;
   }
 
 }
