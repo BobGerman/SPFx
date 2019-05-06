@@ -4,6 +4,7 @@ import { escape } from '@microsoft/sp-lodash-subset';
 
 import { PostTweetForm } from './PostTweetForm';
 import { ITwitterService } from '../service/twitter/ITwitterService';
+import * as strings from 'TwitterSearchWebPartStrings';
 
 export interface IPostTweetProps {
   twitterService: ITwitterService;
@@ -29,13 +30,13 @@ export class PostTweet extends React.Component<IPostTweetProps, IPostTweetState>
   public render(): React.ReactElement<IPostTweetProps> {
     return (
       <div>
-        <PostTweetForm  title="Post Tweet" 
+        <PostTweetForm  title={strings.PostTweetLabel}
                         commentText={ this.state.tweetText }
                         onAddComment={ (c) => {
                           if (c) {
                             this.setState({
                               tweetText: c,
-                              message: "(sending)"
+                              message: strings.MessageSending
                             });
                             this.props.twitterService.postTweet(
                               this.state.tweetText, ""
@@ -43,17 +44,17 @@ export class PostTweet extends React.Component<IPostTweetProps, IPostTweetState>
                             .then(() => {
                               this.setState({
                                 tweetText: "",
-                                message: "Your tweet has been posted"
+                                message: strings.MessageTweetSent
                               });
                             })
                             .catch((error) => {
                               this.setState({
                                 tweetText: c,
-                                message: `ERROR ${escape(error)}`
+                                message: `${strings.MessageError} ${escape(error)}`
                               });
                             });
                           } else {
-                            this.setState ( {...this.state, message: "Please enter a tweet"});
+                            this.setState ( {...this.state, message: strings.MessagePleaseEnter});
                           }
                         }
                       }

@@ -6,6 +6,13 @@ declare interface ITwitterSearchWebPartStrings {
   ClientIdFieldLabel: string;
   SearchEndPointUrlFieldLabel: string;
   PostEndpointUrlFieldLabel: string;
+  AddButtonLabel: string;
+  CancelButtonLabel: string;
+  PostTweetLabel: string;
+  MessageError: string;
+  MessageSending: string;
+  MessageTweetSent: string;
+  MessagePleaseEnter: string;
 }
 
 declare module 'TwitterSearchWebPartStrings' {
