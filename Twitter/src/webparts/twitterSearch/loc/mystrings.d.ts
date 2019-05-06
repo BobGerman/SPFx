@@ -13,6 +13,7 @@ declare interface ITwitterSearchWebPartStrings {
   MessageSending: string;
   MessageTweetSent: string;
   MessagePleaseEnter: string;
+  MessageNotConfigured: string;
 }
 
 declare module 'TwitterSearchWebPartStrings' {

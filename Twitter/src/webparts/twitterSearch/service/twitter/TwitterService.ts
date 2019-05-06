@@ -3,6 +3,7 @@ import { ITwitterService, ITwitterServiceProps } from './ITwitterService';
 
 import { AadHttpClient } from '@microsoft/sp-http';
 import { IRawTweet } from './servicePayloads/IRawTweet';
+import * as strings from 'TwitterSearchWebPartStrings';
 
 export default class TwitterService implements ITwitterService {
 
@@ -34,7 +35,7 @@ export default class TwitterService implements ITwitterService {
                     })
                     .then((res: any): Promise<any> => {
                         if (res && !res.ok) {
-                            reject(`Error: ${res.status} - ${res.statusText}`);
+                            reject(`${strings.MessageError}: ${res.status} - ${res.statusText}`);
                         }
                         return res.json();
                     })
@@ -55,7 +56,7 @@ export default class TwitterService implements ITwitterService {
             });
         } else {
             return new Promise<string>((resolve, reject) => {
-                reject('Missing or null paraneters in tweet service searchTweets()');
+                reject(strings.MessageNotConfigured);
             });
         }
 
@@ -69,26 +70,4 @@ export default class TwitterService implements ITwitterService {
         }));
 
     }
-
-
-    private mockItems =
-        [
-            {
-                "text": "Sock tweet 1",
-                "from": "@Sender1",
-                "dateTimeSent": new Date(2018, 5, 1, 12, 5, 0, 0),
-                "imageUrl": "#"
-            },
-            {
-                "text": "Sock tweet 2",
-                "from": "@Sender2",
-                "dateTimeSent": new Date(2018, 5, 1, 12, 6, 0, 0),
-                "imageUrl": "#"
-            },
-            {
-                "text": "Sock tweet 3",
-                "from": "@Sender3",
-                "dateTimeSent": new Date(2018, 5, 1, 12, 7, 0, 0),
-                "imageUrl": "#"
-            }];
 }

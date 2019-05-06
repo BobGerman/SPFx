@@ -13,6 +13,7 @@ define([], function() {
     "MessageError": "ERROR",
     "MessageSending": "(sending)",
     "MessageTweetSent": "Your tweet has been posted",
-    "MessagePleaseEnter": "Please enter a tweet"
+    "MessagePleaseEnter": "Please enter a tweet",
+    "MessageNotConfigured": "Please configure the web part"
   }
 });
