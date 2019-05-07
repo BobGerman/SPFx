@@ -5,7 +5,13 @@
     "id": "c5632047-c9a0-4016-9126-631b44bb2894",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "SPC-AuthenticatedFunctions",
+        "scope": "user_impersonation"
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/twitter-search.sppkg"
