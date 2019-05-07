@@ -38,6 +38,11 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
         .catch((message: string) => {
           this.setState({ isLoaded: true, message: message, tweets: [] });
         });
+
+      }
+
+      if (this.state.tweets.length <= 0) {
+
       return (<div>Loading...</div>);
 
     } else {
@@ -52,12 +57,17 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
           </div>
           <div className={styles.postTweet}>
             <div className={styles.container}>
-              <PostTweet twitterService={this.props.twitterService} />
+              <PostTweet twitterService={this.props.twitterService}
+                         onRefresh={this.refresh.bind(this)} />
             </div>
           </div>
         </div>
       );
 
     }
+  }
+
+  private refresh() {
+    this.setState({ isLoaded: false, message: "Loading" });
   }
 }

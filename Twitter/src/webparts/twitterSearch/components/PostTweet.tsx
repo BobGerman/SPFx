@@ -8,6 +8,7 @@ import * as strings from 'TwitterSearchWebPartStrings';
 
 export interface IPostTweetProps {
   twitterService: ITwitterService;
+  onRefresh: () => void;
 }
 
 export interface IPostTweetState {
@@ -32,6 +33,7 @@ export class PostTweet extends React.Component<IPostTweetProps, IPostTweetState>
       <div>
         <PostTweetForm  title={strings.PostTweetLabel}
                         commentText={ this.state.tweetText }
+                        onRefresh={ this.props.onRefresh}
                         onAddComment={ (c) => {
                           if (c) {
                             this.setState({
@@ -46,6 +48,7 @@ export class PostTweet extends React.Component<IPostTweetProps, IPostTweetState>
                                 tweetText: "",
                                 message: strings.MessageTweetSent
                               });
+                              this.props.onRefresh();
                             })
                             .catch((error) => {
                               this.setState({

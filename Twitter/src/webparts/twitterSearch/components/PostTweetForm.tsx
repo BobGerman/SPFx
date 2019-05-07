@@ -8,6 +8,7 @@ export interface IPostTweetFormProps {
   onChangeComment: (comment: string) => void;
   onAddComment: (comment: string) => void;
   onCancel: () => void;
+  onRefresh: () => void;
   message: string;
 }
 
@@ -36,6 +37,7 @@ export class PostTweetForm extends React.Component<IPostTweetFormProps, { }> {
                         } }
                         className={ styles.button }>Add</button>&nbsp;
                 <button onClick={ this.props.onCancel } className={ styles.button2 }>Cancel</button>
+                <button onClick={ this.props.onRefresh } className={ styles.button2 }>Refresh</button>
                 <div className={ styles.title }>{escape(this.props.title)}</div>
               </p>
               <div className= { styles.message }>{this.props.message}</div>
