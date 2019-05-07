@@ -9,6 +9,7 @@ define([], function() {
     "PostEndpointUrlFieldLabel": "Post endpoint URL",
     "AddButtonLabel": "Add",
     "CancelButtonLabel": "Cancel",
+    "RefreshButtonLabel": "Refresh",
     "PostTweetLabel": "Post tweet",
     "MessageError": "ERROR",
     "MessageSending": "(sending)",

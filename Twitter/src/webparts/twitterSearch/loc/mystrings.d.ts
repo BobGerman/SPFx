@@ -8,6 +8,7 @@ declare interface ITwitterSearchWebPartStrings {
   PostEndpointUrlFieldLabel: string;
   AddButtonLabel: string;
   CancelButtonLabel: string;
+  RefreshButtonLabel: string;
   PostTweetLabel: string;
   MessageError: string;
   MessageSending: string;
