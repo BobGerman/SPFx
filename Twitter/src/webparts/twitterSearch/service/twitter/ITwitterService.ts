@@ -12,5 +12,5 @@ export interface ITwitterServiceProps {
 
 export interface ITwitterService {
     searchTweets(query: string): Promise<ITweet[] | string>;
-    postTweet(text: string, query: string): Promise<null | string>;
+    postTweet(text: string, query: string): Promise<void | string>;
 }

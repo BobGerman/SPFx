@@ -63,11 +63,37 @@ export default class TwitterService implements ITwitterService {
     }
 
     public postTweet(text: string, query: string, ):
-        Promise<null | string> {
+        Promise<void | string> {
 
-        return new Promise<null | string>((resolve => {
-            resolve(null);
-        }));
+        const aadClient: AadHttpClient =
+            new AadHttpClient(this.serviceProps.serviceScope,
+                this.serviceProps.clientId);
 
+        const body = {
+            "hashtag": query,
+            "text": text
+        };
+
+        const headers: HeadersInit = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        return new Promise<void | string>((resolve, reject) => {
+
+            aadClient.post(this.serviceProps.postEndpointUrl, AadHttpClient.configurations.v1, {
+                headers: headers,
+                body: JSON.stringify(body)
+            })
+                .then((response) => {
+                    if (response.status == 200) {
+                        resolve();
+                    } else {
+                        reject(`Error: ${response.status}: ${response.statusText}`);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+
+        });
     }
 }

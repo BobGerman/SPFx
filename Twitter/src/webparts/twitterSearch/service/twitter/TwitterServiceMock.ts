@@ -13,10 +13,10 @@ export default class TwitterServiceMock implements ITwitterService {
     }
 
     public postTweet(text: string, query: string, ):
-        Promise<null | string> {
+        Promise<void | string> {
 
             return new Promise<null | string> ((resolve => {
-                resolve(null);
+                resolve();
             }));
 
         }
