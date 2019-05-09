@@ -12,21 +12,21 @@ export default class RequestService implements IRequestService {
 
     }
 
-    private mockItems =
+    private mockItems = 
     [
         {
             iconUrl: <string>require('../../assets/icons8-wait-96.png'),
-            title: "Send requested",
+            title: "Tweet requested",
             detail: "The quick brown fox jumps over the lazy dog"
         },
         {
-            iconUrl: <string>require('../../assets/icons8-wait-96.png'),
-            title: "Send requested",
+            iconUrl: <string>require('../../assets/icons8-ok-96.png'),
+            title: "Tweet sent",
             detail: "The quick brown fox jumps over the lazy dog"
         },
         {
-            iconUrl: <string>require('../../assets/icons8-wait-96.png'),
-            title: "Send requested",
+            iconUrl: <string>require('../../assets/icons8-close-window-96.png'),
+            title: "Tweet denied",
             detail: "The quick brown fox jumps over the lazy dog"
         }];
 }

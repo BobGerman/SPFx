@@ -21,7 +21,7 @@ export default class TwitterServiceMock implements ITwitterService {
 
         }
 
-    private mockItems =
+    private mockItems = 
     [
         {
             "text": "Mock tweet 1",

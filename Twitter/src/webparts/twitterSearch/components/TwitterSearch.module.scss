@@ -1,6 +1,144 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
+/* twitterSearch */
 .twitterSearch {
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .row {
+    @include ms-Grid-row;
+    color: $ms-color-black;
+    background-color: $ms-color-white;
+    padding: 0, 3em, 0, 3em;
+  }
+
+  .firstFullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+    min-height: 1em;
+  }
+
+  .lastFullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+    min-height: 0.5em;
+  }
+
+  .fullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+  }
+
+  .imageColumn {
+    @include ms-Grid-col;
+    @include ms-lg3;
+    @include ms-xl2;
+  }
+
+  .textColumn {
+    @include ms-Grid-col;
+    @include ms-lg9;
+    @include ms-xl10;
+  }
+
+  .senderImage {
+    width: 5em;
+    /* Center the image in its column */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px;
+    border-style: solid;
+  }
+
+  .senderName {
+    font-size: large;
+    color: $ms-color-themePrimary;
+  }
+
+  .tweetDate {
+    font-size: large;
+    color: $ms-color-themePrimary;
+  }
+
+  .tweetText {
+    color: $ms-color-themeDark;
+  }
+
+}
+
+/* request list */
+.requestList {
+  .container {
+    max-width: 700px;
+    margin: 0px auto;
+  }
+
+  .row {
+    @include ms-Grid-row;
+    color: $ms-color-black;
+    background-color: $ms-color-themeLight;
+  }
+
+  .firstFullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+    padding-top: 1em;
+  }
+
+  .lastFullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+    min-height: 1em;
+  }
+
+  .fullColumn {
+    @include ms-Grid-col;
+    @include ms-lg12;
+    @include ms-xl12;
+  }
+
+  .imageColumn {
+    @include ms-Grid-col;
+    @include ms-lg3;
+    @include ms-xl2;
+  }
+
+  .textColumn {
+    @include ms-Grid-col;
+    @include ms-lg9;
+    @include ms-xl10;
+  }
+
+  .senderImage {
+    width: 3em;
+    /* Center the image in its column */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+  }
+
+  .senderName {
+    font-size: large;
+    color: $ms-color-black;
+  }
+
+  .tweetText {
+    color: $ms-color-black;
+  }
+
+}
+
+.messagePanel {
   .container {
     max-width: 700px;
     margin: 0px auto;
@@ -71,6 +209,8 @@
   }
 
 }
+
+
 
 .postTweet {
   .container {

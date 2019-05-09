@@ -78,7 +78,15 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
           <div className={styles.twitterSearch}>
             <div className={styles.container}>
               <Tweets tweets={this.state.tweets}></Tweets>
+            </div>
+          </div>
+          <div className={styles.requestList}>
+            <div className={styles.container}>
               <Requests requests={this.state.requests}></Requests>
+            </div>
+          </div>
+          <div className={styles.messagePanel}>
+            <div className={styles.container}>
               <Message message={this.state.message}></Message>
             </div>
           </div>

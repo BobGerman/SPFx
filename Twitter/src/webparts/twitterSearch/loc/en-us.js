@@ -15,6 +15,7 @@ define([], function() {
     "MessageSending": "(sending)",
     "MessageTweetSent": "Your tweet has been posted",
     "MessagePleaseEnter": "Please enter a tweet",
-    "MessageNotConfigured": "Please configure the web part"
+    "MessageNotConfigured": "Please configure the web part",
+    "MessageNoTweets": "No tweets to show"
   }
 });

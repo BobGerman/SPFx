@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from './TwitterSearch.module.scss';
 import { escape } from '@microsoft/sp-lodash-subset';
+import * as strings from 'TwitterSearchWebPartStrings';
 
 import ITweet from '../model/ITweet';
 
@@ -12,9 +13,10 @@ export class Tweets extends React.Component<ITweetsProps, {}> {
   public render(): React.ReactElement<ITweetsProps> {
     let count = 0;
 
-    return (
-      <div className={styles.twitterSearch}>
-        <div className={styles.container}>
+    if (this.props.tweets.length > 0) {
+
+      return (
+        <div>
           {this.props.tweets.map(p => (
 
             <div>
@@ -43,9 +45,13 @@ export class Tweets extends React.Component<ITweetsProps, {}> {
               </div>
             </div>
           ))}
-          <div className={styles.firstFullColumn}></div>
+          <div className={styles.row}>
+            <div className={styles.lastFullColumn}></div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <div>{strings.MessageNoTweets}</div>;
+    }
   }
 }
