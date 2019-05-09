@@ -17,16 +17,19 @@ export default class RequestService implements IRequestService {
         {
             iconUrl: <string>require('../../assets/icons8-wait-96.png'),
             title: "Tweet requested",
-            detail: "The quick brown fox jumps over the lazy dog"
+            detail: "The quick brown fox jumps over the lazy dog",
+            lastUpdate: new Date()
         },
         {
             iconUrl: <string>require('../../assets/icons8-ok-96.png'),
             title: "Tweet sent",
-            detail: "The quick brown fox jumps over the lazy dog"
+            detail: "The quick brown fox jumps over the lazy dog",
+            lastUpdate: new Date()
         },
         {
             iconUrl: <string>require('../../assets/icons8-close-window-96.png'),
             title: "Tweet denied",
-            detail: "The quick brown fox jumps over the lazy dog"
+            detail: "The quick brown fox jumps over the lazy dog",
+            lastUpdate: new Date()
         }];
 }

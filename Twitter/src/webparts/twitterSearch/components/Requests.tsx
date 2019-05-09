@@ -36,6 +36,8 @@ export class Requests extends React.Component<IRequestsProps, {}> {
                                 </div>
                                 <div className={styles.textColumn}>
                                     <span className={styles.senderName}>{escape(p.title)}</span>
+                                    <span className={styles.tweetDate}>&nbsp;({escape(
+                                    `${p.lastUpdate.toLocaleDateString()} ${p.lastUpdate.toLocaleTimeString()}`)})</span>
                                     <br />
                                     <span className={styles.tweetText}>{p.detail}</span>
                                 </div>
