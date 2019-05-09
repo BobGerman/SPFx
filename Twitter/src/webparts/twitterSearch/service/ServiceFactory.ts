@@ -4,6 +4,7 @@ import TwitterServiceMock from './twitter/TwitterServiceMock';
 
 import { IRequestService, IRequestServiceProps } from './request/IRequestService';
 import RequestServiceMock from './request/RequestServiceMock';
+import RequestService from './request/RequestService';
 
 import { EnvironmentType } from '@microsoft/sp-core-library';
 
@@ -22,6 +23,10 @@ export default class ServiceFactory {
     public static getRequestService(environmentType: EnvironmentType,
         serviceProps: IRequestServiceProps) : IRequestService {
 
-        return new RequestServiceMock();
+        if (environmentType === EnvironmentType.Local) {
+            return new RequestServiceMock();
+        } else {
+            return new RequestService(serviceProps);
+        }
     }
 }

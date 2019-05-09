@@ -1,7 +1,7 @@
 import IRequest from '../../model/IRequest';
 import { IRequestService } from './IRequestService';
 
-export default class RequestService implements IRequestService {
+export default class RequestServiceMock implements IRequestService {
     
     public getRequestsForUser (query: string):
         Promise<IRequest[] | string> {
