@@ -9,7 +9,8 @@ import {
 
 import * as strings from 'TwitterSearchWebPartStrings';
 import { TwitterSearch, ITwitterSearchProps } from './components/TwitterSearch';
-import { ITwitterService, ITwitterServiceProps } from './service/twitter/ITwitterService';
+import { ITwitterService } from './service/twitter/ITwitterService';
+import { IRequestService } from './service/request/IRequestService';
 import ServiceFactory from './service/ServiceFactory';
 
 export interface ITwitterSearchWebPartProps {
@@ -22,6 +23,7 @@ export interface ITwitterSearchWebPartProps {
 export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitterSearchWebPartProps> {
 
   private twitterService: ITwitterService;
+  private requestService: IRequestService;
 
   protected get disableReactivePropertyChanges(): boolean { return true; }
 
@@ -35,11 +37,18 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
       postEndpointUrl: this.properties.postEndpointUrl
     });
 
+    this.requestService = ServiceFactory.getRequestService(Environment.type, {
+      context: this.context,
+      serviceScope: this.context.serviceScope,
+      listName: "requestList"
+    });
+
     const element: React.ReactElement<ITwitterSearchProps> = React.createElement(
       TwitterSearch,
       {
         query: this.properties.query,
-        twitterService: this.twitterService
+        twitterService: this.twitterService,
+        requestService: this.requestService
       }
     );
 

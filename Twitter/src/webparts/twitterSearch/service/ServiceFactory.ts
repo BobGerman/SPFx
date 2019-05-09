@@ -2,8 +2,10 @@ import { ITwitterService, ITwitterServiceProps } from './twitter/ITwitterService
 import TwitterService from './twitter/TwitterService';
 import TwitterServiceMock from './twitter/TwitterServiceMock';
 
-import { EnvironmentType, ServiceScope } from '@microsoft/sp-core-library';
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { IRequestService, IRequestServiceProps } from './request/IRequestService';
+import RequestServiceMock from './request/RequestServiceMock';
+
+import { EnvironmentType } from '@microsoft/sp-core-library';
 
 export default class ServiceFactory {
 
@@ -15,5 +17,11 @@ export default class ServiceFactory {
         } else {
             return new TwitterService(serviceProps);
         }
+    }
+
+    public static getRequestService(environmentType: EnvironmentType,
+        serviceProps: IRequestServiceProps) : IRequestService {
+
+        return new RequestServiceMock();
     }
 }
