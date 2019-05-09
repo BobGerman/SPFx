@@ -7,6 +7,7 @@ define([], function() {
     "ClientIdFieldLabel": "Client ID",
     "SearchEndPointUrlFieldLabel": "Search endpoint URL",
     "PostEndpointUrlFieldLabel": "Post endpoint URL",
+    "RequestListLabel": "Request list",
     "AddButtonLabel": "Add",
     "CancelButtonLabel": "Cancel",
     "RefreshButtonLabel": "Refresh",

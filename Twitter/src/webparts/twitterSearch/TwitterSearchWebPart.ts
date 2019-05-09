@@ -18,6 +18,7 @@ export interface ITwitterSearchWebPartProps {
   clientId: string;
   searchEndPointUrl: string;
   postEndpointUrl: string;
+  requestList: string;
 }
 
 export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitterSearchWebPartProps> {
@@ -90,6 +91,9 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
                 }),
                 PropertyPaneTextField('postEndpointUrl', {
                   label: strings.PostEndpointUrlFieldLabel
+                }),
+                PropertyPaneTextField('requestList', {
+                  label: strings.RequestListLabel
                 })
               ]
             }
