@@ -27,18 +27,18 @@ export default class TwitterServiceMock implements ITwitterService {
             "text": "Mock tweet 1",
             "from": "@Sender1",
             "dateTimeSent": new Date(2018, 5, 1, 12, 5, 0, 0),
-            "imageUrl": "#"
+            "imageUrl": <string> require('../../assets/SharePoint.png')
         },
         {
             "text": "Mock tweet 2",
             "from": "@Sender2",
             "dateTimeSent": new Date(2018, 5, 1, 12, 6, 0, 0),
-            "imageUrl": "#"
+            "imageUrl": <string> require('../../assets/SharePoint.png')
         },
         {
             "text": "Mock tweet 3",
             "from": "@Sender3",
             "dateTimeSent": new Date(2018, 5, 1, 12, 7, 0, 0),
-            "imageUrl": "#"
+            "imageUrl": <string> require('../../assets/SharePoint.png')
         }];
 }
