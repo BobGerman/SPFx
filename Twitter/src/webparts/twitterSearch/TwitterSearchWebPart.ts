@@ -13,6 +13,8 @@ import { ITwitterService } from './service/twitter/ITwitterService';
 import { IRequestService } from './service/request/IRequestService';
 import ServiceFactory from './service/ServiceFactory';
 
+import { sp } from "@pnp/sp";
+
 export interface ITwitterSearchWebPartProps {
   query: string;
   clientId: string;
@@ -28,6 +30,14 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
 
   protected get disableReactivePropertyChanges(): boolean { return true; }
 
+  public onInit(): Promise<void> {
+    return super.onInit().then( _ => {
+      sp.setup({
+        spfxContext: this.context
+      });
+    });
+  }
+
   public render(): void {
 
     this.twitterService = ServiceFactory.getTwitterService(Environment.type, {
@@ -41,7 +51,7 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
     this.requestService = ServiceFactory.getRequestService(Environment.type, {
       context: this.context,
       serviceScope: this.context.serviceScope,
-      listName: "requestList"
+      listName: this.properties.requestList
     });
 
     const element: React.ReactElement<ITwitterSearchProps> = React.createElement(

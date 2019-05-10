@@ -1,23 +1,61 @@
 import IRequest from '../../model/IRequest';
-import { IRequestService } from './IRequestService';
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import { ServiceScope } from '@microsoft/sp-core-library';
-import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
+import IRequestListItem from './servicePayloads/IRequestListItem';
+import { IRequestService, IRequestServiceProps } from './IRequestService';
+import { sp } from '@pnp/sp';
 
 export default class RequestService implements IRequestService {
-    
-    constructor (private requestService) { }
 
-    public getRequestsForUser (user: string):
+    constructor(private serviceProps: IRequestServiceProps) { }
+
+    public getRequestsForUser(user: string):
         Promise<IRequest[] | string> {
 
-        return new Promise<IRequest[]> ((resolve => {
-            resolve ([]);
-        }));
+        return new Promise<IRequest[] | string>((resolve, reject) => {
 
+            let result: IRequest[] = [];
+
+            sp.web.lists.getByTitle(this.serviceProps.listName).items.get()
+                .then((items: IRequestListItem[]) => {
+                    result = items.map((item: IRequestListItem): IRequest => {
+                        return {
+                            iconUrl: this.getIcon(item.Status),
+                            title: item.Title,
+                            detail: item.TweetText,
+                            lastUpdate: new Date(item.Modified)
+                        };
+                    });
+                    resolve(result);
+                });
+
+        });
     }
 
+    private getIcon(status: string): string {
 
-    
+        let result: string = "#";
 
+        switch (status.toLowerCase()) {
+            case "requested": {
+                result = <string> require('../../assets/icons8-wait-96.png');
+                break;
+            }
+            case "approved": {
+                result = <string> require('../../assets/icons8-ok-96.png');
+                break;
+            }
+            case "denied": {
+                result = <string> require('../../assets/icons8-close-window-96.png');
+                break;
+            }
+            case "sent": {
+                result = <string> require('../../assets/icons8-ok-96.png');
+                break;
+            }
+            default: {  // something's wrong
+                result = <string> require('../../assets/icons8-close-window-96.png');
+                break;
+            }
+        }
+        return result;
+    }
 }
