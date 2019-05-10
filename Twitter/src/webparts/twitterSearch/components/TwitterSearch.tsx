@@ -12,6 +12,7 @@ import { IRequestService } from '../service/request/IRequestService';
 
 export interface ITwitterSearchProps {
   query: string;
+  showRequests: boolean;
   twitterService: ITwitterService;
   requestService: IRequestService;
 }
@@ -59,12 +60,14 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
 
     }
 
-    if (!this.state.requestsLoaded) {
-      // Initial load of request list
-      this.loadRequests();
-    } else if (this.state.refreshCount > 0) {
-      // Refresh
-      setTimeout(() => { this.loadRequests(); }, this.refreshInterval);
+    if (this.props.showRequests) {
+      if (!this.state.requestsLoaded) {
+        // Initial load of request list
+        this.loadRequests();
+      } else if (this.state.refreshCount > 0) {
+        // Refresh
+        setTimeout(() => { this.loadRequests(); }, this.refreshInterval);
+      }
     }
 
     if (this.state.tweets.length <= 0 &&

@@ -66,6 +66,7 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
       TwitterSearch,
       {
         query: this.properties.query,
+        showRequests: this.properties.requestList ? true : false,
         twitterService: this.twitterService,
         requestService: this.requestService
       }
