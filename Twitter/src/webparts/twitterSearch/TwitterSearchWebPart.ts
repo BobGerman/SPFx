@@ -14,6 +14,7 @@ import { IRequestService } from './service/request/IRequestService';
 import ServiceFactory from './service/ServiceFactory';
 
 import { sp } from "@pnp/sp";
+import { PnPClientStorage } from '@pnp/common';
 
 export interface ITwitterSearchWebPartProps {
   query: string;
@@ -27,15 +28,15 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
 
   private twitterService: ITwitterService;
   private requestService: IRequestService;
+  private currentUserId: number;
 
   protected get disableReactivePropertyChanges(): boolean { return true; }
 
   public onInit(): Promise<void> {
-    return super.onInit().then( _ => {
-      sp.setup({
-        spfxContext: this.context
-      });
+    sp.setup({
+      spfxContext: this.context
     });
+    return new Promise<void> ((resolve) => { resolve(); });
   }
 
   public render(): void {

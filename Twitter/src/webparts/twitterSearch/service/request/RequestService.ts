@@ -7,14 +7,17 @@ export default class RequestService implements IRequestService {
 
     constructor(private serviceProps: IRequestServiceProps) { }
 
-    public getRequestsForUser(user: string):
+    public getRequestsForUser():
         Promise<IRequest[] | string> {
 
+        // const userId = this.serviceProps.context.pageContext.
         return new Promise<IRequest[] | string>((resolve, reject) => {
 
             let result: IRequest[] = [];
 
-            sp.web.lists.getByTitle(this.serviceProps.listName).items.get()
+            sp.web.lists.getByTitle(this.serviceProps.listName).items
+                .select("Title", "Status", "TweetText","Modified", "RequestedbyId/Title")
+                .get()
                 .then((items: IRequestListItem[]) => {
                     result = items.map((item: IRequestListItem): IRequest => {
                         return {
@@ -25,7 +28,8 @@ export default class RequestService implements IRequestService {
                         };
                     });
                     resolve(result);
-                });
+                })
+                .catch((message) => { reject(message); });
 
         });
     }

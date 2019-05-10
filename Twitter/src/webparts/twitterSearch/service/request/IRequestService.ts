@@ -9,5 +9,5 @@ export interface IRequestServiceProps {
 }
 
 export interface IRequestService {
-    getRequestsForUser(username: string): Promise<IRequest[] | string>;
+    getRequestsForUser(userId: number): Promise<IRequest[] | string>;
 }
