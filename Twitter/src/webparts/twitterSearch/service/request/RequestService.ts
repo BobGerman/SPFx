@@ -7,16 +7,16 @@ export default class RequestService implements IRequestService {
 
     constructor(private serviceProps: IRequestServiceProps) { }
 
-    public getRequestsForUser():
+    public getRequestsForCurrentUser():
         Promise<IRequest[] | string> {
 
-        // const userId = this.serviceProps.context.pageContext.
         return new Promise<IRequest[] | string>((resolve, reject) => {
 
             let result: IRequest[] = [];
 
             sp.web.lists.getByTitle(this.serviceProps.listName).items
-                .select("Title", "Status", "TweetText","Modified", "RequestedbyId/Title")
+                .select("Title", "Status", "TweetText","Modified", "RequestedbyId")
+                .filter(`RequestedbyId eq ${this.serviceProps.currentUserId} `)
                 .get()
                 .then((items: IRequestListItem[]) => {
                     result = items.map((item: IRequestListItem): IRequest => {

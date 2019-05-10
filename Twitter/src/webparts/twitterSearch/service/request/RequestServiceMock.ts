@@ -3,7 +3,7 @@ import { IRequestService } from './IRequestService';
 
 export default class RequestServiceMock implements IRequestService {
     
-    public getRequestsForUser (userId: number):
+    public getRequestsForCurrentUser ():
         Promise<IRequest[] | string> {
 
         return new Promise<IRequest[]> ((resolve => {

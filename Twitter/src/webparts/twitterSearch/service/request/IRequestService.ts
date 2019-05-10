@@ -6,8 +6,9 @@ export interface IRequestServiceProps {
     context: IWebPartContext;
     serviceScope: ServiceScope;
     listName: string;
+    currentUserId: number;
 }
 
 export interface IRequestService {
-    getRequestsForUser(userId: number): Promise<IRequest[] | string>;
+    getRequestsForCurrentUser(): Promise<IRequest[] | string>;
 }

@@ -36,7 +36,13 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
     sp.setup({
       spfxContext: this.context
     });
-    return new Promise<void> ((resolve) => { resolve(); });
+    return new Promise<void> ((resolve, reject) => {
+      const email = this.context.pageContext.user.email;
+      sp.site.rootWeb.ensureUser(email).then(result => {
+        this.currentUserId = result.data.Id;
+        resolve();
+      });
+    });
   }
 
   public render(): void {
@@ -52,7 +58,8 @@ export default class TwitterSearchWebPart extends BaseClientSideWebPart<ITwitter
     this.requestService = ServiceFactory.getRequestService(Environment.type, {
       context: this.context,
       serviceScope: this.context.serviceScope,
-      listName: this.properties.requestList
+      listName: this.properties.requestList,
+      currentUserId: this.currentUserId
     });
 
     const element: React.ReactElement<ITwitterSearchProps> = React.createElement(

@@ -55,7 +55,7 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
 
     if (!this.state.requestsLoaded) {
 
-      this.props.requestService.getRequestsForUser(0)
+      this.props.requestService.getRequestsForCurrentUser()
       .then ((requests: IRequest[]) => {
         this.setState({ requestsLoaded: true, message: "", requests: requests});
       })
