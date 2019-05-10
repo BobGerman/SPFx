@@ -19,6 +19,7 @@ export interface ITwitterSearchProps {
 export interface ITwitterSearchState {
   tweetsLoaded: boolean;
   requestsLoaded: boolean;
+  refreshCount: number;
   message: string;
   tweets: ITweet[];
   requests: IRequest[];
@@ -26,11 +27,16 @@ export interface ITwitterSearchState {
 
 export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitterSearchState> {
 
+  // Todo: Update to use webhook for updates
+  private refreshInterval = 5000; // Refresh every 5 seconds
+  private refreshCount = 120;     // for 10 minutes
+
   constructor(props: ITwitterSearchProps) {
     super(props);
     this.state = {
       tweetsLoaded: false,
       requestsLoaded: false,
+      refreshCount: this.refreshCount,
       message: "",
       tweets: [],
       requests: []
@@ -54,14 +60,11 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
     }
 
     if (!this.state.requestsLoaded) {
-
-      this.props.requestService.getRequestsForCurrentUser()
-      .then ((requests: IRequest[]) => {
-        this.setState({ requestsLoaded: true, message: "", requests: requests});
-      })
-      .catch ((message: string) => {
-        this.setState({ requestsLoaded: true, message: message, requests: []});
-      });
+      // Initial load of request list
+      this.loadRequests();
+    } else if (this.state.refreshCount > 0) {
+      // Refresh
+      setTimeout(() => { this.loadRequests(); }, this.refreshInterval);
     }
 
     if (this.state.tweets.length <= 0 &&
@@ -98,6 +101,26 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
       );
 
     }
+  }
+
+  private loadRequests() {
+    this.props.requestService.getRequestsForCurrentUser()
+      .then((requests: IRequest[]) => {
+        this.setState({ 
+          requestsLoaded: true, 
+          message: "", 
+          requests: requests,
+          refreshCount: this.state.refreshCount-1
+         });
+      })
+      .catch((message: string) => {
+        this.setState({
+          requestsLoaded: true,
+          message: message,
+          requests: [],
+          refreshCount: this.state.refreshCount-1
+        });
+      });
   }
 
   private refresh() {
