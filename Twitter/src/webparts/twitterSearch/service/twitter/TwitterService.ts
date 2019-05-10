@@ -62,7 +62,7 @@ export default class TwitterService implements ITwitterService {
 
     }
 
-    public postTweet(text: string, query: string, ):
+    public postTweet(text: string, query: string):
         Promise<void | string> {
 
         const aadClient: AadHttpClient =

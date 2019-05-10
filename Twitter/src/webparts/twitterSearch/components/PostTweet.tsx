@@ -8,6 +8,7 @@ import * as strings from 'TwitterSearchWebPartStrings';
 
 export interface IPostTweetProps {
   twitterService: ITwitterService;
+  query: string;
   onRefresh: () => void;
 }
 
@@ -41,7 +42,8 @@ export class PostTweet extends React.Component<IPostTweetProps, IPostTweetState>
                               message: strings.MessageSending
                             });
                             this.props.twitterService.postTweet(
-                              this.state.tweetText, ""
+                              this.state.tweetText,
+                              this.props.query
                             )
                             .then(() => {
                               this.setState({

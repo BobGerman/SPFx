@@ -97,7 +97,8 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
           <div className={styles.postTweet}>
             <div className={styles.container}>
               <PostTweet twitterService={this.props.twitterService}
-                onRefresh={this.refresh.bind(this)} />
+                onRefresh={this.refresh.bind(this)}
+                query={this.props.query} />
             </div>
           </div>
         </div>
