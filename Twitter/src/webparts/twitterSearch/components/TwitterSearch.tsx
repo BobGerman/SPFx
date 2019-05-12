@@ -62,14 +62,16 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
       this.setState({ tweetsLoadingState: LoadingState.awaitingRefresh });
     }
 
-    if (this.state.requestsLoadingState === LoadingState.initial) {
-      this.loadRequests(this.state.requestRefreshCount);
-    } else if (this.state.requestsLoadingState === LoadingState.loaded &&
-      this.state.requestRefreshCount > 0) {
-      setTimeout(function () {
-        this.loadRequests(this.state.requestRefreshCount - 1);
-      }.bind(this), this.requestRefreshInterval);
-      this.setState({ requestsLoadingState: LoadingState.awaitingRefresh });
+    if (this.props.showRequests) {
+      if (this.state.requestsLoadingState === LoadingState.initial) {
+        this.loadRequests(this.state.requestRefreshCount);
+      } else if (this.state.requestsLoadingState === LoadingState.loaded &&
+        this.state.requestRefreshCount > 0) {
+        setTimeout(function () {
+          this.loadRequests(this.state.requestRefreshCount - 1);
+        }.bind(this), this.requestRefreshInterval);
+        this.setState({ requestsLoadingState: LoadingState.awaitingRefresh });
+      }
     }
 
     if (this.state.tweets.length <= 0 &&
@@ -111,47 +113,47 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
 
   private loadTweets(remainingRefreshCount: number) {
     // if (this.state.tweetsLoadingState !== LoadingState.loading) {
-      this.props.twitterService.searchTweets(this.props.query)
-        .then((tweets: ITweet[]) => {
-          this.setState({
-            tweetRefreshCount: remainingRefreshCount,
-            tweetsLoadingState: LoadingState.loaded,
-            message: "",
-            tweets: tweets
-          });
-        })
-        .catch((message: string) => {
-          this.setState({
-            tweetRefreshCount: remainingRefreshCount,
-            tweetsLoadingState: LoadingState.loaded,
-            message: message,
-            tweets: []
-          });
+    this.props.twitterService.searchTweets(this.props.query)
+      .then((tweets: ITweet[]) => {
+        this.setState({
+          tweetRefreshCount: remainingRefreshCount,
+          tweetsLoadingState: LoadingState.loaded,
+          message: "",
+          tweets: tweets
         });
-      this.setState({ tweetsLoadingState: LoadingState.loading });
+      })
+      .catch((message: string) => {
+        this.setState({
+          tweetRefreshCount: remainingRefreshCount,
+          tweetsLoadingState: LoadingState.loaded,
+          message: message,
+          tweets: []
+        });
+      });
+    this.setState({ tweetsLoadingState: LoadingState.loading });
     // }
   }
 
   private loadRequests(remainingRefreshCount: number) {
     // if (this.state.requestsLoadingState !== LoadingState.loading) {
-      this.props.requestService.getRequestsForCurrentUser()
-        .then((requests: IRequest[]) => {
-          this.setState({
-            requestsLoadingState: LoadingState.loaded,
-            requestRefreshCount: remainingRefreshCount,
-            message: "",
-            requests: requests
-          });
-        })
-        .catch((message: string) => {
-          this.setState({
-            requestsLoadingState: LoadingState.loaded,
-            requestRefreshCount: remainingRefreshCount,
-            message: message,
-            requests: []
-          });
+    this.props.requestService.getRequestsForCurrentUser()
+      .then((requests: IRequest[]) => {
+        this.setState({
+          requestsLoadingState: LoadingState.loaded,
+          requestRefreshCount: remainingRefreshCount,
+          message: "",
+          requests: requests
         });
-      this.setState({ requestsLoadingState: LoadingState.loading });
+      })
+      .catch((message: string) => {
+        this.setState({
+          requestsLoadingState: LoadingState.loaded,
+          requestRefreshCount: remainingRefreshCount,
+          message: message,
+          requests: []
+        });
+      });
+    this.setState({ requestsLoadingState: LoadingState.loading });
     // }
   }
 
