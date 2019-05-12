@@ -17,7 +17,7 @@ export interface ITwitterSearchProps {
 }
 
 export enum LoadingState {
-  initial, loading, loaded
+  initial, loading, loaded, awaitingRefresh
 }
 
 export interface ITwitterSearchState {
@@ -32,17 +32,18 @@ export interface ITwitterSearchState {
 
 export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitterSearchState> {
 
-  // Todo: Update to use webhook for updates
-  private refreshInterval = 5000; // Refresh every 5 seconds
-  private refreshCount = 120;     // for 10 minutes
+  private tweetRefreshInterval = 10000;  // Refresh every 10 seconds
+  private tweetRefeshCount = 12;         // for 2 minutes
+  private requestRefreshInterval = 5000; // Refresh every 5 seconds
+  private requestRefeshCount = 120;     // for 10 minutes
 
   constructor(props: ITwitterSearchProps) {
     super(props);
     this.state = {
       tweetsLoadingState: LoadingState.initial,
-      tweetRefreshCount: this.refreshCount,
+      tweetRefreshCount: this.tweetRefeshCount,
       requestsLoadingState: LoadingState.initial,
-      requestRefreshCount: this.refreshCount,
+      requestRefreshCount: this.requestRefeshCount,
       message: "",
       tweets: [],
       requests: []
@@ -51,23 +52,24 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
 
   public render(): React.ReactElement<ITwitterSearchProps> {
 
-    // var refreshInterval = this.refreshInterval;
-
     if (this.state.tweetsLoadingState === LoadingState.initial) {
       this.loadTweets(this.state.tweetRefreshCount);
     } else if (this.state.tweetsLoadingState === LoadingState.loaded &&
       this.state.tweetRefreshCount > 0) {
       setTimeout(function () {
         this.loadTweets(this.state.tweetRefreshCount - 1);
-      }.bind(this), this.refreshInterval);
+      }.bind(this), this.tweetRefreshInterval);
+      this.setState({ tweetsLoadingState: LoadingState.awaitingRefresh });
     }
+
     if (this.state.requestsLoadingState === LoadingState.initial) {
       this.loadRequests(this.state.requestRefreshCount);
     } else if (this.state.requestsLoadingState === LoadingState.loaded &&
       this.state.requestRefreshCount > 0) {
       setTimeout(function () {
         this.loadRequests(this.state.requestRefreshCount - 1);
-      }.bind(this), this.refreshInterval);
+      }.bind(this), this.requestRefreshInterval);
+      this.setState({ requestsLoadingState: LoadingState.awaitingRefresh });
     }
 
     if (this.state.tweets.length <= 0 &&
@@ -108,7 +110,7 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
   }
 
   private loadTweets(remainingRefreshCount: number) {
-    if (this.state.tweetsLoadingState !== LoadingState.loading) {
+    // if (this.state.tweetsLoadingState !== LoadingState.loading) {
       this.props.twitterService.searchTweets(this.props.query)
         .then((tweets: ITweet[]) => {
           this.setState({
@@ -127,11 +129,11 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
           });
         });
       this.setState({ tweetsLoadingState: LoadingState.loading });
-    }
+    // }
   }
 
   private loadRequests(remainingRefreshCount: number) {
-    if (this.state.requestsLoadingState !== LoadingState.loading) {
+    // if (this.state.requestsLoadingState !== LoadingState.loading) {
       this.props.requestService.getRequestsForCurrentUser()
         .then((requests: IRequest[]) => {
           this.setState({
@@ -150,15 +152,15 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
           });
         });
       this.setState({ requestsLoadingState: LoadingState.loading });
-    }
+    // }
   }
 
   private refresh() {
     this.setState({
       tweetsLoadingState: LoadingState.initial,
-      tweetRefreshCount: this.refreshCount,
+      tweetRefreshCount: this.tweetRefeshCount,
       requestsLoadingState: LoadingState.initial,
-      requestRefreshCount: this.refreshCount,
+      requestRefreshCount: this.requestRefeshCount,
       message: "Loading"
     });
   }
