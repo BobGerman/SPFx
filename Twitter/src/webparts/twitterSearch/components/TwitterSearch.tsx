@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styles from './TwitterSearch.module.scss';
-// import { escape } from '@microsoft/sp-lodash-subset';
 import { ITwitterService } from '../service/twitter/ITwitterService';
 import { Tweets } from './Tweets';
 import { PostTweet } from './PostTweet';
@@ -17,10 +16,15 @@ export interface ITwitterSearchProps {
   requestService: IRequestService;
 }
 
+export enum LoadingState {
+  initial, loading, loaded
+}
+
 export interface ITwitterSearchState {
-  tweetsLoaded: boolean;
-  requestsLoaded: boolean;
-  refreshCount: number;
+  tweetsLoadingState: LoadingState;
+  tweetRefreshCount: number;
+  requestsLoadingState: LoadingState;
+  requestRefreshCount: number;
   message: string;
   tweets: ITweet[];
   requests: IRequest[];
@@ -35,9 +39,10 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
   constructor(props: ITwitterSearchProps) {
     super(props);
     this.state = {
-      tweetsLoaded: false,
-      requestsLoaded: false,
-      refreshCount: this.refreshCount,
+      tweetsLoadingState: LoadingState.initial,
+      tweetRefreshCount: this.refreshCount,
+      requestsLoadingState: LoadingState.initial,
+      requestRefreshCount: this.refreshCount,
       message: "",
       tweets: [],
       requests: []
@@ -46,28 +51,23 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
 
   public render(): React.ReactElement<ITwitterSearchProps> {
 
-    if (!this.state.tweetsLoaded) {
+    // var refreshInterval = this.refreshInterval;
 
-      this.props.twitterService.searchTweets(
-        this.props.query
-      )
-        .then((tweets: ITweet[]) => {
-          this.setState({ tweetsLoaded: true, message: "", tweets: tweets });
-        })
-        .catch((message: string) => {
-          this.setState({ tweetsLoaded: true, message: message, tweets: [] });
-        });
-
+    if (this.state.tweetsLoadingState === LoadingState.initial) {
+      this.loadTweets(this.state.tweetRefreshCount);
+    } else if (this.state.tweetsLoadingState === LoadingState.loaded &&
+      this.state.tweetRefreshCount > 0) {
+      setTimeout(function () {
+        this.loadTweets(this.state.tweetRefreshCount - 1);
+      }.bind(this), this.refreshInterval);
     }
-
-    if (this.props.showRequests) {
-      if (!this.state.requestsLoaded) {
-        // Initial load of request list
-        this.loadRequests();
-      } else if (this.state.refreshCount > 0) {
-        // Refresh
-        setTimeout(() => { this.loadRequests(); }, this.refreshInterval);
-      }
+    if (this.state.requestsLoadingState === LoadingState.initial) {
+      this.loadRequests(this.state.requestRefreshCount);
+    } else if (this.state.requestsLoadingState === LoadingState.loaded &&
+      this.state.requestRefreshCount > 0) {
+      setTimeout(function () {
+        this.loadRequests(this.state.requestRefreshCount - 1);
+      }.bind(this), this.refreshInterval);
     }
 
     if (this.state.tweets.length <= 0 &&
@@ -107,27 +107,59 @@ export class TwitterSearch extends React.Component<ITwitterSearchProps, ITwitter
     }
   }
 
-  private loadRequests() {
-    this.props.requestService.getRequestsForCurrentUser()
-      .then((requests: IRequest[]) => {
-        this.setState({ 
-          requestsLoaded: true, 
-          message: "", 
-          requests: requests,
-          refreshCount: this.state.refreshCount-1
-         });
-      })
-      .catch((message: string) => {
-        this.setState({
-          requestsLoaded: true,
-          message: message,
-          requests: [],
-          refreshCount: this.state.refreshCount-1
+  private loadTweets(remainingRefreshCount: number) {
+    if (this.state.tweetsLoadingState !== LoadingState.loading) {
+      this.props.twitterService.searchTweets(this.props.query)
+        .then((tweets: ITweet[]) => {
+          this.setState({
+            tweetRefreshCount: remainingRefreshCount,
+            tweetsLoadingState: LoadingState.loaded,
+            message: "",
+            tweets: tweets
+          });
+        })
+        .catch((message: string) => {
+          this.setState({
+            tweetRefreshCount: remainingRefreshCount,
+            tweetsLoadingState: LoadingState.loaded,
+            message: message,
+            tweets: []
+          });
         });
-      });
+      this.setState({ tweetsLoadingState: LoadingState.loading });
+    }
+  }
+
+  private loadRequests(remainingRefreshCount: number) {
+    if (this.state.requestsLoadingState !== LoadingState.loading) {
+      this.props.requestService.getRequestsForCurrentUser()
+        .then((requests: IRequest[]) => {
+          this.setState({
+            requestsLoadingState: LoadingState.loaded,
+            requestRefreshCount: remainingRefreshCount,
+            message: "",
+            requests: requests
+          });
+        })
+        .catch((message: string) => {
+          this.setState({
+            requestsLoadingState: LoadingState.loaded,
+            requestRefreshCount: remainingRefreshCount,
+            message: message,
+            requests: []
+          });
+        });
+      this.setState({ requestsLoadingState: LoadingState.loading });
+    }
   }
 
   private refresh() {
-    this.setState({ tweetsLoaded: false, message: "Loading" });
+    this.setState({
+      tweetsLoadingState: LoadingState.initial,
+      tweetRefreshCount: this.refreshCount,
+      requestsLoadingState: LoadingState.initial,
+      requestRefreshCount: this.refreshCount,
+      message: "Loading"
+    });
   }
 }
