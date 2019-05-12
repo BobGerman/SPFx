@@ -3,6 +3,8 @@ import { ITwitterService, ITwitterServiceProps } from './ITwitterService';
 
 import { AadHttpClient } from '@microsoft/sp-http';
 import { IRawTweet } from './servicePayloads/IRawTweet';
+import { IPostTweet } from './servicePayloads/IPostTweet';
+
 import * as strings from 'TwitterSearchWebPartStrings';
 
 export default class TwitterService implements ITwitterService {
@@ -69,7 +71,8 @@ export default class TwitterService implements ITwitterService {
             new AadHttpClient(this.serviceProps.serviceScope,
                 this.serviceProps.clientId);
 
-        const body = {
+        const body: IPostTweet = {
+            "sentBy": this.serviceProps.context.pageContext.user.email,
             "hashtag": query,
             "text": text
         };
