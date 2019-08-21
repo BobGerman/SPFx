@@ -2,10 +2,9 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version, Environment } from '@microsoft/sp-core-library';
 import {
-  BaseClientSideWebPart,
-  IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  BaseClientSideWebPart
 } from '@microsoft/sp-webpart-base';
+import { IPropertyPaneConfiguration, PropertyPaneTextField } from "@microsoft/sp-property-pane";
 
 import * as strings from 'IsolatedWebPartStrings';
 import { ListOfStrings, IListOfStringsProps } from './components/ListOfStrings';
