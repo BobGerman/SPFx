@@ -11,7 +11,7 @@
     "@microsoft/sp-webpart-base": "~1.0.0",
     "@types/knockout": "3.4.39",
     "@types/webpack-env": ">=1.12.1 <1.14.0",
-    "knockout": "3.4.0"
+    "knockout": "3.5.1"
   },
   "devDependencies": {
     "@microsoft/sp-build-web": "~1.0.0",
