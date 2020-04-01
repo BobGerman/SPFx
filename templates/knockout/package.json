@@ -9,7 +9,7 @@
     "@microsoft/sp-client-base": "~0.5.1",
     "@microsoft/sp-client-preview": "~0.7.1",
     "@microsoft/sp-webpart-base": "~0.2.1",
-    "knockout": "3.4.0"
+    "knockout": "3.5.1"
   },
   "devDependencies": {
     "@microsoft/sp-build-web": "~0.8.1",
