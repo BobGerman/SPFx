@@ -32,7 +32,7 @@ The [Slides](./Slides/) folder contains slide decks from recent workshops I've l
 
 [_Fetch_](./Fetch) - Shows how to access SharePoint and Graph API's from the SharePoint Framework. Needs update for the new MSGraph API.
 
-[_Link Picker_](./linkPicker) - Shows how to access the OneDrive file picker when editing a web part. Related blog article is [here](https://blogs.msdn.microsoft.com/bobgerman/2017/07/16/using-the-onedrive-file-picker-in-sharepoint-framework-solutions/).
+[_Link Picker_](./linkPicker) - Shows how to access the OneDrive file picker when editing a web part. Related blog article is [here](https://blogs.msdn.microsoft.com/bobgerman/2017/07/16/using-the-onedrive-file-picker-in-sharepoint-framework-solutions/?WT.mc_id=m365-0000-rogerman).
 
 [_Quotes_](./quotes) - Displays one or more quotes from a SharePoint list; shows several concepts including a React web part with Office UI Fabric components, a custom editor component, and more. A simpler version in Plunker is available for you to play with [here](https://bit.ly/ReactQuotes).
 
